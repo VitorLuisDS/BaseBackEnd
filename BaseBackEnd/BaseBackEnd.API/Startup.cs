@@ -54,6 +54,8 @@ namespace BaseBackEnd.API
             {
                 endpoints.MapControllers();
             });
+
+            UpdateDatabase(app);
         }
 
         protected virtual void SetupDatabase(IServiceCollection services)

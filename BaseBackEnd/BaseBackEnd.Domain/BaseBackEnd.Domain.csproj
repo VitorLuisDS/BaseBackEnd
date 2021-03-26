@@ -9,8 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\Base\" />
-    <Folder Include="Enums\" />
     <Folder Include="Interfaces\Service\" />
     <Folder Include="Interfaces\Repository\" />
     <Folder Include="Pagination\" />

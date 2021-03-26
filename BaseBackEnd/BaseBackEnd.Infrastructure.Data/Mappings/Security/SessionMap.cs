@@ -35,8 +35,6 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
                 .HasForeignKey(d => d.IdUser)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName($"FK_${tableName}__User");
-
-            BaseMap.Configure(entity, tableName);
         }
     }
 }

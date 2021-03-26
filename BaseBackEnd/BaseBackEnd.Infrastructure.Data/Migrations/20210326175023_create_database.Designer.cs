@@ -4,14 +4,16 @@ using BaseBackEnd.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BaseBackEnd.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ProjectBaseContext))]
-    partial class ProjectBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210326175023_create_database")]
+    partial class create_database
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -567,19 +569,6 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .HasFilter("[Login] IS NOT NULL");
 
                     b.ToTable("User");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("00000000-0000-0000-0000-000000000001"),
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCreationUser = new Guid("00000000-0000-0000-0000-000000000001"),
-                            IdDepartment = new Guid("00000000-0000-0000-0000-000000000001"),
-                            IdProfile = new Guid("00000000-0000-0000-0000-000000000001"),
-                            Login = "dev",
-                            Password = "123",
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("BaseBackEnd.Infrastructure.Data.Context.DatabaseFunctions.DbFuncs", b =>

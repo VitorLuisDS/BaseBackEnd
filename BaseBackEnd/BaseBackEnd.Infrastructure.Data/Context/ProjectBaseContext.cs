@@ -1,6 +1,7 @@
 ﻿using BaseBackEnd.Domain.Entities.Security;
 using BaseBackEnd.Infrastructure.Data.Context.DatabaseFunctions;
 using BaseBackEnd.Infrastructure.Data.Mappings.Security;
+using BaseBackEnd.Infrastructure.Data.Seeds;
 using Microsoft.EntityFrameworkCore;
 
 namespace BaseBackEnd.Infrastructure.Data.Context
@@ -45,6 +46,8 @@ namespace BaseBackEnd.Infrastructure.Data.Context
             modelBuilder.Entity<DbFuncs>()
                 .ToSqlQuery("SELECT GETDATE() AS DateTime, NEWID() as NewId")
                 .HasNoKey();
+
+            modelBuilder.SeedAsync();
 
             OnModelCreatingPartial(modelBuilder);
         }

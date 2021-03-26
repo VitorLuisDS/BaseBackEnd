@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BaseBackEnd.Infrastructure.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class create_database : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,8 +17,8 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(GETDATE())", comment: "Creation Date"),
                     LastModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(GETDATE())"),
-                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
-                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
+                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValueSql: "(CONVERT([bit],(1)))", comment: "Status of Profile. Inactive = 0, Active=1, Blocked = 2, Deleted = 3")
                 },
                 constraints: table =>
@@ -37,8 +37,8 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     IdDepartment = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(GETDATE())", comment: "Creation Date"),
                     LastModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(GETDATE())"),
-                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
-                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
+                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValueSql: "(CONVERT([bit],(1)))", comment: "Status of User. Inactive = 0, Active=1, Blocked = 2, Deleted = 3")
                 },
                 constraints: table =>
@@ -55,7 +55,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         column: x => x.IdLastModificationUser,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_User_Profile",
                         column: x => x.IdProfile,
@@ -73,8 +73,8 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     Description = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(GETDATE())", comment: "Creation Date"),
                     LastModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(GETDATE())"),
-                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
-                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
+                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValueSql: "(CONVERT([bit],(1)))", comment: "Status of Department. Inactive = 0, Active=1, Blocked = 2, Deleted = 3")
                 },
                 constraints: table =>
@@ -91,7 +91,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         column: x => x.IdLastModificationUser,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,8 +103,8 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     Description = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(GETDATE())", comment: "Creation Date"),
                     LastModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(GETDATE())"),
-                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
-                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
+                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValueSql: "(CONVERT([bit],(1)))", comment: "Status of Functionality. Inactive = 0, Active=1, Blocked = 2, Deleted = 3")
                 },
                 constraints: table =>
@@ -121,7 +121,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         column: x => x.IdLastModificationUser,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -133,8 +133,8 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     Description = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(GETDATE())", comment: "Creation Date"),
                     LastModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(GETDATE())"),
-                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
-                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
+                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValueSql: "(CONVERT([bit],(1)))", comment: "Status of Module. Inactive = 0, Active=1, Blocked = 2, Deleted = 3")
                 },
                 constraints: table =>
@@ -151,7 +151,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         column: x => x.IdLastModificationUser,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -163,8 +163,8 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     Description = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(GETDATE())", comment: "Creation Date"),
                     LastModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(GETDATE())"),
-                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
-                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
+                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValueSql: "(CONVERT([bit],(1)))", comment: "Status of Page. Inactive = 0, Active=1, Blocked = 2, Deleted = 3")
                 },
                 constraints: table =>
@@ -181,7 +181,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         column: x => x.IdLastModificationUser,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -213,8 +213,8 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     IdPage = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 50, nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(GETDATE())", comment: "Creation Date"),
                     LastModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(GETDATE())"),
-                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
-                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
+                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValueSql: "(CONVERT([bit],(1)))", comment: "Status of ModulePage. Inactive = 0, Active=1, Blocked = 2, Deleted = 3")
                 },
                 constraints: table =>
@@ -243,7 +243,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         column: x => x.IdLastModificationUser,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -255,8 +255,8 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     IdFunctionality = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 50, nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(GETDATE())", comment: "Creation Date"),
                     LastModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(GETDATE())"),
-                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
-                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
+                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValueSql: "(CONVERT([bit],(1)))", comment: "Status of ModulePageFunctionality. Inactive = 0, Active=1, Blocked = 2, Deleted = 3")
                 },
                 constraints: table =>
@@ -285,7 +285,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         column: x => x.IdLastModificationUser,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -298,8 +298,8 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     IdProfile = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(GETDATE())", comment: "Creation Date"),
                     LastModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(GETDATE())"),
-                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
-                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", unicode: false, maxLength: 30, nullable: false),
+                    IdCreationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdLastModificationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValueSql: "(CONVERT([bit],(1)))", comment: "Status of ProfileModulePageFunctionality. Inactive = 0, Active=1, Blocked = 2, Deleted = 3")
                 },
                 constraints: table =>
@@ -322,7 +322,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         column: x => x.IdLastModificationUser,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProfileModulePageFunctionality_Profile",
                         column: x => x.IdProfile,
@@ -546,7 +546,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                 column: "IdLastModificationUser",
                 principalTable: "User",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Profile_Department_DepartmentId",

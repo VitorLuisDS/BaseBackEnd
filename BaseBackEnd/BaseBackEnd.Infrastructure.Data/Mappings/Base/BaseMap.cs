@@ -29,9 +29,7 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Base
 
             entity.Property("IdCreationUser")
                 .HasColumnName("IdCreationUser")
-                .IsRequired(configBaseMap.CreationUserIsRequired)
-                .HasMaxLength(30)
-                .IsUnicode(false);
+                .IsRequired(configBaseMap.CreationUserIsRequired);
 
             entity.Property("LastModificationDate")
                 .ValueGeneratedOnUpdate()
@@ -40,8 +38,7 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Base
 
             entity.Property("IdLastModificationUser")
                 .HasColumnName("IdLastModificationUser")
-                .HasMaxLength(30)
-                .IsUnicode(false);
+                .IsRequired(false);
 
             entity.HasOne("CreationUser")
                 .WithMany()
@@ -52,6 +49,7 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Base
             entity.HasOne("LastModificationUser")
                 .WithMany()
                 .HasForeignKey("IdLastModificationUser")
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName($"FK_{tableName}_Last_Modification_User");
         }
     }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BaseBackEnd.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ProjectBaseContext))]
-    [Migration("20210326145905_initial")]
-    partial class initial
+    [Migration("20210326182810_security_insert_data")]
+    partial class security_insert_data
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,14 +41,10 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<Guid>("IdCreationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdCreationUser");
 
-                    b.Property<Guid>("IdLastModificationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
+                    b.Property<Guid?>("IdLastModificationUser")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdLastModificationUser");
 
@@ -102,14 +98,10 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<Guid>("IdCreationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdCreationUser");
 
-                    b.Property<Guid>("IdLastModificationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
+                    b.Property<Guid?>("IdLastModificationUser")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdLastModificationUser");
 
@@ -163,14 +155,10 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<Guid>("IdCreationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdCreationUser");
 
-                    b.Property<Guid>("IdLastModificationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
+                    b.Property<Guid?>("IdLastModificationUser")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdLastModificationUser");
 
@@ -224,14 +212,10 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .HasComment("Creation Date");
 
                     b.Property<Guid>("IdCreationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdCreationUser");
 
-                    b.Property<Guid>("IdLastModificationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
+                    b.Property<Guid?>("IdLastModificationUser")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdLastModificationUser");
 
@@ -283,14 +267,10 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .HasComment("Creation Date");
 
                     b.Property<Guid>("IdCreationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdCreationUser");
 
-                    b.Property<Guid>("IdLastModificationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
+                    b.Property<Guid?>("IdLastModificationUser")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdLastModificationUser");
 
@@ -337,14 +317,10 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<Guid>("IdCreationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdCreationUser");
 
-                    b.Property<Guid>("IdLastModificationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
+                    b.Property<Guid?>("IdLastModificationUser")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdLastModificationUser");
 
@@ -397,14 +373,10 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<Guid>("IdCreationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdCreationUser");
 
-                    b.Property<Guid>("IdLastModificationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
+                    b.Property<Guid?>("IdLastModificationUser")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdLastModificationUser");
 
@@ -468,14 +440,10 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .HasComment("Creation Date");
 
                     b.Property<Guid>("IdCreationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdCreationUser");
 
-                    b.Property<Guid>("IdLastModificationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
+                    b.Property<Guid?>("IdLastModificationUser")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdLastModificationUser");
 
@@ -549,17 +517,13 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .HasComment("Creation Date");
 
                     b.Property<Guid>("IdCreationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdCreationUser");
 
                     b.Property<Guid>("IdDepartment")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IdLastModificationUser")
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
+                    b.Property<Guid?>("IdLastModificationUser")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("IdLastModificationUser");
 
@@ -605,6 +569,19 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .HasFilter("[Login] IS NOT NULL");
 
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000001"),
+                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCreationUser = new Guid("00000000-0000-0000-0000-000000000001"),
+                            IdDepartment = new Guid("00000000-0000-0000-0000-000000000001"),
+                            IdProfile = new Guid("00000000-0000-0000-0000-000000000001"),
+                            Login = "dev",
+                            Password = "123",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("BaseBackEnd.Infrastructure.Data.Context.DatabaseFunctions.DbFuncs", b =>
@@ -630,9 +607,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.User", "LastModificationUser")
                         .WithMany()
                         .HasForeignKey("IdLastModificationUser")
-                        .HasConstraintName("FK_Department_Last_Modification_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasConstraintName("FK_Department_Last_Modification_User");
 
                     b.Navigation("CreationUser");
 
@@ -650,9 +625,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.User", "LastModificationUser")
                         .WithMany()
                         .HasForeignKey("IdLastModificationUser")
-                        .HasConstraintName("FK_Functionality_Last_Modification_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasConstraintName("FK_Functionality_Last_Modification_User");
 
                     b.Navigation("CreationUser");
 
@@ -670,9 +643,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.User", "LastModificationUser")
                         .WithMany()
                         .HasForeignKey("IdLastModificationUser")
-                        .HasConstraintName("FK_Module_Last_Modification_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasConstraintName("FK_Module_Last_Modification_User");
 
                     b.Navigation("CreationUser");
 
@@ -690,9 +661,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.User", "LastModificationUser")
                         .WithMany()
                         .HasForeignKey("IdLastModificationUser")
-                        .HasConstraintName("FK_ModulePage_Last_Modification_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasConstraintName("FK_ModulePage_Last_Modification_User");
 
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.Module", "Module")
                         .WithMany("ModulePages")
@@ -732,9 +701,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.User", "LastModificationUser")
                         .WithMany()
                         .HasForeignKey("IdLastModificationUser")
-                        .HasConstraintName("FK_ModulePageFunctionality_Last_Modification_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasConstraintName("FK_ModulePageFunctionality_Last_Modification_User");
 
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.ModulePage", "ModulePage")
                         .WithMany("ModulePageFunctionalities")
@@ -762,9 +729,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.User", "LastModificationUser")
                         .WithMany()
                         .HasForeignKey("IdLastModificationUser")
-                        .HasConstraintName("FK_Page_Last_Modification_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasConstraintName("FK_Page_Last_Modification_User");
 
                     b.Navigation("CreationUser");
 
@@ -786,9 +751,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.User", "LastModificationUser")
                         .WithMany()
                         .HasForeignKey("IdLastModificationUser")
-                        .HasConstraintName("FK_Profile_Last_Modification_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasConstraintName("FK_Profile_Last_Modification_User");
 
                     b.Navigation("CreationUser");
 
@@ -806,9 +769,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.User", "LastModificationUser")
                         .WithMany()
                         .HasForeignKey("IdLastModificationUser")
-                        .HasConstraintName("FK_ProfileModulePageFunctionality_Last_Modification_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasConstraintName("FK_ProfileModulePageFunctionality_Last_Modification_User");
 
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.Profile", "Profile")
                         .WithMany("ProfileModulePageFunctionalities")
@@ -860,9 +821,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.User", "LastModificationUser")
                         .WithMany()
                         .HasForeignKey("IdLastModificationUser")
-                        .HasConstraintName("FK_User_Last_Modification_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasConstraintName("FK_User_Last_Modification_User");
 
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.Profile", "Profile")
                         .WithMany("Users")

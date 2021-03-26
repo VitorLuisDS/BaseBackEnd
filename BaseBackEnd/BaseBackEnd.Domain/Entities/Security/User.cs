@@ -6,6 +6,7 @@ namespace BaseBackEnd.Domain.Entities.Security
 {
     public class User : EntityAuditStatusBase
     {
+        public Guid Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public Guid IdProfile{ get; set; }

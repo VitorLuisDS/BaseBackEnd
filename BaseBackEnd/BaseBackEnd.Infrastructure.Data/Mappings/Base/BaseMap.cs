@@ -31,31 +31,28 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Base
                 .HasColumnName("IdCreationUser")
                 .IsRequired(configBaseMap.CreationUserIsRequired)
                 .HasMaxLength(30)
-                .IsUnicode(false)
-                .HasComment("User that created the record");
+                .IsUnicode(false);
 
             entity.Property("LastModificationDate")
                 .ValueGeneratedOnUpdate()
                 .HasDefaultValueSql("(GETDATE())")
-                .HasComment("Last Modification Date")
                 .IsRequired(false);
 
             entity.Property("IdLastModificationUser")
                 .HasColumnName("IdLastModificationUser")
                 .HasMaxLength(30)
-                .IsUnicode(false)
-                .HasComment("User that last modified the record");
+                .IsUnicode(false);
 
             entity.HasOne("CreationUser")
                 .WithMany()
                 .HasForeignKey("IdCreationUser")
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName($"FK_{tableName}Creation_User");
+                .HasConstraintName($"FK_{tableName}_Creation_User");
 
             entity.HasOne("LastModificationUser")
                 .WithMany()
                 .HasForeignKey("IdLastModificationUser")
-                .HasConstraintName($"FK_{tableName}Last_Modification_User");
+                .HasConstraintName($"FK_{tableName}_Last_Modification_User");
         }
     }
 

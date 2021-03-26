@@ -1,10 +1,10 @@
-﻿using BaseBackEnd.Domain.Entities.Base;
-using System;
+﻿using System;
 
 namespace BaseBackEnd.Domain.Entities.Security
 {
-    public class Session : EntityBase
+    public class Session
     {
+        public Guid Id { get; set; }
         public bool? KeepConected { get; set; } = false;
         public Guid IdUser { get; set; }
         public virtual User User { get; set; }

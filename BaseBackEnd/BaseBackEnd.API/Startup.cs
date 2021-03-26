@@ -1,21 +1,18 @@
+using BaseBackEnd.Infrastructure.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BaseBackEnd.API
 {
     public class Startup
     {
+        private static readonly string DEFAULT_DB_CONNECTION = "DefaultConnection";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,6 +25,9 @@ namespace BaseBackEnd.API
         {
 
             services.AddControllers();
+
+            SetupDatabase(services);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BaseBackEnd.API", Version = "v1" });
@@ -54,6 +54,38 @@ namespace BaseBackEnd.API
             {
                 endpoints.MapControllers();
             });
+        }
+
+        protected virtual void SetupDatabase(IServiceCollection services)
+        {
+            if (Convert.ToBoolean(Configuration.GetSection("UseSqlServer").Value))
+            {
+                services.AddDbContext<ProjectBaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString(DEFAULT_DB_CONNECTION)), ServiceLifetime.Transient);
+            }
+            else
+            {
+                services.AddDbContext<ProjectBaseContext>(options => options.UseInMemoryDatabase("KDS_CORE"));
+            }
+        }
+
+        private static async void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<ProjectBaseContext>())
+                {
+                    if (context.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
+                    {
+                        await context.Database.MigrateAsync();
+                    }
+                    else
+                    {
+                        //await Seed.SeedImMeoryaAsync(context);
+                    }
+                }
+            }
         }
     }
 }

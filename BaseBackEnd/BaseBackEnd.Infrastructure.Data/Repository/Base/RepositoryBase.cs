@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BaseBackEnd.Infrastructure.Data.Repository.Base
@@ -23,7 +22,7 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
             _dbSet = _dbContext.Set<TEntity>();
         }
 
-        protected async Task<IEnumerable<TEntity>> GetAsync(
+        public async Task<IEnumerable<TEntity>> GetAsync(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             bool asNoTracking = true,
@@ -53,23 +52,23 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
 
         }
 
-        protected async Task<TEntity> GetByIdAsync(params object[] id)
+        public async Task<TEntity> GetByIdAsync(params object[] id)
         {
             return await _dbSet.FindAsync(id);
         }
 
-        protected async void AddAsync(TEntity entity)
+        public async void AddAsync(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
         }
 
-        protected void Update(TEntity entity)
+        public void Update(TEntity entity)
         {
             _dbSet.Attach(entity);
             _dbContext.Entry(entity).State = EntityState.Modified;
         }
 
-        protected void Remove(TEntity entity)
+        public void Remove(TEntity entity)
         {
             if (_dbContext.Entry(entity).State == EntityState.Detached)
                 _dbSet.Attach(entity);
@@ -105,9 +104,9 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
         }
     }
 
-    static class QueryExtension
+    internal static class QueryExtension
     {
-        public static IQueryable<TEntity> IncludeMultiple<TEntity>(this IQueryable<TEntity> query, params Expression<Func<TEntity, object>>[] includes) where TEntity : class
+        internal static IQueryable<TEntity> IncludeMultiple<TEntity>(this IQueryable<TEntity> query, params Expression<Func<TEntity, object>>[] includes) where TEntity : class
         {
             if (includes != null)
             {

@@ -1,4 +1,6 @@
+using BaseBackEnd.Domain.Interfaces.UnityOfWork;
 using BaseBackEnd.Infrastructure.Data.Context;
+using BaseBackEnd.Infrastructure.Data.UnityOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +27,8 @@ namespace BaseBackEnd.API
         {
 
             services.AddControllers();
+
+            ConfugureDependencyInjections(services);
 
             SetupDatabase(services);
 
@@ -62,7 +66,7 @@ namespace BaseBackEnd.API
         {
             if (Convert.ToBoolean(Configuration.GetSection("UseSqlServer").Value))
             {
-                services.AddDbContext<ProjectBaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString(DEFAULT_DB_CONNECTION)), ServiceLifetime.Transient);
+                services.AddDbContext<ProjectBaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString(DEFAULT_DB_CONNECTION)), ServiceLifetime.Scoped);
             }
             else
             {
@@ -89,5 +93,11 @@ namespace BaseBackEnd.API
                 }
             }
         }
+
+        private void ConfugureDependencyInjections(IServiceCollection services)
+        {
+            services.AddScoped<IUnityOfWork, UnityOfWork>();
+        }
+
     }
 }

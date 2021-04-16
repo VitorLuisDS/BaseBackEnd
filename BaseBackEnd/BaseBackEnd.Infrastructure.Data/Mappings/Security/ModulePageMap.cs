@@ -11,7 +11,7 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
         {
             string tableName = nameof(ModulePage);
 
-            entity.HasKey(e => new { e.IdModule, e.IdPage});
+            entity.HasKey(e => new { e.IdModule, e.IdPage });
 
             entity.ToTable(tableName);
 

@@ -1,6 +1,4 @@
-﻿using BaseBackEnd.Domain.Entities.Security;
-using BaseBackEnd.Domain.Enums;
-using System;
+﻿using BaseBackEnd.Domain.Enums;
 
 namespace BaseBackEnd.Domain.Entities.Base
 {

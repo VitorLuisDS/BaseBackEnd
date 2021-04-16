@@ -13,7 +13,7 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
 
             entity.ToTable(tableName);
 
-            entity.HasKey(e => new { e.IdModulePage, e.IdPage, e.IdFunctionality});
+            entity.HasKey(e => new { e.IdModulePage, e.IdPage, e.IdFunctionality });
 
             entity.Property(e => e.IdModulePage)
                 .HasMaxLength(50)
@@ -35,7 +35,7 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
 
             entity.HasOne(d => d.ModulePage)
                 .WithMany(p => p.ModulePageFunctionalities)
-                .HasForeignKey(d => new { d.IdModulePage, d.IdPage})
+                .HasForeignKey(d => new { d.IdModulePage, d.IdPage })
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName($"FK_{tableName}__Module_Page");
 

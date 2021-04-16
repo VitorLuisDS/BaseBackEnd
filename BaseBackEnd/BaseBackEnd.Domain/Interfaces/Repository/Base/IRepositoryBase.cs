@@ -10,10 +10,10 @@ namespace BaseBackEnd.Domain.Interfaces.Repository.Base
     {
         void AddAsync(TEntity entity);
         Task<IEnumerable<TEntity>> GetAsync(
-            Expression<Func<TEntity, bool>> filter = null, 
-            Func<IQueryable<TEntity>, 
-                IOrderedQueryable<TEntity>> orderBy = null, 
-            bool asNoTracking = true, 
+            Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>,
+                IOrderedQueryable<TEntity>> orderBy = null,
+            bool asNoTracking = true,
             params Expression<Func<TEntity, object>>[] includes);
         Task<TEntity> GetByIdAsync(params object[] id);
         Task<DateTime> GetDatabaseDateTimeAsync();

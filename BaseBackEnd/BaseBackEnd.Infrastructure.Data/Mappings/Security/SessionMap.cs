@@ -1,5 +1,4 @@
 ﻿using BaseBackEnd.Domain.Entities.Security;
-using BaseBackEnd.Infrastructure.Data.Mappings.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

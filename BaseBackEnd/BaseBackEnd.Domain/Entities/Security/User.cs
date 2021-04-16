@@ -9,7 +9,7 @@ namespace BaseBackEnd.Domain.Entities.Security
         public Guid Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public Guid IdProfile{ get; set; }
+        public Guid IdProfile { get; set; }
         public virtual Profile Profile { get; set; }
         public Guid IdDepartment { get; set; }
         public virtual Department Department { get; set; }

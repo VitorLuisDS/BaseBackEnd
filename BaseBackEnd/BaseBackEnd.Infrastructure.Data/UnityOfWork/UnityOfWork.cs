@@ -7,7 +7,7 @@ namespace BaseBackEnd.Infrastructure.Data.UnityOfWork
 {
     public class UnityOfWork : IUnityOfWork
     {
-        readonly ProjectBaseContext _dbContext;
+        private readonly ProjectBaseContext _dbContext;
 
         public UnityOfWork(ProjectBaseContext dbContext)
         {

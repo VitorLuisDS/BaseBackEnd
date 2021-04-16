@@ -13,8 +13,8 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
 {
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
-        readonly ProjectBaseContext _dbContext;
-        readonly DbSet<TEntity> _dbSet;
+        private readonly ProjectBaseContext _dbContext;
+        private readonly DbSet<TEntity> _dbSet;
 
         public RepositoryBase(ProjectBaseContext dbContext)
         {
@@ -31,25 +31,34 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
             IQueryable<TEntity> query = _dbSet;
 
             if (filter != null)
+            {
                 query = query
                     .Where(filter);
+            }
 
             if (includes != null)
+            {
                 query = query
                     .IncludeMultiple(includes);
+            }
 
             if (orderBy != null)
+            {
                 query = orderBy(query)
                     .AsQueryable();
+            }
 
             if (asNoTracking)
+            {
                 return await query
                     .AsNoTracking()
                     .ToListAsync();
+            }
             else
+            {
                 return await query
                     .ToListAsync();
-
+            }
         }
 
         public async Task<TEntity> GetByIdAsync(params object[] id)
@@ -71,7 +80,10 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
         public void Remove(TEntity entity)
         {
             if (_dbContext.Entry(entity).State == EntityState.Detached)
+            {
                 _dbSet.Attach(entity);
+            }
+
             _dbContext.Remove(entity);
         }
 

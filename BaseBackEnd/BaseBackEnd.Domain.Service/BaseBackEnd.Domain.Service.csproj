@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Base\" />
+    <Folder Include="Services\Security\" />
   </ItemGroup>
 
 </Project>

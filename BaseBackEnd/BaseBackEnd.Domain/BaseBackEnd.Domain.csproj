@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\Service\" />
     <Folder Include="Pagination\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>

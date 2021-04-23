@@ -4,9 +4,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Domain.Interfaces.Repository.Base
+namespace BaseBackEnd.Domain.Interfaces.Service.Base
 {
-    public interface IRepositoryBase<TEntity> where TEntity : class
+    public interface IServiceBase<TEntity> where TEntity : class
     {
         Task AddAsync(TEntity entity);
         Task<IEnumerable<TEntity>> GetAsync(

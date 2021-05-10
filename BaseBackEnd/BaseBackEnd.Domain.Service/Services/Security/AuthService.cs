@@ -112,7 +112,8 @@ namespace BaseBackEnd.Domain.Service.Services.Security
                     ProfileName = user.Profile?.Name,
                     Sid = sid,
                     StayConnected = stayConnected,
-                    Roles = user.Profile.ProfileModulePageFunctionalities.Select(x => $"{x.IdModule}-{x.IdPage}-{x.IdFunctionality}").ToArray()
+                    Roles = user.Profile?.ProfileModulePageFunctionalities?.Select(x =>
+                        $"{x?.ModulePageFunctionality?.ModulePage?.Module?.Code}-{x?.ModulePageFunctionality?.ModulePage?.Page?.Code}-{x?.ModulePageFunctionality?.Functionality?.Code}").ToArray()
                 };
             }
 

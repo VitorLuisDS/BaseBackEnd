@@ -6,7 +6,7 @@ namespace BaseBackEnd.Domain.Entities.Security
 {
     public class ModulePageFunctionality : EntityAuditStatusBase
     {
-        public Guid IdModulePage { get; set; }
+        public Guid IdModule { get; set; }
         public virtual ModulePage ModulePage { get; set; }
         public Guid IdPage { get; set; }
         public Guid IdFunctionality { get; set; }

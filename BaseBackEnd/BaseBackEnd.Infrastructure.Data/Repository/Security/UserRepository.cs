@@ -5,7 +5,6 @@ using BaseBackEnd.Infrastructure.Data.Context;
 using BaseBackEnd.Infrastructure.Data.Repository.Base;
 using BaseBackEnd.Infrastructure.Util.Cryptography;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,9 +20,14 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
         {
             string cryptPassword = GenerateMD5.Get(userAuthInputVm.Password);
             return await _dbSet
-                .Include(x => x.Profile)
-                    .ThenInclude(x => x.ProfileModulePageFunctionalities)
-                .FirstOrDefaultAsync(x => x.Password == cryptPassword);
+                .Include(x => x.Profile.ProfileModulePageFunctionalities)
+                    .ThenInclude(x => x.ModulePageFunctionality.ModulePage.Module)
+                .Include(x => x.Profile.ProfileModulePageFunctionalities)
+                    .ThenInclude(x => x.ModulePageFunctionality.ModulePage.Page)
+                .Include(x => x.Profile.ProfileModulePageFunctionalities)
+                    .ThenInclude(x => x.ModulePageFunctionality.Functionality)
+                .FirstOrDefaultAsync(x => x.Login == userAuthInputVm.Login &&
+                                              x.Password == cryptPassword);
         }
     }
 }

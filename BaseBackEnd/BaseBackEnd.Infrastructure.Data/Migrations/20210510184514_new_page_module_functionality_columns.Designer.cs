@@ -4,14 +4,16 @@ using BaseBackEnd.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BaseBackEnd.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ProjectBaseContext))]
-    partial class ProjectBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210510184514_new_page_module_functionality_columns")]
+    partial class new_page_module_functionality_columns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

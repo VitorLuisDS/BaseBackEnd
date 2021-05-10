@@ -9,14 +9,19 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
     {
         public void Configure(EntityTypeBuilder<Module> entity)
         {
-            string tabelaNome = nameof(Module);
+            string tableName = nameof(Module);
 
-            entity.ToTable(tabelaNome);
+            entity.ToTable(tableName);
 
             entity.HasKey(e => e.Id);
 
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("(NEWID())");
+
+            entity.Property(e => e.Code)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             entity.Property(e => e.Name)
                 .IsRequired()
@@ -27,10 +32,13 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
-            entity.HasIndex(e => e.Name, $"UN_{tabelaNome}_Name")
+            entity.HasIndex(e => e.Name, $"UN_{tableName}_Name")
                 .IsUnique();
 
-            BaseMap.Configure(entity, tabelaNome);
+            entity.HasIndex(e => e.Code, $"UN_{tableName}_Code")
+                .IsUnique();
+
+            BaseMap.Configure(entity, tableName);
         }
     }
 }

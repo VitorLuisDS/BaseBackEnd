@@ -18,6 +18,11 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("(NEWID())");
 
+            entity.Property(e => e.Code)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
             entity.Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(80)
@@ -28,6 +33,9 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
                 .IsUnicode(false);
 
             entity.HasIndex(e => e.Name, $"UN_{tableName}_Name")
+                .IsUnique();
+
+            entity.HasIndex(e => e.Code, $"UN_{tableName}_Code")
                 .IsUnique();
 
             BaseMap.Configure(entity, tableName);

@@ -17,6 +17,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                 .HasData(new User
                 {
                     Id = IdUserDev,
+                    Name = "Development",
                     Login = LoginDev,
                     Password = "123",
                     IdProfile = IdProfileDev,
@@ -31,13 +32,15 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = Guid.NewGuid(),
-                        Name = "Aprove",
+                        Code="approve",
+                        Name = "Approve",
                         Description = "Change status to Approved",
                         IdCreationUser = IdUserDev
                     },
                     new Functionality
                     {
                         Id = Guid.NewGuid(),
+                        Code = "disapprove",
                         Name = "Disapprove",
                         Description = "Change status to Disapproved",
                         IdCreationUser = IdUserDev
@@ -45,6 +48,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = Guid.NewGuid(),
+                        Code = "activate",
                         Name = "Activate",
                         Description = "Change status to Active",
                         IdCreationUser = IdUserDev
@@ -52,6 +56,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = Guid.NewGuid(),
+                        Code = "inactivate",
                         Name = "Inactivate",
                         Description = "Change status to Inactive",
                         IdCreationUser = IdUserDev
@@ -59,6 +64,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = Guid.NewGuid(),
+                        Code = "confirm",
                         Name = "Confirm",
                         Description = "Change status to Confirmed",
                         IdCreationUser = IdUserDev
@@ -66,6 +72,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = Guid.NewGuid(),
+                        Code = "cancel",
                         Name = "Cancel",
                         Description = "Change status to Canceled",
                         IdCreationUser = IdUserDev
@@ -73,6 +80,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = Guid.NewGuid(),
+                        Code = "search",
                         Name = "Search",
                         Description = "Permits search",
                         IdCreationUser = IdUserDev
@@ -80,6 +88,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = Guid.NewGuid(),
+                        Code = "export",
                         Name = "Export",
                         Description = "Permits export",
                         IdCreationUser = IdUserDev
@@ -87,6 +96,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = Guid.NewGuid(),
+                        Code = "add",
                         Name = "Add",
                         Description = "Permits add",
                         IdCreationUser = IdUserDev
@@ -94,6 +104,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = Guid.NewGuid(),
+                        Code = "update",
                         Name = "Update",
                         Description = "Permits update",
                         IdCreationUser = IdUserDev
@@ -101,6 +112,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = Guid.NewGuid(),
+                        Code = "remove",
                         Name = "Remove",
                         Description = "Permits remove",
                         IdCreationUser = IdUserDev
@@ -108,6 +120,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = Guid.NewGuid(),
+                        Code = "consult",
                         Name = "Consult",
                         Description = "Permits consults, but not updates",
                         IdCreationUser = IdUserDev
@@ -118,6 +131,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                 .HasData(new Module
                 {
                     Id = Guid.NewGuid(),
+                    Code = "security",
                     Name = "Security",
                     Description = "Security module",
                     IdCreationUser = IdUserDev

@@ -17,7 +17,7 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("(NEWID())");
 
-            entity.Property(e => e.KeepConected)
+            entity.Property(e => e.KeepConnected)
                 .HasDefaultValueSql($"(CONVERT([bit],(0)))");
 
             entity.Property(e => e.CreationDate)

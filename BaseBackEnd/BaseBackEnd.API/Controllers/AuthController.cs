@@ -3,6 +3,7 @@ using BaseBackEnd.Domain.Interfaces.UnityOfWork;
 using BaseBackEnd.Domain.ViewModels.SecutityVms;
 using BaseBackEnd.Domain.ViewModels.UserVms;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace BaseBackEnd.API.Controllers
@@ -24,7 +25,15 @@ namespace BaseBackEnd.API.Controllers
         public async Task<IActionResult> Authenticate([FromBody] UserAuthInputVm userAuthInputVm)
         {
             var user = await _authService.AuthenticateAsync(userAuthInputVm);
-            await _unityOfWork.CommitAsync();
+            try
+            {
+
+
+                await _unityOfWork.CommitAsync();
+            }catch(Exception a)
+            {
+                return Ok(a);
+            }
             return Ok(user);
         }
     }

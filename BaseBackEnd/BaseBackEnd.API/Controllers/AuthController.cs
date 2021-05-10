@@ -3,7 +3,6 @@ using BaseBackEnd.Domain.Interfaces.UnityOfWork;
 using BaseBackEnd.Domain.ViewModels.SecutityVms;
 using BaseBackEnd.Domain.ViewModels.UserVms;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace BaseBackEnd.API.Controllers
@@ -12,11 +11,9 @@ namespace BaseBackEnd.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IUnityOfWork _unityOfWork;
         private readonly IAuthService _authService;
-        public AuthController(IUnityOfWork unityOfWork, IAuthService authService)
+        public AuthController(IAuthService authService)
         {
-            _unityOfWork = unityOfWork;
             _authService = authService;
         }
 
@@ -25,15 +22,6 @@ namespace BaseBackEnd.API.Controllers
         public async Task<IActionResult> Authenticate([FromBody] UserAuthInputVm userAuthInputVm)
         {
             var user = await _authService.AuthenticateAsync(userAuthInputVm);
-            try
-            {
-
-
-                await _unityOfWork.CommitAsync();
-            }catch(Exception a)
-            {
-                return Ok(a);
-            }
             return Ok(user);
         }
     }

@@ -2,6 +2,7 @@
 using BaseBackEnd.Domain.Entities.Security;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
+using BaseBackEnd.Domain.Interfaces.UnityOfWork;
 using BaseBackEnd.Domain.Service.Services.Base;
 using BaseBackEnd.Domain.ViewModels.SecutityVms;
 using BaseBackEnd.Domain.ViewModels.UserVms;
@@ -24,6 +25,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
     {
         private readonly IUserRepository _userRepository;
         private readonly ISessionRepository _sessionRepository;
+        private readonly IUnityOfWork _unityOfWork;
 
         private Exception _validationExceptionType { get; set; }
         public Exception ValidationExceptionType => _validationExceptionType;
@@ -51,11 +53,13 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             IUserRepository userRepository,
             ISessionRepository sessionRepository,
             IOptions<TokenConfig> options,
-            IHttpContextAccessor httpContextAccessor
+            IHttpContextAccessor httpContextAccessor,
+            IUnityOfWork unityOfWork
             ) : base(userRepository)
         {
             _userRepository = userRepository;
             _sessionRepository = sessionRepository;
+            _unityOfWork = unityOfWork;
             _tokenConfig = options.Value;
             _tokenAudience = httpContextAccessor.HttpContext.Request.Headers.FirstOrDefault(x => x.Key.Equals(HEADER_ORIGIN)).Value;
             _tokenIssuer = httpContextAccessor.HttpContext.Request.Host.ToUriComponent();
@@ -67,6 +71,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             if (user != null)
             {
                 Session session = await _sessionRepository.AddAsync(user.Id, userAuthInput.StayConnected);
+                await _unityOfWork.CommitAsync();
                 AuthenticatedUserOutputVm authenticatedUser = PopulateUserData(user, session.Id, userAuthInput.StayConnected);
 
                 return new AccessTokenOutputVm() { Token = GenerateAccessToken(authenticatedUser), RefreshToken = GenerateRefreshToken(authenticatedUser) };

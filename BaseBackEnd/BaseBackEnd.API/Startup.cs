@@ -1,3 +1,4 @@
+using BaseBackEnd.API.Middlewares;
 using BaseBackEnd.Domain.Config;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
@@ -6,14 +7,19 @@ using BaseBackEnd.Domain.Service.Services.Security;
 using BaseBackEnd.Infrastructure.Data.Context;
 using BaseBackEnd.Infrastructure.Data.Repository.Security;
 using BaseBackEnd.Infrastructure.Data.UnityOfWork;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace BaseBackEnd.API
@@ -49,7 +55,20 @@ namespace BaseBackEnd.API
             });
 
             services.AddHttpContextAccessor();
+            ConfigureAccessToken(services);
             services.Configure<TokenConfig>(Configuration.GetSection("TokenConfiguration"));
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    name: "PolicyDefault",
+                    builder => builder
+                        .SetIsOriginAllowedToAllowWildcardSubdomains()
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .WithExposedHeaders("newTokens")
+                    );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,9 +81,17 @@ namespace BaseBackEnd.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BaseBackEnd.API v1"));
             }
 
+            app.UseMiddleware(typeof(TokenHandlingMiddleware));
+
+            app.UseMiddleware(typeof(ChallengeMidlleware));
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("PolicyDefault");
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
@@ -74,6 +101,45 @@ namespace BaseBackEnd.API
             });
 
             UpdateDatabase(app);
+        }
+
+        private void ConfigureAccessToken(IServiceCollection services)
+        {
+            var tokenConfiguration = new TokenConfig();
+
+            new ConfigureFromConfigurationOptions<TokenConfig>(Configuration.GetSection("TokenConfiguration")).Configure(tokenConfiguration);
+
+            services.AddAuthentication(authOptions =>
+            {
+                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(bearerOptions =>
+            {
+                var paramsValidation = bearerOptions.TokenValidationParameters;
+
+                //// Valida a assinatura de um token recebido
+                paramsValidation.ValidateIssuerSigningKey = true;
+
+                paramsValidation.ValidateLifetime = false;
+
+                paramsValidation.ValidateIssuer = false;
+
+                paramsValidation.ValidateAudience = false;
+
+                paramsValidation.IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(tokenConfiguration.Secret));
+
+                //// Tempo de tolerância para a expiração de um token (utilizado
+                //// caso haja problemas de sincronismo de horário entre diferentes
+                //// computadores envolvidos no processo de comunicação)
+                paramsValidation.ClockSkew = TimeSpan.Zero;
+            });
+
+            //// Ativa o uso do token como forma de autorizar o acesso
+            //// a recursos deste projeto
+            services.AddAuthorization(auth =>
+            {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder().AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build());
+            });
         }
 
         protected virtual void SetupDatabase(IServiceCollection services)

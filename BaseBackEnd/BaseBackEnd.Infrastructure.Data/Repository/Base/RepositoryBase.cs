@@ -66,9 +66,9 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
             return await _dbSet.FindAsync(id);
         }
 
-        public async Task AddAsync(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            await _dbSet.AddAsync(entity);
+            return (await _dbSet.AddAsync(entity)).Entity;
         }
 
         public void Update(TEntity entity)

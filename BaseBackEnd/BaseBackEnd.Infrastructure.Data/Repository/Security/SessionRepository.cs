@@ -14,12 +14,12 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
         {
         }
 
-        public async Task AddAsync(Guid userId, bool keepConnected = false)
+        public async Task<Session> AddAsync(Guid userId, bool stayConnected = false)
         {
-            await AddAsync(new Session
+            return await AddAsync(new Session
             {
                 IdUser = userId,
-                KeepConnected = keepConnected
+                StayConnected = stayConnected
             });
         }
 

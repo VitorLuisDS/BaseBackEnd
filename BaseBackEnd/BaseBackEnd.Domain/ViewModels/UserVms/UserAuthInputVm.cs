@@ -4,6 +4,6 @@
     {
         public string Login { get; set; }
         public string Password { get; set; }
-        public bool KeepConnected { get; set; } = false;
+        public bool StayConnected { get; set; } = false;
     }
 }

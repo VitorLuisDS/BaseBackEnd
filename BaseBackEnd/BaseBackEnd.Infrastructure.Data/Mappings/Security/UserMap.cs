@@ -18,6 +18,10 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("(NEWID())");
 
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
             entity.Property(e => e.Login)
                 .HasMaxLength(30)
                 .IsUnicode(false);

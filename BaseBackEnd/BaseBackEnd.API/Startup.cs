@@ -1,5 +1,10 @@
+using BaseBackEnd.Domain.Config;
+using BaseBackEnd.Domain.Interfaces.Repository.Security;
+using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.Interfaces.UnityOfWork;
+using BaseBackEnd.Domain.Service.Services.Security;
 using BaseBackEnd.Infrastructure.Data.Context;
+using BaseBackEnd.Infrastructure.Data.Repository.Security;
 using BaseBackEnd.Infrastructure.Data.UnityOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Text.Json.Serialization;
 
 namespace BaseBackEnd.API
 {
@@ -26,7 +32,12 @@ namespace BaseBackEnd.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                });
 
             ConfugureDependencyInjections(services);
 
@@ -36,6 +47,9 @@ namespace BaseBackEnd.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BaseBackEnd.API", Version = "v1" });
             });
+
+            services.AddHttpContextAccessor();
+            services.Configure<TokenConfig>(Configuration.GetSection("TokenConfiguration"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -97,6 +111,10 @@ namespace BaseBackEnd.API
         private void ConfugureDependencyInjections(IServiceCollection services)
         {
             services.AddScoped<IUnityOfWork, UnityOfWork>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ISessionRepository, SessionRepository>();
+            services.AddScoped<IAuthService, AuthService>();
         }
 
     }

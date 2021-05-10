@@ -8,7 +8,7 @@ namespace BaseBackEnd.Domain.Interfaces.Repository.Base
 {
     public interface IRepositoryBase<TEntity> where TEntity : class
     {
-        Task AddAsync(TEntity entity);
+        Task<TEntity> AddAsync(TEntity entity);
         Task<IEnumerable<TEntity>> GetAsync(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>,

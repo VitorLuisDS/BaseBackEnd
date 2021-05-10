@@ -13,8 +13,8 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
 {
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
-        private readonly ProjectBaseContext _dbContext;
-        private readonly DbSet<TEntity> _dbSet;
+        protected readonly ProjectBaseContext _dbContext;
+        protected readonly DbSet<TEntity> _dbSet;
 
         public RepositoryBase(ProjectBaseContext dbContext)
         {

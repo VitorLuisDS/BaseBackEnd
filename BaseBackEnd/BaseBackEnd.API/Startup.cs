@@ -120,11 +120,13 @@ namespace BaseBackEnd.API
                 //// Valida a assinatura de um token recebido
                 paramsValidation.ValidateIssuerSigningKey = true;
 
-                paramsValidation.ValidateLifetime = false;
+                paramsValidation.ValidateLifetime = true;
 
-                paramsValidation.ValidateIssuer = false;
+                paramsValidation.ValidateIssuer = true;
 
                 paramsValidation.ValidateAudience = false;
+
+                paramsValidation.ValidIssuers = tokenConfiguration.ValidIssuers;
 
                 paramsValidation.IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(tokenConfiguration.Secret));
 

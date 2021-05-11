@@ -237,7 +237,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
                 ValidateIssuerSigningKey = true,
                 ValidateLifetime = true,
                 ValidateAudience = false, // to do
-                ValidateIssuer = false, // to do
+                ValidateIssuer = true, // to do
                 IssuerSigningKey = SymmetricSecurityKey(),
                 ValidAudience = _tokenAudience,
                 ValidIssuer = _tokenIssuer,

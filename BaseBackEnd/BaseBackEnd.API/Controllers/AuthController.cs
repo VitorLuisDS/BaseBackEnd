@@ -1,5 +1,4 @@
 ﻿using BaseBackEnd.Domain.Interfaces.Service.Security;
-using BaseBackEnd.Domain.Interfaces.UnityOfWork;
 using BaseBackEnd.Domain.ViewModels.SecutityVms;
 using BaseBackEnd.Domain.ViewModels.UserVms;
 using Microsoft.AspNetCore.Mvc;

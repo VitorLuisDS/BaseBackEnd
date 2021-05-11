@@ -16,6 +16,7 @@ namespace BaseBackEnd.API.Middlewares
 
             this.requestDelegate = requestDelegate;
         }
+
         public async Task InvokeAsync(HttpContext context)
         {
             string msg = "Não autorizado";
@@ -24,8 +25,6 @@ namespace BaseBackEnd.API.Middlewares
                 throw new ArgumentNullException(nameof(context), nameof(context) + " é requerido");
 
             var oldStatusCode = context.Response.StatusCode;
-
-            await requestDelegate(context);
 
             if (context.Response.StatusCode == StatusCodes.Status403Forbidden || context.Response.StatusCode == StatusCodes.Status401Unauthorized)
             {
@@ -37,6 +36,8 @@ namespace BaseBackEnd.API.Middlewares
 
                 await HandleExceptionAsync(context, msg);
             }
+
+            await requestDelegate(context);
         }
 
         private static Task HandleExceptionAsync(HttpContext context, string message)

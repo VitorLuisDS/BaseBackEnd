@@ -124,7 +124,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
         {
             var handler = new JwtSecurityTokenHandler();
 
-            DateTime creationDate = DateTime.Now;
+            DateTime creationDate = DateTime.UtcNow;
 
             DateTime expirationDate = creationDate + duration;
 
@@ -165,7 +165,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             {
                 var claims = GenerateClaims(authenticatedUserOutputVm);
                 ClaimsIdentity identity = new ClaimsIdentity(claims.ToArray());
-                return GenerateToken(authenticatedUserOutputVm.StayConnected ? TimeSpan.FromDays(50000) : TimeSpan.FromMinutes(_tokenConfig.RefreshTokenDurationInMinutes), identity);
+                return GenerateToken(authenticatedUserOutputVm.StayConnected ? TimeSpan.FromDays(365) : TimeSpan.FromMinutes(_tokenConfig.RefreshTokenDurationInMinutes), identity);
             }
             else
             {
@@ -188,6 +188,8 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             claims.Add(new Claim(ClaimTypeProfileId, authenticatedUserOutputVm.ProfileId.ToString()));
 
             claims.Add(new Claim(ClaimTypeSid, authenticatedUserOutputVm.Sid.ToString()));
+
+            claims.Add(new Claim(ClaimTypeStayConnected, authenticatedUserOutputVm.StayConnected.ToString()));
 
             return claims;
         }

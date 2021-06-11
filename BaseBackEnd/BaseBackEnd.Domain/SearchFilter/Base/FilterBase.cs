@@ -10,7 +10,7 @@ namespace BaseBackEnd.Domain.SearchFilter.Base
 {
     public abstract class FilterBase : IPagination, IClassificationOrder
     {
-        public string ClassifytePer { get; set; }
+        public string ClassifyPer { get; set; }
         public bool? CrescentOrder { get; set; } = false;
 
         [JsonProperty(PropertyName = "currentPage")]

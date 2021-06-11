@@ -19,7 +19,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     Id = IdUserDev,
                     Name = "Development",
                     Login = LoginDev,
-                    Password = "123",
+                    Password = "202cb962ac59075b964b07152d234b70",//123
                     IdProfile = IdProfileDev,
                     IdDepartment = IdDepartmentDev,
                     LastModificationDate = null,

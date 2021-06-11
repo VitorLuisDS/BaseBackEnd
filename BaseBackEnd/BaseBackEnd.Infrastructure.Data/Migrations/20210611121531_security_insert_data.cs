@@ -22,8 +22,8 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "User",
-                columns: new[] { "Id", "IdCreationUser", "IdDepartment", "IdLastModificationUser", "IdProfile", "LastModificationDate", "Login", "Password", "Status" },
-                values: new object[] { 1, 1, 1, null, 1, null, "dev", "123", 1 });
+                columns: new[] { "Id", "IdCreationUser", "IdDepartment", "IdLastModificationUser", "IdProfile", "LastModificationDate", "Name", "Login", "Password", "Status" },
+                values: new object[] { 1, 1, 1, null, 1, null, "dev", "dev", "202cb962ac59075b964b07152d234b70", 1 });
 
             migrationBuilder.InsertData(
                 table: "Department",

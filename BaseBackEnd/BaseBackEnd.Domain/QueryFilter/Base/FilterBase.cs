@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Domain.SearchFilter.Base
+namespace BaseBackEnd.Domain.QueryFilter.Base
 {
     public abstract class FilterBase : IPagination, IClassificationOrder
     {

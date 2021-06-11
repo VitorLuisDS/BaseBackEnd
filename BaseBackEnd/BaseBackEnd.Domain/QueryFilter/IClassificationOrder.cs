@@ -1,4 +1,4 @@
-﻿namespace BaseBackEnd.Domain.SearchFilter
+﻿namespace BaseBackEnd.Domain.QueryFilter
 {
     public interface IClassificationOrder
     {

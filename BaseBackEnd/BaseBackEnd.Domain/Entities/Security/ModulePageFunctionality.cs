@@ -6,10 +6,10 @@ namespace BaseBackEnd.Domain.Entities.Security
 {
     public class ModulePageFunctionality : EntityAuditStatusBase
     {
-        public Guid IdModule { get; set; }
+        public int IdModule { get; set; }
         public virtual ModulePage ModulePage { get; set; }
-        public Guid IdPage { get; set; }
-        public Guid IdFunctionality { get; set; }
+        public int IdPage { get; set; }
+        public int IdFunctionality { get; set; }
         public virtual Functionality Functionality { get; set; }
         public virtual ICollection<ProfileModulePageFunctionality> ProfileModulePageFunctionalities { get; set; } = new HashSet<ProfileModulePageFunctionality>();
     }

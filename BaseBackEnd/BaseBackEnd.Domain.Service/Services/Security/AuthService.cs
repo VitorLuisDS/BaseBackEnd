@@ -99,7 +99,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             return accessTokenOutput;
         }
 
-        private AuthenticatedUserOutputVm PopulateUserData(User user, Guid sid, bool stayConnected)
+        private AuthenticatedUserOutputVm PopulateUserData(User user, int sid, bool stayConnected)
         {
             AuthenticatedUserOutputVm usuarioVm = null;
             if (user != null)
@@ -214,7 +214,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
 
             if (sid != null)
             {
-                result.Sid = Guid.Parse(sid);
+                result.Sid = int.Parse(sid);
             }
             return result;
         }

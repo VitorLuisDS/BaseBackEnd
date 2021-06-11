@@ -14,7 +14,7 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
         {
         }
 
-        public async Task<Session> AddAsync(Guid userId, bool stayConnected = false)
+        public async Task<Session> AddAsync(int userId, bool stayConnected = false)
         {
             return await AddAsync(new Session
             {
@@ -23,7 +23,7 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
             });
         }
 
-        public async Task<Session> GetSessionAndUserAsync(Guid sessionId)
+        public async Task<Session> GetSessionAndUserAsync(int sessionId)
         {
             var session = await _dbSet
                 .Include(x => x.User)

@@ -6,9 +6,9 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
 {
     public static class RunSeed
     {
-        public static Guid IdUserDev = new Guid("00000000-0000-0000-0000-000000000001");
-        public static Guid IdProfileDev = new Guid("00000000-0000-0000-0000-000000000001");
-        public static Guid IdDepartmentDev = new Guid("00000000-0000-0000-0000-000000000001");
+        public static int IdUserDev = 1;
+        public static int IdProfileDev = 1;
+        public static int IdDepartmentDev = 1;
         public static string LoginDev = "dev";
         public static string PasswordDev = "dev";
         public static void SeedAsync(this ModelBuilder modelBuilder)
@@ -31,7 +31,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                 {
                     new Functionality
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 1,
                         Code="approve",
                         Name = "Approve",
                         Description = "Change status to Approved",
@@ -39,7 +39,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 2,
                         Code = "disapprove",
                         Name = "Disapprove",
                         Description = "Change status to Disapproved",
@@ -47,7 +47,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 3,
                         Code = "activate",
                         Name = "Activate",
                         Description = "Change status to Active",
@@ -55,7 +55,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 4,
                         Code = "inactivate",
                         Name = "Inactivate",
                         Description = "Change status to Inactive",
@@ -63,7 +63,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 5,
                         Code = "confirm",
                         Name = "Confirm",
                         Description = "Change status to Confirmed",
@@ -71,7 +71,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 6,
                         Code = "cancel",
                         Name = "Cancel",
                         Description = "Change status to Canceled",
@@ -79,7 +79,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 7,
                         Code = "search",
                         Name = "Search",
                         Description = "Permits search",
@@ -87,7 +87,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 8,
                         Code = "export",
                         Name = "Export",
                         Description = "Permits export",
@@ -95,7 +95,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 9,
                         Code = "add",
                         Name = "Add",
                         Description = "Permits add",
@@ -103,7 +103,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 10,
                         Code = "update",
                         Name = "Update",
                         Description = "Permits update",
@@ -111,7 +111,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 11,
                         Code = "remove",
                         Name = "Remove",
                         Description = "Permits remove",
@@ -119,7 +119,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 12,
                         Code = "consult",
                         Name = "Consult",
                         Description = "Permits consults, but not updates",
@@ -130,7 +130,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
             modelBuilder.Entity<Module>()
                 .HasData(new Module
                 {
-                    Id = Guid.NewGuid(),
+                    Id = 1,
                     Code = "security",
                     Name = "Security",
                     Description = "Security module",

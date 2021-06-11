@@ -1,4 +1,5 @@
-﻿using BaseBackEnd.Domain.Enums;
+﻿using BaseBackEnd.Domain.Entities.Base;
+using BaseBackEnd.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -16,39 +17,38 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Base
 
             if (configBaseMap.HasStatusField)
             {
-                entity.Property("Status")
+                entity.Property(nameof(EntityAuditStatusBase.Status))
                     .HasDefaultValueSql($"(CONVERT([bit],({(int)StatusBase.Active})))")
                     .HasComment($"Status of {tableName}. Inactive = 0, Active=1, Blocked = 2, Deleted = 3");
                 entity.HasIndex("Status");
             }
 
-            entity.Property("CreationDate")
+            entity.Property(nameof(EntityAuditBase.CreationDate))
                 .ValueGeneratedOnAdd()
-                .HasDefaultValueSql("(GETDATE())")
-                .HasComment("Creation Date");
+                .HasDefaultValueSql("(GETDATE())");
 
-            entity.Property("IdCreationUser")
-                .HasColumnName("IdCreationUser")
+            entity.Property(nameof(EntityAuditBase.IdCreationUser))
+                .HasColumnName(nameof(EntityAuditBase.IdCreationUser))
                 .IsRequired(configBaseMap.CreationUserIsRequired);
 
-            entity.Property("LastModificationDate")
+            entity.Property(nameof(EntityAuditBase.LastModificationDate))
                 .ValueGeneratedOnUpdate()
                 .HasDefaultValueSql("(GETDATE())")
                 .IsRequired(false);
 
-            entity.Property("IdLastModificationUser")
-                .HasColumnName("IdLastModificationUser")
+            entity.Property(nameof(EntityAuditBase.IdLastModificationUser))
+                .HasColumnName(nameof(EntityAuditBase.IdLastModificationUser))
                 .IsRequired(false);
 
-            entity.HasOne("CreationUser")
+            entity.HasOne(nameof(EntityAuditBase.CreationUser))
                 .WithMany()
-                .HasForeignKey("IdCreationUser")
+                .HasForeignKey(nameof(EntityAuditBase.IdCreationUser))
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName($"FK_{tableName}_Creation_User");
 
-            entity.HasOne("LastModificationUser")
+            entity.HasOne(nameof(EntityAuditBase.LastModificationUser))
                 .WithMany()
-                .HasForeignKey("IdLastModificationUser")
+                .HasForeignKey(nameof(EntityAuditBase.IdLastModificationUser))
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName($"FK_{tableName}_Last_Modification_User");
         }

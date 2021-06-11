@@ -13,19 +13,14 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
 
             entity.ToTable(tabelaNome);
 
-            entity.HasKey(e => new { e.IdProfile, e.IdModule, e.IdPage, e.IdFunctionality });
+            entity.HasKey(e => new { e.IdProfile, e.IdModule, e.IdPage, e.IdFunctionality })
+                .IsClustered();
 
-            entity.Property(e => e.IdModule)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+            entity.Property(e => e.IdModule);
 
-            entity.Property(e => e.IdPage)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+            entity.Property(e => e.IdPage);
 
-            entity.Property(e => e.IdFunctionality)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+            entity.Property(e => e.IdFunctionality);
 
             entity.HasOne(d => d.Profile)
                 .WithMany(p => p.ProfileModulePageFunctionalities)

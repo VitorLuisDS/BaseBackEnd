@@ -5,6 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210326175023_create_database.cs" />
+    <Compile Remove="Migrations\20210326175023_create_database.Designer.cs" />
+    <Compile Remove="Migrations\20210326182810_security_insert_data.cs" />
+    <Compile Remove="Migrations\20210326182810_security_insert_data.Designer.cs" />
+    <Compile Remove="Migrations\20210326194025_security_insert_data_functionality_and_module.cs" />
+    <Compile Remove="Migrations\20210326194025_security_insert_data_functionality_and_module.Designer.cs" />
+    <Compile Remove="Migrations\20210510174149_name_column_user.cs" />
+    <Compile Remove="Migrations\20210510174149_name_column_user.Designer.cs" />
+    <Compile Remove="Migrations\20210510184514_new_page_module_functionality_columns.cs" />
+    <Compile Remove="Migrations\20210510184514_new_page_module_functionality_columns.Designer.cs" />
+    <Compile Remove="Migrations\20210510185911_module_page_new_column_name.cs" />
+    <Compile Remove="Migrations\20210510185911_module_page_new_column_name.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BaseBackEnd.Domain\BaseBackEnd.Domain.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Infrastructure.Util\BaseBackEnd.Infrastructure.Util.csproj" />
   </ItemGroup>

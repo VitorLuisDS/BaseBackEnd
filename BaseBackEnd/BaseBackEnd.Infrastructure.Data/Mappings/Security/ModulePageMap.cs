@@ -11,17 +11,14 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
         {
             string tableName = nameof(ModulePage);
 
-            entity.HasKey(e => new { e.IdModule, e.IdPage });
+            entity.HasKey(e => new { e.IdModule, e.IdPage })
+                .IsClustered();
 
             entity.ToTable(tableName);
 
-            entity.Property(e => e.IdModule)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+            entity.Property(e => e.IdModule);
 
-            entity.Property(e => e.IdPage)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+            entity.Property(e => e.IdPage);
 
             entity.HasOne(d => d.Module)
                 .WithMany(p => p.ModulePages)

@@ -13,10 +13,11 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
 
             entity.ToTable(tableName);
 
-            entity.HasKey(e => e.Id);
+            entity.HasKey(e => e.Id)
+                .IsClustered();
 
             entity.Property(e => e.Id)
-                .HasDefaultValueSql("(NEWID())");
+                .ValueGeneratedOnAdd();
 
             entity.Property(e => e.Name)
                 .IsRequired()

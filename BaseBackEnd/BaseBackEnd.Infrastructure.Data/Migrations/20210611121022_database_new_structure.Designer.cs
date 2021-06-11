@@ -4,14 +4,16 @@ using BaseBackEnd.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BaseBackEnd.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ProjectBaseContext))]
-    partial class ProjectBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210611121022_database_new_structure")]
+    partial class database_new_structure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,128 +143,6 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Functionality");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Code = "approve",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Change status to Approved",
-                            IdCreationUser = 1,
-                            Name = "Approve",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Code = "disapprove",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Change status to Disapproved",
-                            IdCreationUser = 1,
-                            Name = "Disapprove",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Code = "activate",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Change status to Active",
-                            IdCreationUser = 1,
-                            Name = "Activate",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Code = "inactivate",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Change status to Inactive",
-                            IdCreationUser = 1,
-                            Name = "Inactivate",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Code = "confirm",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Change status to Confirmed",
-                            IdCreationUser = 1,
-                            Name = "Confirm",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Code = "cancel",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Change status to Canceled",
-                            IdCreationUser = 1,
-                            Name = "Cancel",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Code = "search",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permits search",
-                            IdCreationUser = 1,
-                            Name = "Search",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Code = "export",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permits export",
-                            IdCreationUser = 1,
-                            Name = "Export",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Code = "add",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permits add",
-                            IdCreationUser = 1,
-                            Name = "Add",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Code = "update",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permits update",
-                            IdCreationUser = 1,
-                            Name = "Update",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Code = "remove",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permits remove",
-                            IdCreationUser = 1,
-                            Name = "Remove",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Code = "consult",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permits consults, but not updates",
-                            IdCreationUser = 1,
-                            Name = "Consult",
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("BaseBackEnd.Domain.Entities.Security.Module", b =>
@@ -329,18 +209,6 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Module");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Code = "security",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Security module",
-                            IdCreationUser = 1,
-                            Name = "Security",
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("BaseBackEnd.Domain.Entities.Security.ModulePage", b =>
@@ -718,20 +586,6 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .HasFilter("[Login] IS NOT NULL");
 
                     b.ToTable("User");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCreationUser = 1,
-                            IdDepartment = 1,
-                            IdProfile = 1,
-                            Login = "dev",
-                            Name = "Development",
-                            Password = "123",
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("BaseBackEnd.Infrastructure.Data.Context.DatabaseFunctions.DbFuncs", b =>

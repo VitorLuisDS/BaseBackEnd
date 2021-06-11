@@ -7,7 +7,7 @@ namespace BaseBackEnd.Domain.Interfaces.Repository.Security
 {
     public interface ISessionRepository : IRepositoryBase<Session>
     {
-        Task<Session> AddAsync(Guid userId, bool stayConnected = false);
-        Task<Session> GetSessionAndUserAsync(Guid sessionId);
+        Task<Session> AddAsync(int userId, bool stayConnected = false);
+        Task<Session> GetSessionAndUserAsync(int sessionId);
     }
 }

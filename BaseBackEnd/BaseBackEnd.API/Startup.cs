@@ -93,7 +93,7 @@ namespace BaseBackEnd.API
 
             app.UseMiddleware(typeof(TokenHandlingMiddleware));
 
-            app.UseMiddleware(typeof(ChallengeMidlleware));
+            app.UseMiddleware(typeof(ExceptionMiddleware));
 
             app.UseHttpsRedirection();
 

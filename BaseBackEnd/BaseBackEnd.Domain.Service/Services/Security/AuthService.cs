@@ -75,9 +75,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
                 return new TokensOutputVm() { AccessToken = GenerateAccessToken(authenticatedUser), RefreshToken = GenerateRefreshToken(authenticatedUser) };
             }
             else
-            {
-                throw new SecurityException("Usuário ou Senha Inválido(s).");
-            }
+                return default;
         }
 
         public async Task<TokensOutputVm> AuthenticateByTokenAsync(string token)

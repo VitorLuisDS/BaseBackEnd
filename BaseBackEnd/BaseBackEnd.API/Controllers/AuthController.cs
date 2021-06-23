@@ -4,6 +4,7 @@ using BaseBackEnd.Domain.ViewModels.SecutityVms;
 using BaseBackEnd.Domain.ViewModels.UserVms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace BaseBackEnd.API.Controllers
@@ -23,9 +24,14 @@ namespace BaseBackEnd.API.Controllers
         public async Task<IActionResult> Authenticate([FromBody] UserAuthInputVm userAuthInputVm)
         {
             var user = await _authService.AuthenticateAsync(userAuthInputVm);
-            SetAccessTokenOnCookies(user);
-            var response = new ResponseBase<AccessTokenOutputVm>(user, message: "User authenticated");
-            return Ok(response);
+            if (user != default)
+            {
+                SetAccessTokenOnCookies(user);
+                var response = new ResponseBase<AccessTokenOutputVm>(user, message: "User authenticated");
+                return Ok(response);
+            }
+            else
+                return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, "User does not exist"));
         }
 
         private void SetAccessTokenOnCookies(TokensOutputVm user)

@@ -1,5 +1,6 @@
 using BaseBackEnd.API.Middlewares;
 using BaseBackEnd.Domain.Config;
+using BaseBackEnd.Domain.Constants;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.Interfaces.UnityOfWork;
@@ -60,14 +61,23 @@ namespace BaseBackEnd.API
             services.AddCors(options =>
             {
                 options.AddPolicy(
-                    name: "PolicyDefault",
-                    builder => builder
-                        .SetIsOriginAllowedToAllowWildcardSubdomains()
-                        .AllowAnyOrigin()
+                    name: SecurityConstants.POLICY_DEFAULT_NAME,
+                     builder =>
+                    {
+                        builder
+                            .SetIsOriginAllowedToAllowWildcardSubdomains()
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .WithExposedHeaders(SecurityConstants.NEW_TOKEN_NAME);
+
+                        builder
+                        .WithOrigins("http://localhost:8080/")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
-                        .WithExposedHeaders("newTokens")
-                    );
+                        .AllowCredentials()
+                        .SetIsOriginAllowed( origin => true);
+                    });
             });
         }
 
@@ -89,7 +99,7 @@ namespace BaseBackEnd.API
 
             app.UseRouting();
 
-            app.UseCors("PolicyDefault");
+            app.UseCors(SecurityConstants.POLICY_DEFAULT_NAME);
 
             app.UseAuthentication();
 

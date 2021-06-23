@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BaseBackEnd.Domain.Constants;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
@@ -12,17 +13,17 @@ namespace BaseBackEnd.API.Middlewares
         public ChallengeMidlleware(RequestDelegate requestDelegate)
         {
             if (requestDelegate == null)
-                throw new ArgumentNullException(nameof(requestDelegate), nameof(requestDelegate) + " é requerido");
+                throw new ArgumentNullException(nameof(requestDelegate), nameof(requestDelegate) + " is required");
 
             this.requestDelegate = requestDelegate;
         }
 
         public async Task InvokeAsync(HttpContext context)
         {
-            string msg = "Não autorizado";
+            string msg = SecurityConstants.UNAUTHORIZED_MSG;
 
             if (context == null)
-                throw new ArgumentNullException(nameof(context), nameof(context) + " é requerido");
+                throw new ArgumentNullException(nameof(context), nameof(context) + " is required");
 
             var oldStatusCode = context.Response.StatusCode;
 
@@ -31,7 +32,7 @@ namespace BaseBackEnd.API.Middlewares
                 if (oldStatusCode == StatusCodes.Status403Forbidden)
                 {
                     context.Response.StatusCode = StatusCodes.Status403Forbidden;
-                    msg = "Sessão Expirada";
+                    msg = SecurityConstants.EXPIRED_SESSION_MSG;
                 }
 
                 await HandleExceptionAsync(context, msg);

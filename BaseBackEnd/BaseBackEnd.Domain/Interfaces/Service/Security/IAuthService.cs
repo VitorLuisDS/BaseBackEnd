@@ -10,8 +10,8 @@ namespace BaseBackEnd.Domain.Interfaces.Service.Security
     public interface IAuthService : IServiceBase<User>
     {
         Exception ValidationExceptionType { get; }
-        Task<AccessTokenOutputVm> AuthenticateAsync(UserAuthInputVm userAuthInputVm);
+        Task<TokensOutputVm> AuthenticateAsync(UserAuthInputVm userAuthInputVm);
         bool ValidateToken(string token, string tokenAudience = null);
-        Task<AccessTokenOutputVm> AuthenticateByTokenAsync(string token);
+        Task<TokensOutputVm> AuthenticateByTokenAsync(string token);
     }
 }

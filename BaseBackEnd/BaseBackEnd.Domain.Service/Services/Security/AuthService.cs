@@ -1,4 +1,5 @@
 ﻿using BaseBackEnd.Domain.Config;
+using BaseBackEnd.Domain.Constants;
 using BaseBackEnd.Domain.Entities.Security;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
@@ -32,9 +33,6 @@ namespace BaseBackEnd.Domain.Service.Services.Security
 
         private readonly TokenConfig _tokenConfig;
 
-        public const string UNAUTHORIZED_MSG = "Not authorized";
-        public const string EXPIRED_TOKEN_MSG = "Token expired";
-        public const string INVALID_TOKEN_MSG = "Invalid token";
         public const string HEADER_ORIGIN = "origin";
 
         private readonly string _tokenIssuer;
@@ -65,7 +63,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             _tokenIssuer = httpContextAccessor.HttpContext.Request.Host.ToUriComponent();
         }
 
-        public async Task<AccessTokenOutputVm> AuthenticateAsync(UserAuthInputVm userAuthInput)
+        public async Task<TokensOutputVm> AuthenticateAsync(UserAuthInputVm userAuthInput)
         {
             var user = await _userRepository.AuthenticateAsync(userAuthInput);
             if (user != null)
@@ -74,7 +72,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
                 await _unityOfWork.CommitAsync();
                 AuthenticatedUserOutputVm authenticatedUser = PopulateUserData(user, session.Id, userAuthInput.StayConnected);
 
-                return new AccessTokenOutputVm() { Token = GenerateAccessToken(authenticatedUser), RefreshToken = GenerateRefreshToken(authenticatedUser) };
+                return new TokensOutputVm() { AccessToken = GenerateAccessToken(authenticatedUser), RefreshToken = GenerateRefreshToken(authenticatedUser) };
             }
             else
             {
@@ -82,17 +80,17 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             }
         }
 
-        public async Task<AccessTokenOutputVm> AuthenticateByTokenAsync(string token)
+        public async Task<TokensOutputVm> AuthenticateByTokenAsync(string token)
         {
             var dadosDoToken = TokenToAuthenticatedUserOutputVm(token);
-            AccessTokenOutputVm accessTokenOutput = null;
+            TokensOutputVm accessTokenOutput = null;
             if (dadosDoToken != null)
             {
                 Session session = await _sessionRepository.GetSessionAndUserAsync(dadosDoToken.Sid);
                 if (session != null)
                 {
                     AuthenticatedUserOutputVm authenticatedUser = PopulateUserData(session.User, session.Id, dadosDoToken.StayConnected);
-                    accessTokenOutput = new AccessTokenOutputVm() { Token = GenerateAccessToken(authenticatedUser), RefreshToken = GenerateRefreshToken(authenticatedUser) };
+                    accessTokenOutput = new TokensOutputVm() { AccessToken = GenerateAccessToken(authenticatedUser), RefreshToken = GenerateRefreshToken(authenticatedUser) };
                 }
             }
 
@@ -253,12 +251,12 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             }
             catch (SecurityTokenExpiredException)
             {
-                _validationExceptionType = new SecurityTokenExpiredException(EXPIRED_TOKEN_MSG);
+                _validationExceptionType = new SecurityTokenExpiredException(SecurityConstants.EXPIRED_TOKEN_MSG);
                 return false;
             }
             catch
             {
-                _validationExceptionType = new UnauthorizedAccessException(INVALID_TOKEN_MSG);
+                _validationExceptionType = new UnauthorizedAccessException(SecurityConstants.INVALID_TOKEN_MSG);
                 return false;
             }
         }

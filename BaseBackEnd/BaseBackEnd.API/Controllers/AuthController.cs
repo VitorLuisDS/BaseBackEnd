@@ -1,4 +1,5 @@
 ﻿using BaseBackEnd.API.Models.Base;
+using BaseBackEnd.Domain.Constants;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.ViewModels.SecutityVms;
 using BaseBackEnd.Domain.ViewModels.UserVms;
@@ -43,7 +44,7 @@ namespace BaseBackEnd.API.Controllers
                 SameSite = SameSiteMode.None
             };
 
-            HttpContext.Response.Cookies.Append("auth", user.RefreshToken, cookieOptions);
+            HttpContext.Response.Cookies.Append(SecurityConstants.REFRESH_TOKEN_NAME, user.RefreshToken, cookieOptions);
         }
     }
 }

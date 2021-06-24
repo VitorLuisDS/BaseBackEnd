@@ -14,7 +14,6 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Security;
 using System.Security.Claims;
 using System.Text;
 using System.Threading;
@@ -141,7 +140,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
         {
             if (authenticatedUserOutputVm != null)
             {
-                var claims = GenerateClaims(authenticatedUserOutputVm);
+                var claims = GenerateClaimsForAccessToken(authenticatedUserOutputVm);
                 foreach (var item in authenticatedUserOutputVm.Roles)
                 {
                     claims.Add(new Claim(ClaimTypeRole, item));
@@ -159,7 +158,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
         {
             if (authenticatedUserOutputVm != null)
             {
-                var claims = GenerateClaims(authenticatedUserOutputVm);
+                var claims = GenerateClaimsForRefreshToken(authenticatedUserOutputVm);
                 ClaimsIdentity identity = new ClaimsIdentity(claims.ToArray());
                 return GenerateToken(authenticatedUserOutputVm.StayConnected ? TimeSpan.FromDays(365) : TimeSpan.FromMinutes(_tokenConfig.RefreshTokenDurationInMinutes), identity);
             }
@@ -169,7 +168,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             }
         }
 
-        private List<Claim> GenerateClaims(AuthenticatedUserOutputVm authenticatedUserOutputVm)
+        private List<Claim> GenerateClaimsForAccessToken(AuthenticatedUserOutputVm authenticatedUserOutputVm)
         {
             List<Claim> claims = new List<Claim>();
 
@@ -182,6 +181,15 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             claims.Add(new Claim(ClaimTypeProfileName, authenticatedUserOutputVm.ProfileName));
 
             claims.Add(new Claim(ClaimTypeProfileId, authenticatedUserOutputVm.ProfileId.ToString()));
+
+            claims.Add(new Claim(ClaimTypeSid, authenticatedUserOutputVm.Sid.ToString()));
+
+            return claims;
+        }
+
+        private List<Claim> GenerateClaimsForRefreshToken(AuthenticatedUserOutputVm authenticatedUserOutputVm)
+        {
+            List<Claim> claims = new List<Claim>();
 
             claims.Add(new Claim(ClaimTypeSid, authenticatedUserOutputVm.Sid.ToString()));
 

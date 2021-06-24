@@ -22,7 +22,7 @@ namespace BaseBackEnd.API.Middlewares
 
         public async Task Invoke(HttpContext context, [FromServices] IAuthService authService)
         {
-            var hasAccessToken = context.Request.Headers.Any(i => i.Key.Equals("Authorization"));
+            var hasAccessToken = context.Request.Headers.Any(i => i.Key.Equals("Authorization") && i.Value.Count > 0);
             if (hasAccessToken)
             {
                 var headerAccessToken = context.Request.Headers.FirstOrDefault(i => i.Key.Equals("Authorization")).Value[0];

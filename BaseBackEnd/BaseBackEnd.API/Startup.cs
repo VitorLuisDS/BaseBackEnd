@@ -91,6 +91,8 @@ namespace BaseBackEnd.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BaseBackEnd.API v1"));
             }
 
+            app.UseCors(SecurityConstants.POLICY_DEFAULT_NAME);
+
             app.UseMiddleware(typeof(TokenHandlingMiddleware));
 
             app.UseMiddleware(typeof(ExceptionMiddleware));
@@ -98,8 +100,6 @@ namespace BaseBackEnd.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseCors(SecurityConstants.POLICY_DEFAULT_NAME);
 
             app.UseAuthentication();
 

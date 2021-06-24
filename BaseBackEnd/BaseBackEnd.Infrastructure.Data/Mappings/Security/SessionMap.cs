@@ -16,7 +16,7 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
                 .IsClustered();
 
             entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd();
+                .HasDefaultValueSql("(NEWID())");
 
             entity.Property(e => e.StayConnected)
                 .HasDefaultValueSql($"(CONVERT([bit],(0)))");
@@ -35,6 +35,12 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
                 .HasForeignKey(d => d.IdUser)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName($"FK_${tableName}__User");
+
+            entity.HasOne(d => d.SessionBlackList)
+                .WithOne(p => p.Session)
+                .HasForeignKey<Session>(d => d.IdSessionBlackList)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName($"FK_${tableName}__SessionBlackList");
         }
     }
 }

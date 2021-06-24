@@ -28,9 +28,9 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
                 .IsUnicode(false);
 
             entity.Property(e => e.Password)
-            .HasMaxLength(100)
-            .IsRequired()
-            .IsUnicode(false);
+                .HasMaxLength(100)
+                .IsRequired()
+                .IsUnicode(false);
 
             entity.Property(e => e.IdProfile)
                 .IsRequired();

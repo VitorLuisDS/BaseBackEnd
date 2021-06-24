@@ -9,7 +9,7 @@ namespace BaseBackEnd.Domain.ViewModels.UserVms
         public int ProfileId { get; set; }
         public string ProfileName { get; set; }
         public string[] Roles { get; set; }
-        public int Sid { get; set; }
+        public Guid Sid { get; set; }
         public bool StayConnected { get; set; } = false;
     }
 }

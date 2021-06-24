@@ -27,55 +27,46 @@ namespace BaseBackEnd.API.Middlewares
             {
                 var headerAccessToken = context.Request.Headers.FirstOrDefault(i => i.Key.Equals("Authorization")).Value[0];
                 var accessTokenValid = authService.ValidateToken(headerAccessToken);
-                if (!accessTokenValid)
+                if (!accessTokenValid && authService.ValidationExceptionType is SecurityTokenExpiredException)
                 {
-                    if (authService.ValidationExceptionType is SecurityTokenExpiredException)
-                        context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                    context.Response.StatusCode = StatusCodes.Status403Forbidden;
 
                     var hasRefreshToken = context.Request.Cookies.Any(i => i.Key.Equals(SecurityConstants.REFRESH_TOKEN_NAME));
-
-                    if (authService.ValidationExceptionType is SecurityTokenExpiredException && hasRefreshToken)
+                    if (!hasRefreshToken)
+                    {
+                        await WriteAndCompleteAsyncWithMessage(context, HttpStatusCode.Unauthorized, authService.ValidationExceptionType.Message + " and no refresh token provided");
+                    }
+                    else
                     {
                         string refreshToken = context.Request.Cookies.FirstOrDefault(i => i.Key.Equals(SecurityConstants.REFRESH_TOKEN_NAME)).Value;
-
-                        if (!string.IsNullOrEmpty(refreshToken))
+                        var isRefreshTokenValid = authService.ValidateToken(refreshToken);
+                        if (isRefreshTokenValid)
                         {
-                            var isRefreshTokenValid = authService.ValidateToken(refreshToken);
-                            if (isRefreshTokenValid)
+                            var autenticarPorToken = await authService.AuthenticateByTokenAsync(refreshToken);
+                            if (autenticarPorToken != null)
                             {
-                                var autenticarPorToken = await authService.AuthenticateByTokenAsync(refreshToken);
-
-                                if (autenticarPorToken != null)
-                                {
-                                    if (autenticarPorToken != null)
-                                    {
-                                        context.Request.Headers.Remove("Authorization");
-                                        context.Request.Headers.Add("Authorization", $"Bearer {autenticarPorToken.AccessToken}");
-                                        context.Response.Headers.Add(SecurityConstants.NEW_TOKEN_NAME, autenticarPorToken.AccessToken);
-                                        context.Response.StatusCode = StatusCodes.Status200OK;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (authService.ValidationExceptionType is SecurityTokenExpiredException)
-                                    context.Response.StatusCode = StatusCodes.Status403Forbidden;
-                                else
-                                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                                await context.Response.WriteAsJsonAsync(new ResponseBase((HttpStatusCode)context.Response.StatusCode, authService.ValidationExceptionType.Message));
-                                await context.Response.CompleteAsync();
+                                context.Request.Headers.Remove("Authorization");
+                                context.Request.Headers.Add("Authorization", $"Bearer {autenticarPorToken.AccessToken}");
+                                context.Response.Headers.Add(SecurityConstants.NEW_TOKEN_NAME, autenticarPorToken.AccessToken);
+                                context.Response.StatusCode = StatusCodes.Status200OK;
                             }
                         }
-                    }
-                    else if (!hasRefreshToken)
-                    {
-                        await context.Response.WriteAsJsonAsync(new ResponseBase(message: authService.ValidationExceptionType.Message + " and no refresh token provided"));
-                        await context.Response.CompleteAsync();
+                        else
+                        {
+                            await WriteAndCompleteAsyncWithMessage(context, HttpStatusCode.Unauthorized, authService.ValidationExceptionType.Message);
+                        }
                     }
                 }
             }
 
             await next(context);
+        }
+
+        private async Task WriteAndCompleteAsyncWithMessage(HttpContext context, HttpStatusCode statusCode, string message)
+        {
+            context.Response.StatusCode = (int)statusCode;
+            await context.Response.WriteAsJsonAsync(new ResponseBase((HttpStatusCode)context.Response.StatusCode, message));
+            await context.Response.CompleteAsync();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
             });
         }
 
-        public async Task<Session> GetSessionAndUserAsync(int sessionId)
+        public async Task<Session> GetSessionAndUserAsync(Guid sessionId)
         {
             var session = await _dbSet
                 .Include(x => x.User)

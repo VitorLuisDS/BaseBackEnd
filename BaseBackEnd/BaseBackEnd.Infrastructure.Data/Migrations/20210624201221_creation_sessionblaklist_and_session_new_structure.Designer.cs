@@ -4,14 +4,16 @@ using BaseBackEnd.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BaseBackEnd.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ProjectBaseContext))]
-    partial class ProjectBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210624201221_creation_sessionblaklist_and_session_new_structure")]
+    partial class creation_sessionblaklist_and_session_new_structure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -616,7 +618,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("BaseBackEnd.Domain.Entities.Security.Session", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IdNew")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("(NEWID())");
@@ -642,7 +644,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValueSql("(CONVERT([bit],(0)))");
 
-                    b.HasKey("Id")
+                    b.HasKey("IdNew")
                         .IsClustered();
 
                     b.HasIndex("IdSessionBlackList")

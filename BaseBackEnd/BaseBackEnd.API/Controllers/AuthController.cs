@@ -25,7 +25,7 @@ namespace BaseBackEnd.API.Controllers
 
         [HttpPost(AuthEndpoints.AUTHENTICATE)]
         [ProducesBase(typeof(ResponseBase<AccessTokenOutputVm>))]
-        [ProducesResponseType(typeof(ResponseBase), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseTypeBase(typeof(ResponseBase), HttpStatusCode.Unauthorized)]
         public async Task<IActionResult> Authenticate([FromBody] UserAuthInputVm userAuthInputVm)
         {
             var user = await _authService.AuthenticateAsync(userAuthInputVm);
@@ -41,6 +41,7 @@ namespace BaseBackEnd.API.Controllers
 
         [HttpPost(AuthEndpoints.AUTHENTICATE_BY_REFRESH_TOKEN)]
         [ProducesBase(typeof(ResponseBase<AccessTokenOutputVm>))]
+        [ProducesResponseTypeBase(HttpStatusCode.Unauthorized)]
         public async Task<IActionResult> AuthenticateByRefreshToken()
         {
             string refreshToken;

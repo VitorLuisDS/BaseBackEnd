@@ -68,8 +68,7 @@ namespace BaseBackEnd.API
                             .SetIsOriginAllowedToAllowWildcardSubdomains()
                             .AllowAnyOrigin()
                             .AllowAnyHeader()
-                            .AllowAnyMethod()
-                            .WithExposedHeaders(SecurityConstants.NEW_TOKEN_NAME);
+                            .AllowAnyMethod();
 
                         builder
                         .WithOrigins("http://localhost:8080/")
@@ -93,9 +92,9 @@ namespace BaseBackEnd.API
 
             app.UseCors(SecurityConstants.POLICY_DEFAULT_NAME);
 
-            app.UseMiddleware(typeof(TokenHandlingMiddleware));
-
             app.UseMiddleware(typeof(ExceptionMiddleware));
+
+            app.UseMiddleware(typeof(TokenHandlingMiddleware));
 
             app.UseHttpsRedirection();
 
@@ -150,7 +149,7 @@ namespace BaseBackEnd.API
             //// a recursos deste projeto
             services.AddAuthorization(auth =>
             {
-                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder().AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build());
+                auth.AddPolicy(SecurityConstants.AUTHENTICATION_HEADER_TYPE.Trim(), new AuthorizationPolicyBuilder().AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build());
             });
         }
 
@@ -192,6 +191,7 @@ namespace BaseBackEnd.API
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ISessionRepository, SessionRepository>();
+            services.AddScoped<ISessionBlackListRepository, SessionBlackListRepository>();
             services.AddScoped<IAuthService, AuthService>();
         }
 

@@ -1,6 +1,7 @@
 ﻿using BaseBackEnd.Domain.Config;
 using BaseBackEnd.Domain.Constants;
 using BaseBackEnd.Domain.Entities.Security;
+using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.Interfaces.UnityOfWork;
@@ -25,16 +26,17 @@ namespace BaseBackEnd.Domain.Service.Services.Security
     {
         private readonly IUserRepository _userRepository;
         private readonly ISessionRepository _sessionRepository;
+        private readonly ISessionBlackListRepository _sessionBlackListRepository;
         private readonly IUnityOfWork _unityOfWork;
 
-        private Exception _validationExceptionType { get; set; }
-        public Exception ValidationExceptionType => _validationExceptionType;
-
-        private readonly TokenConfig _tokenConfig;
+        private InvalidTokenType _invalidTokenType { get; set; }
+        public InvalidTokenType InvalidTokenType => _invalidTokenType;
 
         public const string HEADER_ORIGIN = "origin";
 
+        private readonly TokenConfig _tokenConfig;
         private readonly string _tokenIssuer;
+
         public string _tokenAudience { get; set; }
 
         public readonly string ClaimTypeName = ClaimTypes.Name;
@@ -49,6 +51,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
         public AuthService(
             IUserRepository userRepository,
             ISessionRepository sessionRepository,
+            ISessionBlackListRepository sessionBlackListRepository,
             IOptions<TokenConfig> options,
             IHttpContextAccessor httpContextAccessor,
             IUnityOfWork unityOfWork
@@ -56,6 +59,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
         {
             _userRepository = userRepository;
             _sessionRepository = sessionRepository;
+            _sessionBlackListRepository = sessionBlackListRepository;
             _unityOfWork = unityOfWork;
             _tokenConfig = options.Value;
             _tokenAudience = httpContextAccessor.HttpContext.Request.Headers.FirstOrDefault(x => x.Key.Equals(HEADER_ORIGIN)).Value;
@@ -202,9 +206,8 @@ namespace BaseBackEnd.Domain.Service.Services.Security
         {
             AuthenticatedUserOutputVm result = null;
 
-            var jwt = new JwtSecurityTokenHandler();
-
-            var content = jwt.ReadJwtToken(token);
+            var content = ReadJwtToken(token);
+            if (content == default) return result;
 
             string sid = content.Claims?.Where(i => i.Type.Equals(ClaimTypeSid))?.FirstOrDefault()?.Value;
 
@@ -223,13 +226,20 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             return result;
         }
 
-        public bool ValidateToken(string token, string tokenAudience = null)
+        public async Task<bool> ValidateToken(string token, string tokenAudience = null)
         {
             if (string.IsNullOrEmpty(token))
                 return false;
 
-            if (token.StartsWith("Bearer "))
+            if (token.StartsWith(SecurityConstants.AUTHENTICATION_HEADER_TYPE))
                 token = token.Substring(7);
+
+            var sid = GetSidFromToken(token);
+            if (sid == default)
+            {
+                _invalidTokenType = InvalidTokenType.Other;
+                return false;
+            }
 
             if (tokenAudience != null)
             {
@@ -248,23 +258,58 @@ namespace BaseBackEnd.Domain.Service.Services.Security
                 ClockSkew = TimeSpan.Zero
             };
 
-            var tokenHandler = new JwtSecurityTokenHandler();
+            var isTokenOnblackList = await _sessionBlackListRepository.IsSessionOnBlackListAsync(sid);
+            if (isTokenOnblackList)
+            {
+                _invalidTokenType = InvalidTokenType.Blacklisted;
+                return false;
+            }
 
             try
             {
+                var tokenHandler = new JwtSecurityTokenHandler();
                 Thread.CurrentPrincipal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
                 return true;
             }
             catch (SecurityTokenExpiredException)
             {
-                _validationExceptionType = new SecurityTokenExpiredException(SecurityConstants.EXPIRED_TOKEN_MSG);
+                _invalidTokenType = InvalidTokenType.Expired;
                 return false;
             }
             catch
             {
-                _validationExceptionType = new UnauthorizedAccessException(SecurityConstants.INVALID_TOKEN_MSG);
+                _invalidTokenType = InvalidTokenType.Other;
                 return false;
             }
+        }
+
+        private JwtSecurityToken ReadJwtToken(string token)
+        {
+            var jwt = new JwtSecurityTokenHandler();
+            try
+            {
+                return jwt.ReadJwtToken(token);
+            }
+            catch
+            {
+                return default;
+            }
+        }
+
+        private Guid GetSidFromToken(string token)
+        {
+            var content = ReadJwtToken(token);
+            if (content == default) return default;
+
+            string sidString = content.Claims?.Where(i => i.Type.Equals(ClaimTypeSid))?.FirstOrDefault()?.Value;
+            if (string.IsNullOrWhiteSpace(sidString))
+                return default;
+
+            Guid sid;
+            if (!Guid.TryParse(sidString, out sid))
+                return default;
+
+            return sid;
         }
 
         private SymmetricSecurityKey SymmetricSecurityKey()

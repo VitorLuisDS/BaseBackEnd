@@ -40,6 +40,7 @@ namespace BaseBackEnd.Infrastructure.Data.Context
             modelBuilder.ApplyConfiguration(new ProfileMap());
             modelBuilder.ApplyConfiguration(new ProfileModulePageFunctionalityMap());
             modelBuilder.ApplyConfiguration(new SessionMap());
+            modelBuilder.ApplyConfiguration(new SessionBlackListMap());
             modelBuilder.ApplyConfiguration(new PageMap());
             modelBuilder.ApplyConfiguration(new UserMap());
 

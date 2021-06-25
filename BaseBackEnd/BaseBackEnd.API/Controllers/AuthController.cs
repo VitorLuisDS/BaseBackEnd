@@ -1,5 +1,8 @@
-﻿using BaseBackEnd.API.Models.Base;
+﻿using BaseBackEnd.API.Constants.Endpoints;
+using BaseBackEnd.API.Models.Attributes;
+using BaseBackEnd.API.Models.Base;
 using BaseBackEnd.Domain.Constants;
+using BaseBackEnd.Domain.Constants.Messages;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.ViewModels.SecutityVms;
 using BaseBackEnd.Domain.ViewModels.UserVms;
@@ -10,9 +13,9 @@ using System.Threading.Tasks;
 
 namespace BaseBackEnd.API.Controllers
 {
-    [Route("api/authentication")]
+    [Route(AuthEndpoints.BASE_ENDPOINT)]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : ControllerBaseBackEnd
     {
         private readonly IAuthService _authService;
         public AuthController(IAuthService authService)
@@ -20,31 +23,49 @@ namespace BaseBackEnd.API.Controllers
             _authService = authService;
         }
 
-        [HttpPost]
-        [Produces("application/json", Type = typeof(ResponseBase<AccessTokenOutputVm>))]
+        [HttpPost(AuthEndpoints.AUTHENTICATE)]
+        [ProducesBase(typeof(ResponseBase<AccessTokenOutputVm>))]
+        [ProducesResponseType(typeof(ResponseBase), StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Authenticate([FromBody] UserAuthInputVm userAuthInputVm)
         {
             var user = await _authService.AuthenticateAsync(userAuthInputVm);
             if (user != default)
             {
                 SetAccessTokenOnCookies(user);
-                var response = new ResponseBase<AccessTokenOutputVm>(user, message: "User authenticated");
+                var response = new ResponseBase<AccessTokenOutputVm>(user, message: SecurityMessages.USER_AUTHENTICATED_MSG);
                 return Ok(response);
             }
             else
-                return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, "User does not exist"));
+                return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.USER_DOES_NOT_EXIST_MSG));
         }
 
-        private void SetAccessTokenOnCookies(TokensOutputVm user)
+        [HttpPost(AuthEndpoints.AUTHENTICATE_BY_REFRESH_TOKEN)]
+        [ProducesBase(typeof(ResponseBase<AccessTokenOutputVm>))]
+        public async Task<IActionResult> AuthenticateByRefreshToken()
         {
-            var cookieOptions = new CookieOptions()
-            {
-                HttpOnly = true,
-                Secure = true,
-                SameSite = SameSiteMode.None
-            };
+            string refreshToken;
+            HttpContext.Request.Cookies.TryGetValue(SecurityConstants.REFRESH_TOKEN_NAME, out refreshToken);
 
-            HttpContext.Response.Cookies.Append(SecurityConstants.REFRESH_TOKEN_NAME, user.RefreshToken, cookieOptions);
+            var hasRefreshToken = !string.IsNullOrWhiteSpace(refreshToken);
+            if (!hasRefreshToken)
+                return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.NO_REFRESH_TOKEN_MSG));
+
+            var isRefreshTokenValid = await _authService.ValidateToken(refreshToken);
+            if (isRefreshTokenValid)
+            {
+                var user = await _authService.AuthenticateByTokenAsync(refreshToken);
+                if (user != default)
+                {
+                    SetAccessTokenOnCookies(user);
+                    var response = new ResponseBase<AccessTokenOutputVm>(user, message: SecurityMessages.TOKEN_CONCEIVED_MSG);
+                    return Ok(response);
+                }
+                else
+                    return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.USER_DOES_NOT_EXIST_MSG));
+
+            }
+            else
+                return ResponseUnsuccessfulResultByInvalidTokenType(_authService.InvalidTokenType);
         }
     }
 }

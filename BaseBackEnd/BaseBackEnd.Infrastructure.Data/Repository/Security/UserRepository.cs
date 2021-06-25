@@ -27,7 +27,8 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
                 .Include(x => x.Profile.ProfileModulePageFunctionalities)
                     .ThenInclude(x => x.ModulePageFunctionality.Functionality)
                 .FirstOrDefaultAsync(x => x.Login == userAuthInputVm.Login &&
-                                              x.Password == cryptPassword);
+                                              x.Password == cryptPassword &&
+                                              x.Status == Domain.Enums.StatusBase.Active);
         }
     }
 }

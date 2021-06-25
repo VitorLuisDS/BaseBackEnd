@@ -4,14 +4,16 @@ using BaseBackEnd.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BaseBackEnd.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ProjectBaseContext))]
-    partial class ProjectBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210625110721_edit_session_blacklist_map")]
+    partial class edit_session_blacklist_map
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -969,7 +971,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.User", "User")
                         .WithMany("Sessions")
                         .HasForeignKey("IdUser")
-                        .HasConstraintName("FK_Session__User")
+                        .HasConstraintName("FK_$Session__User")
                         .IsRequired();
 
                     b.Navigation("User");
@@ -980,7 +982,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.Session", "Session")
                         .WithOne("SessionBlackList")
                         .HasForeignKey("BaseBackEnd.Domain.Entities.Security.SessionBlackList", "IdSession")
-                        .HasConstraintName("FK_SessionBlackList__Session")
+                        .HasConstraintName("FK_$SessionBlackList__Session")
                         .IsRequired();
 
                     b.Navigation("Session");

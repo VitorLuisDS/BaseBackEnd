@@ -22,7 +22,7 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
                 .WithOne(p => p.SessionBlackList)
                 .HasForeignKey<SessionBlackList>(d => d.IdSession)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName($"FK_${tableName}__Session");
+                .HasConstraintName($"FK_{tableName}__Session");
         }
     }
 }

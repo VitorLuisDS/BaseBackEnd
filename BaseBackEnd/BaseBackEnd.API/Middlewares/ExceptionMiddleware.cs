@@ -1,5 +1,4 @@
 ﻿using BaseBackEnd.API.Models.Base;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Net;

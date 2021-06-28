@@ -1,4 +1,5 @@
-﻿using BaseBackEnd.API.Models.Base;
+﻿using BaseBackEnd.API.Constants;
+using BaseBackEnd.API.Models.Base;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Net;
@@ -28,7 +29,7 @@ namespace BaseBackEnd.API.Middlewares
 
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            context.Response.ContentType = "application/json";
+            context.Response.ContentType = ContentTypeConstants.JSON;
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             await context.Response.WriteAsJsonAsync(new ResponseBase((HttpStatusCode)context.Response.StatusCode, exception.Message ?? "Ops, something unexpected happened. Please contact us."));
         }

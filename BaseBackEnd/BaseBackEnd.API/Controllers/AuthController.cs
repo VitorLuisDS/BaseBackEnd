@@ -39,10 +39,10 @@ namespace BaseBackEnd.API.Controllers
                 return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.USER_DOES_NOT_EXIST_MSG));
         }
 
-        [HttpPost(AuthEndpoints.AUTHENTICATE_BY_REFRESH_TOKEN)]
+        [HttpPost(AuthEndpoints.RENEW_ACCESS_TOKEN)]
         [ProducesBase(typeof(ResponseBase<AccessTokenOutputVm>))]
         [ProducesResponseTypeBase(HttpStatusCode.Unauthorized)]
-        public async Task<IActionResult> AuthenticateByRefreshToken()
+        public async Task<IActionResult> RenewAccessToken()
         {
             string refreshToken;
             HttpContext.Request.Cookies.TryGetValue(SecurityConstants.REFRESH_TOKEN_NAME, out refreshToken);

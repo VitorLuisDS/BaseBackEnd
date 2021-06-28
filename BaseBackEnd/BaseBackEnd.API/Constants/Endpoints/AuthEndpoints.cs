@@ -5,6 +5,6 @@
         public const string BASE_ENDPOINT = "api/auth";
 
         public const string AUTHENTICATE = "";
-        public const string AUTHENTICATE_BY_REFRESH_TOKEN = "Token";
+        public const string RENEW_ACCESS_TOKEN = "renew-access-token";
     }
 }

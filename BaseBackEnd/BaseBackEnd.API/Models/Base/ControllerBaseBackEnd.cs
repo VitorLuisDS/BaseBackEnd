@@ -1,4 +1,5 @@
-﻿using BaseBackEnd.Domain.Constants;
+﻿using BaseBackEnd.API.Models.Attributes;
+using BaseBackEnd.Domain.Constants;
 using BaseBackEnd.Domain.Constants.Messages;
 using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.ViewModels.SecutityVms;
@@ -8,6 +9,7 @@ using System.Net;
 
 namespace BaseBackEnd.API.Models.Base
 {
+    [ProducesResponseTypeBase(typeof(ResponseBase), HttpStatusCode.InternalServerError)]
     public class ControllerBaseBackEnd : ControllerBase
     {
         [NonAction]

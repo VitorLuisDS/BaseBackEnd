@@ -9,6 +9,11 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
         public static int IdUserDev = 1;
         public static int IdProfileDev = 1;
         public static int IdDepartmentDev = 1;
+        public static int IdSecurityModule = 1;
+        public static int IdPagePages = 1;
+        public static int IdAddFunctionality = 9;
+        public static int IdUpdateFunctionality = 10;
+        public static int IdRemoveFunctionality = 11;
         public static string LoginDev = "dev";
         public static string PasswordDev = "dev";
         public static void SeedAsync(this ModelBuilder modelBuilder)
@@ -95,7 +100,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = 9,
+                        Id = IdAddFunctionality,
                         Code = "add",
                         Name = "Add",
                         Description = "Permits add",
@@ -103,7 +108,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = 10,
+                        Id = IdUpdateFunctionality,
                         Code = "update",
                         Name = "Update",
                         Description = "Permits update",
@@ -111,7 +116,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = 11,
+                        Id = IdRemoveFunctionality,
                         Code = "remove",
                         Name = "Remove",
                         Description = "Permits remove",
@@ -130,11 +135,84 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
             modelBuilder.Entity<Module>()
                 .HasData(new Module
                 {
-                    Id = 1,
+                    Id = IdSecurityModule,
                     Code = "security",
                     Name = "Security",
                     Description = "Security module",
                     IdCreationUser = IdUserDev
+                });
+
+            modelBuilder.Entity<Page>()
+                .HasData(new Page
+                {
+                    Id = IdPagePages,
+                    Code = "pages",
+                    Name = "Pages",
+                    Description = "Pages page",
+                    IdCreationUser = IdUserDev,
+                });
+
+            modelBuilder.Entity<ModulePage>()
+                .HasData(new ModulePage
+                {
+                    IdModule = IdSecurityModule,
+                    IdPage = IdPagePages,
+                    IdCreationUser = IdUserDev
+                });
+
+            modelBuilder.Entity<ModulePageFunctionality>()
+                .HasData(new ModulePageFunctionality[] 
+                {
+                    new ModulePageFunctionality
+                    {
+                        IdModule = IdSecurityModule,
+                        IdPage = IdPagePages,
+                        IdFunctionality = IdAddFunctionality,
+                        IdCreationUser = IdUserDev
+                    },
+                    new ModulePageFunctionality
+                    {
+                        IdModule = IdSecurityModule,
+                        IdPage = IdPagePages,
+                        IdFunctionality = IdUpdateFunctionality,
+                        IdCreationUser = IdUserDev
+                    },
+                    new ModulePageFunctionality
+                    {
+                        IdModule = IdSecurityModule,
+                        IdPage = IdPagePages,
+                        IdFunctionality = IdRemoveFunctionality,
+                        IdCreationUser = IdUserDev
+                    },
+                });
+
+            modelBuilder.Entity<ProfileModulePageFunctionality>()
+                .HasData(new ProfileModulePageFunctionality[] 
+                {
+                    new ProfileModulePageFunctionality
+                    {
+                        IdModule = IdSecurityModule,
+                        IdPage = IdPagePages,
+                        IdFunctionality = IdAddFunctionality,
+                        IdProfile=IdProfileDev,
+                        IdCreationUser = IdUserDev
+                    },
+                    new ProfileModulePageFunctionality
+                    {
+                        IdModule = IdSecurityModule,
+                        IdPage = IdPagePages,
+                        IdFunctionality = IdUpdateFunctionality,
+                        IdProfile=IdProfileDev,
+                        IdCreationUser = IdUserDev
+                    },
+                    new ProfileModulePageFunctionality
+                    {
+                        IdModule = IdSecurityModule,
+                        IdPage = IdPagePages,
+                        IdFunctionality = IdRemoveFunctionality,
+                        IdProfile=IdProfileDev,
+                        IdCreationUser = IdUserDev
+                    },
                 });
         }
     }

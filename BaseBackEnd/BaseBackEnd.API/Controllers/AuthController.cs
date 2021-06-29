@@ -4,7 +4,7 @@ using BaseBackEnd.API.Models.Base;
 using BaseBackEnd.Domain.Constants;
 using BaseBackEnd.Domain.Constants.Messages;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
-using BaseBackEnd.Domain.ViewModels.SecutityVms;
+using BaseBackEnd.Domain.ViewModels.SecutityVms.TokenVms;
 using BaseBackEnd.Domain.ViewModels.UserVms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

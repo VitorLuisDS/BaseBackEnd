@@ -6,7 +6,7 @@ using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.Interfaces.UnityOfWork;
 using BaseBackEnd.Domain.Service.Services.Base;
-using BaseBackEnd.Domain.ViewModels.SecutityVms;
+using BaseBackEnd.Domain.ViewModels.SecutityVms.TokenVms;
 using BaseBackEnd.Domain.ViewModels.UserVms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;

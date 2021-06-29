@@ -2,7 +2,7 @@
 using BaseBackEnd.Domain.Constants;
 using BaseBackEnd.Domain.Constants.Messages;
 using BaseBackEnd.Domain.Enums;
-using BaseBackEnd.Domain.ViewModels.SecutityVms;
+using BaseBackEnd.Domain.ViewModels.SecutityVms.TokenVms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;

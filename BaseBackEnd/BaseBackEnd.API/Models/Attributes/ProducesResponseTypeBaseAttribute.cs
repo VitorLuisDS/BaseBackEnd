@@ -7,7 +7,7 @@ namespace BaseBackEnd.API.Models.Attributes
 {
     public class ProducesResponseTypeBaseAttribute : ProducesResponseTypeAttribute
     {
-        public ProducesResponseTypeBaseAttribute(Type type, HttpStatusCode statusCode):base(type,(int)statusCode)
+        public ProducesResponseTypeBaseAttribute(Type type, HttpStatusCode statusCode) : base(type, (int)statusCode)
         {
 
         }

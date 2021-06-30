@@ -1,5 +1,4 @@
 ﻿using BaseBackEnd.Domain.Entities.Base;
-using System;
 
 namespace BaseBackEnd.Domain.Entities.Security
 {

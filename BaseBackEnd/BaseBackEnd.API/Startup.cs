@@ -75,7 +75,7 @@ namespace BaseBackEnd.API
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials()
-                        .SetIsOriginAllowed( origin => true);
+                        .SetIsOriginAllowed(origin => true);
                     });
             });
         }

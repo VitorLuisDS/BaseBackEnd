@@ -1,7 +1,6 @@
 ﻿using BaseBackEnd.Domain.Constants.Security;
 using BaseBackEnd.Domain.Entities.Security;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace BaseBackEnd.Infrastructure.Data.Seeds
 {

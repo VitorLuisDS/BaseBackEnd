@@ -1,5 +1,4 @@
-﻿using BaseBackEnd.Domain.Constants.Security;
-using BaseBackEnd.Domain.Entities.Security;
+﻿using BaseBackEnd.Domain.Entities.Security;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.Service.Services.Base;

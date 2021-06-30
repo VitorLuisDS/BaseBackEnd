@@ -18,7 +18,7 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
             return await _dbSet
                 .Include(m => m.Module)
                 .Include(m => m.Page)
-                .SingleAsync(m => m.Module.Code == moduleCode && 
+                .SingleAsync(m => m.Module.Code == moduleCode &&
                                   m.Page.Code == pageCode &&
                                   m.Module.Status == Domain.Enums.StatusBase.Active &&
                                   m.Page.Status == Domain.Enums.StatusBase.Active &&

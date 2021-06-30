@@ -4,14 +4,16 @@ using BaseBackEnd.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BaseBackEnd.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ProjectBaseContext))]
-    partial class ProjectBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210630131735_create_user_profile_and_seed")]
+    partial class create_user_profile_and_seed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -205,6 +207,16 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                         },
                         new
                         {
+                            Id = 7,
+                            Code = "search",
+                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Permits search",
+                            IdCreationUser = 1,
+                            Name = "Search",
+                            Status = 1
+                        },
+                        new
+                        {
                             Id = 8,
                             Code = "export",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -248,7 +260,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                             Id = 12,
                             Code = "consult",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permits consult",
+                            Description = "Permits consults, but not updates",
                             IdCreationUser = 1,
                             Name = "Consult",
                             Status = 1
@@ -606,7 +618,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
 
                     b.HasIndex("Status");
 
-                    b.HasIndex(new[] { "Name" }, "UN_Profile_Name")
+                    b.HasIndex(new[] { "Name" }, "UN_Profile__Name")
                         .IsUnique();
 
                     b.ToTable("Profile");
@@ -980,13 +992,13 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.Module", "Module")
                         .WithMany("ModulePages")
                         .HasForeignKey("IdModule")
-                        .HasConstraintName("FK_ModulePage_Module")
+                        .HasConstraintName("FK_ModulePage__Module")
                         .IsRequired();
 
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.Page", "Page")
                         .WithMany("ModulePages")
                         .HasForeignKey("IdPage")
-                        .HasConstraintName("FK_ModulePage_Page")
+                        .HasConstraintName("FK_ModulePage__Page")
                         .IsRequired();
 
                     b.Navigation("CreationUser");
@@ -1009,7 +1021,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.Functionality", "Functionality")
                         .WithMany("ModulePageFunctionalities")
                         .HasForeignKey("IdFunctionality")
-                        .HasConstraintName("FK_ModulePageFunctionality_Functionality")
+                        .HasConstraintName("FK_ModulePageFunctionality__Functionality")
                         .IsRequired();
 
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.User", "LastModificationUser")
@@ -1020,7 +1032,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.ModulePage", "ModulePage")
                         .WithMany("ModulePageFunctionalities")
                         .HasForeignKey("IdModule", "IdPage")
-                        .HasConstraintName("FK_ModulePageFunctionality_Module_Page")
+                        .HasConstraintName("FK_ModulePageFunctionality__Module_Page")
                         .IsRequired();
 
                     b.Navigation("CreationUser");
@@ -1094,7 +1106,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.ModulePageFunctionality", "ModulePageFunctionality")
                         .WithMany("ProfileModulePageFunctionalities")
                         .HasForeignKey("IdModule", "IdPage", "IdFunctionality")
-                        .HasConstraintName("FK_ProfileModulePageFunctionality_ModulePageFunctionality")
+                        .HasConstraintName("FK_ProfileModulePageFunctionality__ModulePageFunctionality")
                         .IsRequired();
 
                     b.Navigation("CreationUser");
@@ -1111,7 +1123,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.User", "User")
                         .WithMany("Sessions")
                         .HasForeignKey("IdUser")
-                        .HasConstraintName("FK_Session_User")
+                        .HasConstraintName("FK_Session__User")
                         .IsRequired();
 
                     b.Navigation("User");
@@ -1122,7 +1134,7 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.Session", "Session")
                         .WithOne("SessionBlackList")
                         .HasForeignKey("BaseBackEnd.Domain.Entities.Security.SessionBlackList", "IdSession")
-                        .HasConstraintName("FK_SessionBlackList_Session")
+                        .HasConstraintName("FK_SessionBlackList__Session")
                         .IsRequired();
 
                     b.Navigation("Session");
@@ -1171,13 +1183,13 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.Profile", "Profile")
                         .WithMany("UserProfiles")
                         .HasForeignKey("IdProfile")
-                        .HasConstraintName("FK_UserProfile_Profile")
+                        .HasConstraintName("FK_UserProfile__Profile")
                         .IsRequired();
 
                     b.HasOne("BaseBackEnd.Domain.Entities.Security.User", "User")
                         .WithMany("UserProfiles")
                         .HasForeignKey("IdUser")
-                        .HasConstraintName("FK_UserProfile_User")
+                        .HasConstraintName("FK_UserProfile__User")
                         .IsRequired();
 
                     b.Navigation("CreationUser");

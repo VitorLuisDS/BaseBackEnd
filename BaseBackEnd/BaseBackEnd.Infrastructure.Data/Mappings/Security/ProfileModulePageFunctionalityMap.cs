@@ -32,7 +32,7 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
                 .WithMany(p => p.ProfileModulePageFunctionalities)
                 .HasForeignKey(d => new { d.IdModule, d.IdPage, d.IdFunctionality })
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName($"FK_{tabelaNome}__ModulePageFunctionality");
+                .HasConstraintName($"FK_{tabelaNome}_ModulePageFunctionality");
 
             BaseMap.Configure(entity, tabelaNome);
         }

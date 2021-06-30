@@ -34,13 +34,13 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
                 .WithMany(p => p.Sessions)
                 .HasForeignKey(d => d.IdUser)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName($"FK_{tableName}__User");
+                .HasConstraintName($"FK_{tableName}_User");
 
             entity.HasOne(d => d.SessionBlackList)
                 .WithOne(p => p.Session)
                 .HasForeignKey<Session>(d => d.IdSessionBlackList)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName($"FK_{tableName}__SessionBlackList")
+                .HasConstraintName($"FK_{tableName}_SessionBlackList")
                 .IsRequired(false);
         }
     }

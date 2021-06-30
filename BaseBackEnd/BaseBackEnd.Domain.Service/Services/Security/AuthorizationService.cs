@@ -41,7 +41,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             if (modulePage is null)
                 return default;
 
-            var profileModulePageFunctionalities = await _profileModulePageFunctionalityRepository.GetFunctionalitiesCodesByIdsAsync(modulePage.Module.Id, modulePage.Page.Id, user.IdProfile);
+            var profileModulePageFunctionalities = await _profileModulePageFunctionalityRepository.GetFunctionalitiesCodesByIdsUserProfilesAsync(modulePage.Module.Id, modulePage.Page.Id, user.Id);
             if (profileModulePageFunctionalities is null)
                 return default;
 

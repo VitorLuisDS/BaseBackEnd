@@ -35,7 +35,6 @@ namespace BaseBackEnd.Domain.Service.Services.Security
         public readonly string ClaimTypeName = ClaimTypes.Name;
         public readonly string ClaimTypeNameUser = "name";
         public readonly string ClaimTypeProfileName = "profileName";
-        public readonly string ClaimTypeProfileId = "profileId";
         public readonly string ClaimTypeNameIdentifier = ClaimTypes.NameIdentifier;
         public readonly string ClaimTypeSid = "sid";
         public readonly string ClaimTypeStayConnected = "stayConnected";
@@ -59,7 +58,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
 
         public async Task<TokensOutputVm> AuthenticateAsync(UserAuthInputVm userAuthInput)
         {
-            var user = await _userRepository.AuthenticateAsync(userAuthInput);
+            var user = await _userRepository.GetUserByLoginAndPasswordAsync(userAuthInput);
             if (user != null)
             {
                 Session session = await _sessionRepository.AddAsync(user.Id, userAuthInput.StayConnected);
@@ -94,12 +93,16 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             AuthenticatedUserOutputVm usuarioVm = null;
             if (user != null)
             {
+                var profilesNames = user
+                    .UserProfiles
+                    ?.Select(x => x.Profile.Name)
+                    ?.ToArray() ?? new string[0];
+
                 usuarioVm = new AuthenticatedUserOutputVm()
                 {
                     Login = user.Login,
                     Name = user.Name,
-                    ProfileId = user.IdProfile,
-                    ProfileName = user.Profile?.Name,
+                    ProfilesNames = profilesNames,
                     Sid = sid,
                     StayConnected = stayConnected
                 };
@@ -114,7 +117,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             {
                 var claims = GenerateClaimsForAccessToken(authenticatedUserOutputVm);
                 ClaimsIdentity identity = new ClaimsIdentity(claims.ToArray());
-                return _tokenService.GenerateToken(TimeSpan.FromSeconds(_tokenConfig.AccessTokenDurationInSeconds)/*TimeSpan.FromDays(365/2)*/, identity);
+                return _tokenService.GenerateToken(/*TimeSpan.FromSeconds(_tokenConfig.AccessTokenDurationInSeconds)*/TimeSpan.FromDays(365 / 2), identity);
             }
             else
             {
@@ -146,11 +149,12 @@ namespace BaseBackEnd.Domain.Service.Services.Security
 
             claims.Add(new Claim(ClaimTypeNameUser, authenticatedUserOutputVm.Name));
 
-            claims.Add(new Claim(ClaimTypeProfileName, authenticatedUserOutputVm.ProfileName));
-
-            claims.Add(new Claim(ClaimTypeProfileId, authenticatedUserOutputVm.ProfileId.ToString()));
-
             claims.Add(new Claim(ClaimTypeSid, authenticatedUserOutputVm.Sid.ToString()));
+
+            foreach (var profileName in authenticatedUserOutputVm.ProfilesNames)
+            {
+                claims.Add(new Claim(ClaimTypeProfileName, profileName));
+            }
 
             return claims;
         }

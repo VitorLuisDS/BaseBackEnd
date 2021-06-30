@@ -27,7 +27,6 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     Name = "Development",
                     Login = LoginDev,
                     Password = "202cb962ac59075b964b07152d234b70",//123
-                    IdProfile = IdProfileDev,
                     IdDepartment = IdDepartmentDev,
                     LastModificationDate = null,
                     IdCreationUser = IdUserDev
@@ -86,14 +85,6 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = 7,
-                        Code = FunctionalityCodes.Search,
-                        Name = "Search",
-                        Description = "Permits search",
-                        IdCreationUser = IdUserDev
-                    },
-                    new Functionality
-                    {
                         Id = 8,
                         Code = FunctionalityCodes.Export,
                         Name = "Export",
@@ -126,10 +117,10 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = 12,
+                        Id = IdConsultFunctionality,
                         Code = FunctionalityCodes.Consult,
                         Name = "Consult",
-                        Description = "Permits consults, but not updates",
+                        Description = "Permits consult",
                         IdCreationUser = IdUserDev
                     }
                 });
@@ -228,6 +219,17 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                         IdPage = IdPagePages,
                         IdFunctionality = IdConsultFunctionality,
                         IdProfile=IdProfileDev,
+                        IdCreationUser = IdUserDev
+                    },
+                });
+
+            modelBuilder.Entity<UserProfile>()
+                .HasData(new UserProfile[]
+                {
+                    new UserProfile
+                    {
+                        IdProfile = IdProfileDev,
+                        IdUser = IdUserDev,
                         IdCreationUser = IdUserDev
                     },
                 });

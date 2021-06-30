@@ -10,10 +10,9 @@ namespace BaseBackEnd.Domain.Entities.Security
         public string Name { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public int IdProfile { get; set; }
-        public virtual Profile Profile { get; set; }
         public int IdDepartment { get; set; }
         public virtual Department Department { get; set; }
         public virtual ICollection<Session> Sessions { get; set; } = new HashSet<Session>();
+        public virtual ICollection<UserProfile> UserProfiles { get; set; } = new HashSet<UserProfile>();
     }
 }

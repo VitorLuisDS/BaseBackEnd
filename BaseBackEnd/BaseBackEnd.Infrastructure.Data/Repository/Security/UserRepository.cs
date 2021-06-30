@@ -16,19 +16,15 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
         {
         }
 
-        public async Task<User> AuthenticateAsync(UserAuthInputVm userAuthInputVm)
+        public async Task<User> GetUserByLoginAndPasswordAsync(UserAuthInputVm userAuthInputVm)
         {
             string cryptPassword = GenerateMD5.Get(userAuthInputVm.Password);
             return await _dbSet
-                .Include(x => x.Profile.ProfileModulePageFunctionalities)
-                    .ThenInclude(x => x.ModulePageFunctionality.ModulePage.Module)
-                .Include(x => x.Profile.ProfileModulePageFunctionalities)
-                    .ThenInclude(x => x.ModulePageFunctionality.ModulePage.Page)
-                .Include(x => x.Profile.ProfileModulePageFunctionalities)
-                    .ThenInclude(x => x.ModulePageFunctionality.Functionality)
-                .FirstOrDefaultAsync(x => x.Login == userAuthInputVm.Login &&
-                                              x.Password == cryptPassword &&
-                                              x.Status == Domain.Enums.StatusBase.Active);
+                .Include(x => x.UserProfiles)
+                    .ThenInclude(x => x.Profile)
+                .SingleOrDefaultAsync(x => x.Login == userAuthInputVm.Login &&
+                                           x.Password == cryptPassword &&
+                                           x.Status == Domain.Enums.StatusBase.Active);
         }
     }
 }

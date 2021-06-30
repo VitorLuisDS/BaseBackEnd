@@ -26,13 +26,13 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
                 .WithMany(p => p.ModulePageFunctionalities)
                 .HasForeignKey(d => d.IdFunctionality)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName($"FK_{tableName}__Functionality");
+                .HasConstraintName($"FK_{tableName}_Functionality");
 
             entity.HasOne(d => d.ModulePage)
                 .WithMany(p => p.ModulePageFunctionalities)
                 .HasForeignKey(d => new { d.IdModule, d.IdPage })
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName($"FK_{tableName}__Module_Page");
+                .HasConstraintName($"FK_{tableName}_Module_Page");
 
             BaseMap.Configure(entity, tableName);
         }

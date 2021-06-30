@@ -24,13 +24,13 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
                 .WithMany(p => p.ModulePages)
                 .HasForeignKey(d => d.IdModule)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName($"FK_{tableName}__Module");
+                .HasConstraintName($"FK_{tableName}_Module");
 
             entity.HasOne(d => d.Page)
                 .WithMany(p => p.ModulePages)
                 .HasForeignKey(d => d.IdPage)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName($"FK_{tableName}__Page");
+                .HasConstraintName($"FK_{tableName}_Page");
 
             BaseMap.Configure(entity, tableName);
         }

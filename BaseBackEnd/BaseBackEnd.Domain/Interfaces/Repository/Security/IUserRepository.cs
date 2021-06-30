@@ -7,6 +7,6 @@ namespace BaseBackEnd.Domain.Interfaces.Repository.Security
 {
     public interface IUserRepository : IRepositoryBase<User>
     {
-        Task<User> AuthenticateAsync(UserAuthInputVm userAuthInputVm);
+        Task<User> GetUserByLoginAndPasswordAsync(UserAuthInputVm userAuthInputVm);
     }
 }

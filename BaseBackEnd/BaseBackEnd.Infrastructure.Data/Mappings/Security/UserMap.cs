@@ -32,19 +32,10 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
                 .IsRequired()
                 .IsUnicode(false);
 
-            entity.Property(e => e.IdProfile)
-                .IsRequired();
-
             entity.HasOne(d => d.Department)
                 .WithMany(p => p.Users)
                 .HasForeignKey(d => d.IdDepartment)
                 .HasConstraintName($"FK_{tableName}_Department");
-
-            entity.HasOne(d => d.Profile)
-                .WithMany(p => p.Users)
-                .HasForeignKey(d => d.IdProfile)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName($"FK_{tableName}_Profile");
 
             entity.HasIndex(e => e.Login, $"UN_{tableName}_Login")
                 .IsUnique();

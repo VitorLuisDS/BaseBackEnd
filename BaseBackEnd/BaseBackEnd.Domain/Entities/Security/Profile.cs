@@ -10,6 +10,6 @@ namespace BaseBackEnd.Domain.Entities.Security
         public string Name { get; set; }
         public string Description { get; set; }
         public virtual ICollection<ProfileModulePageFunctionality> ProfileModulePageFunctionalities { get; set; } = new HashSet<ProfileModulePageFunctionality>();
-        public virtual ICollection<User> Users { get; set; } = new HashSet<User>();
+        public virtual ICollection<UserProfile> UserProfiles { get; set; } = new HashSet<UserProfile>();
     }
 }

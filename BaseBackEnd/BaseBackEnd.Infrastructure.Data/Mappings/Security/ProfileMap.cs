@@ -28,7 +28,7 @@ namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
-            entity.HasIndex(e => e.Name, $"UN_{tableName}__Name")
+            entity.HasIndex(e => e.Name, $"UN_{tableName}_Name")
                 .IsUnique();
 
             BaseMap.Configure(entity, tableName);

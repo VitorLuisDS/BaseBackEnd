@@ -8,7 +8,6 @@
         public const string Inactivate = "inactivate";
         public const string Confirm = "confirm";
         public const string Cancel = "cancel";
-        public const string Search = "search";
         public const string Export = "export";
         public const string Add = "add";
         public const string Update = "update";

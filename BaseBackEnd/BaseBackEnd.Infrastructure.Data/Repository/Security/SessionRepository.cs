@@ -26,7 +26,7 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
         public async Task<Session> GetSessionAndUserAsync(Guid sessionId)
         {
             var session = await _dbSet
-                .Include(x => x.User)
+                .Include(x => x.User.UserProfiles)
                 .SingleOrDefaultAsync(x => x.Id == sessionId && 
                                            x.User.Status == Domain.Enums.StatusBase.Active);
             return session;

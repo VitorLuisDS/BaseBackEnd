@@ -21,6 +21,7 @@ namespace BaseBackEnd.Infrastructure.Data.Context
         public virtual DbSet<Page> Page { get; set; }
         public virtual DbSet<Session> Session { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<UserProfile> UserProfile { get; set; }
         #endregion
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -43,6 +44,7 @@ namespace BaseBackEnd.Infrastructure.Data.Context
             modelBuilder.ApplyConfiguration(new SessionBlackListMap());
             modelBuilder.ApplyConfiguration(new PageMap());
             modelBuilder.ApplyConfiguration(new UserMap());
+            modelBuilder.ApplyConfiguration(new UserProfileMap());
 
             modelBuilder.Entity<DbFuncs>()
                 .ToSqlQuery("SELECT GETDATE() AS DateTime, NEWID() as NewId")

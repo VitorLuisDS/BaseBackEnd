@@ -6,8 +6,7 @@ namespace BaseBackEnd.Domain.ViewModels.UserVms
     {
         public string Login { get; set; }
         public string Name { get; set; }
-        public int ProfileId { get; set; }
-        public string ProfileName { get; set; }
+        public string[] ProfilesNames { get; set; }
         public Guid Sid { get; set; }
         public bool StayConnected { get; set; } = false;
     }

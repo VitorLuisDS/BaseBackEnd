@@ -4,14 +4,16 @@ using BaseBackEnd.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BaseBackEnd.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ProjectBaseContext))]
-    partial class ProjectBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210630142159_seed_functionality_ids_correction_2")]
+    partial class seed_functionality_ids_correction_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

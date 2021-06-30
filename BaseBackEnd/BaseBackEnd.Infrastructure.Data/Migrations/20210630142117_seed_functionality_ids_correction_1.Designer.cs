@@ -4,14 +4,16 @@ using BaseBackEnd.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BaseBackEnd.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ProjectBaseContext))]
-    partial class ProjectBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210630142117_seed_functionality_ids_correction_1")]
+    partial class seed_functionality_ids_correction_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -212,46 +214,6 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                             IdCreationUser = 1,
                             Name = "Export",
                             Status = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Code = "add",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permits add",
-                            IdCreationUser = 1,
-                            Name = "Add",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Code = "update",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permits update",
-                            IdCreationUser = 1,
-                            Name = "Update",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Code = "remove",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permits remove",
-                            IdCreationUser = 1,
-                            Name = "Remove",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Code = "consult",
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Permits consult",
-                            IdCreationUser = 1,
-                            Name = "Consult",
-                            Status = 1
                         });
                 });
 
@@ -436,44 +398,6 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasIndex("Status");
 
                     b.ToTable("ModulePageFunctionality");
-
-                    b.HasData(
-                        new
-                        {
-                            IdModule = 1,
-                            IdPage = 1,
-                            IdFunctionality = 8,
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCreationUser = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            IdModule = 1,
-                            IdPage = 1,
-                            IdFunctionality = 9,
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCreationUser = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            IdModule = 1,
-                            IdPage = 1,
-                            IdFunctionality = 10,
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCreationUser = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            IdModule = 1,
-                            IdPage = 1,
-                            IdFunctionality = 11,
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCreationUser = 1,
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("BaseBackEnd.Domain.Entities.Security.Page", b =>
@@ -662,48 +586,6 @@ namespace BaseBackEnd.Infrastructure.Data.Migrations
                     b.HasIndex("IdModule", "IdPage", "IdFunctionality");
 
                     b.ToTable("ProfileModulePageFunctionality");
-
-                    b.HasData(
-                        new
-                        {
-                            IdProfile = 1,
-                            IdModule = 1,
-                            IdPage = 1,
-                            IdFunctionality = 8,
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCreationUser = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            IdProfile = 1,
-                            IdModule = 1,
-                            IdPage = 1,
-                            IdFunctionality = 9,
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCreationUser = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            IdProfile = 1,
-                            IdModule = 1,
-                            IdPage = 1,
-                            IdFunctionality = 10,
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCreationUser = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            IdProfile = 1,
-                            IdModule = 1,
-                            IdPage = 1,
-                            IdFunctionality = 11,
-                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCreationUser = 1,
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("BaseBackEnd.Domain.Entities.Security.Session", b =>

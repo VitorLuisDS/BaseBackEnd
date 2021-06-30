@@ -12,10 +12,10 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
         public static int IdDepartmentDev = 1;
         public static int IdSecurityModule = 1;
         public static int IdPagePages = 1;
-        public static int IdAddFunctionality = 9;
-        public static int IdUpdateFunctionality = 10;
-        public static int IdRemoveFunctionality = 11;
-        public static int IdConsultFunctionality = 12;
+        public static int IdAddFunctionality = 8;
+        public static int IdUpdateFunctionality = 9;
+        public static int IdRemoveFunctionality = 10;
+        public static int IdConsultFunctionality = 11;
         public static string LoginDev = "dev";
         public static string PasswordDev = "dev";
         public static void SeedAsync(this ModelBuilder modelBuilder)
@@ -85,7 +85,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     },
                     new Functionality
                     {
-                        Id = 8,
+                        Id = 7,
                         Code = FunctionalityCodes.Export,
                         Name = "Export",
                         Description = "Permits export",

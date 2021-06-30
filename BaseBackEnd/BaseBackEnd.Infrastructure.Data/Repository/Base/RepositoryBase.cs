@@ -61,7 +61,7 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
             }
         }
 
-        public async Task<TEntity> GetByIdAsync(params object[] id)
+        public async Task<TEntity> GetByIdAsync(object id)
         {
             return await _dbSet.FindAsync(id);
         }

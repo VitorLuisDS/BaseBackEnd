@@ -1,4 +1,5 @@
-﻿using BaseBackEnd.Domain.Entities.Security;
+﻿using BaseBackEnd.Domain.Constants.Security;
+using BaseBackEnd.Domain.Entities.Security;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -14,6 +15,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
         public static int IdAddFunctionality = 9;
         public static int IdUpdateFunctionality = 10;
         public static int IdRemoveFunctionality = 11;
+        public static int IdConsultFunctionality = 12;
         public static string LoginDev = "dev";
         public static string PasswordDev = "dev";
         public static void SeedAsync(this ModelBuilder modelBuilder)
@@ -37,7 +39,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = 1,
-                        Code="approve",
+                        Code = FunctionalityCodes.Approve,
                         Name = "Approve",
                         Description = "Change status to Approved",
                         IdCreationUser = IdUserDev
@@ -45,7 +47,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = 2,
-                        Code = "disapprove",
+                        Code = FunctionalityCodes.Disapprove,
                         Name = "Disapprove",
                         Description = "Change status to Disapproved",
                         IdCreationUser = IdUserDev
@@ -53,7 +55,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = 3,
-                        Code = "activate",
+                        Code = FunctionalityCodes.Activate,
                         Name = "Activate",
                         Description = "Change status to Active",
                         IdCreationUser = IdUserDev
@@ -61,7 +63,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = 4,
-                        Code = "inactivate",
+                        Code = FunctionalityCodes.Inactivate,
                         Name = "Inactivate",
                         Description = "Change status to Inactive",
                         IdCreationUser = IdUserDev
@@ -69,7 +71,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = 5,
-                        Code = "confirm",
+                        Code = FunctionalityCodes.Confirm,
                         Name = "Confirm",
                         Description = "Change status to Confirmed",
                         IdCreationUser = IdUserDev
@@ -77,7 +79,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = 6,
-                        Code = "cancel",
+                        Code = FunctionalityCodes.Cancel,
                         Name = "Cancel",
                         Description = "Change status to Canceled",
                         IdCreationUser = IdUserDev
@@ -85,7 +87,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = 7,
-                        Code = "search",
+                        Code = FunctionalityCodes.Search,
                         Name = "Search",
                         Description = "Permits search",
                         IdCreationUser = IdUserDev
@@ -93,7 +95,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = 8,
-                        Code = "export",
+                        Code = FunctionalityCodes.Export,
                         Name = "Export",
                         Description = "Permits export",
                         IdCreationUser = IdUserDev
@@ -101,7 +103,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = IdAddFunctionality,
-                        Code = "add",
+                        Code = FunctionalityCodes.Add,
                         Name = "Add",
                         Description = "Permits add",
                         IdCreationUser = IdUserDev
@@ -109,7 +111,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = IdUpdateFunctionality,
-                        Code = "update",
+                        Code = FunctionalityCodes.Update,
                         Name = "Update",
                         Description = "Permits update",
                         IdCreationUser = IdUserDev
@@ -117,7 +119,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = IdRemoveFunctionality,
-                        Code = "remove",
+                        Code = FunctionalityCodes.Remove,
                         Name = "Remove",
                         Description = "Permits remove",
                         IdCreationUser = IdUserDev
@@ -125,7 +127,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                     new Functionality
                     {
                         Id = 12,
-                        Code = "consult",
+                        Code = FunctionalityCodes.Consult,
                         Name = "Consult",
                         Description = "Permits consults, but not updates",
                         IdCreationUser = IdUserDev
@@ -161,7 +163,7 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                 });
 
             modelBuilder.Entity<ModulePageFunctionality>()
-                .HasData(new ModulePageFunctionality[] 
+                .HasData(new ModulePageFunctionality[]
                 {
                     new ModulePageFunctionality
                     {
@@ -182,12 +184,19 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                         IdModule = IdSecurityModule,
                         IdPage = IdPagePages,
                         IdFunctionality = IdRemoveFunctionality,
+                        IdCreationUser = IdUserDev
+                    },
+                    new ModulePageFunctionality
+                    {
+                        IdModule = IdSecurityModule,
+                        IdPage = IdPagePages,
+                        IdFunctionality = IdConsultFunctionality,
                         IdCreationUser = IdUserDev
                     },
                 });
 
             modelBuilder.Entity<ProfileModulePageFunctionality>()
-                .HasData(new ProfileModulePageFunctionality[] 
+                .HasData(new ProfileModulePageFunctionality[]
                 {
                     new ProfileModulePageFunctionality
                     {
@@ -210,6 +219,14 @@ namespace BaseBackEnd.Infrastructure.Data.Seeds
                         IdModule = IdSecurityModule,
                         IdPage = IdPagePages,
                         IdFunctionality = IdRemoveFunctionality,
+                        IdProfile=IdProfileDev,
+                        IdCreationUser = IdUserDev
+                    },
+                    new ProfileModulePageFunctionality
+                    {
+                        IdModule = IdSecurityModule,
+                        IdPage = IdPagePages,
+                        IdFunctionality = IdConsultFunctionality,
                         IdProfile=IdProfileDev,
                         IdCreationUser = IdUserDev
                     },

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31025.218
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31410.414
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{FBD797EE-F7F3-43F5-93E2-4E7B3858C9A6}"
 EndProject
@@ -9,15 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{601F626C-DD89-4601-9A10-469D3307A8B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseBackEnd.Infrastructure.Util", "BaseBackEnd.Infrastructure.Util\BaseBackEnd.Infrastructure.Util.csproj", "{62010526-028C-4A36-8E0E-0FD81AABCEA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseBackEnd.Infrastructure.Util", "BaseBackEnd.Infrastructure.Util\BaseBackEnd.Infrastructure.Util.csproj", "{62010526-028C-4A36-8E0E-0FD81AABCEA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseBackEnd.Infrastructure.Data", "BaseBackEnd.Infrastructure.Data\BaseBackEnd.Infrastructure.Data.csproj", "{8A7228FB-E475-4C2F-8CBB-6C8784AD9715}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseBackEnd.Infrastructure.Data", "BaseBackEnd.Infrastructure.Data\BaseBackEnd.Infrastructure.Data.csproj", "{8A7228FB-E475-4C2F-8CBB-6C8784AD9715}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseBackEnd.Domain", "BaseBackEnd.Domain\BaseBackEnd.Domain.csproj", "{3539E41B-677B-46B7-A89A-F2C3CAE41991}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseBackEnd.Domain", "BaseBackEnd.Domain\BaseBackEnd.Domain.csproj", "{3539E41B-677B-46B7-A89A-F2C3CAE41991}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseBackEnd.API", "BaseBackEnd.API\BaseBackEnd.API.csproj", "{A53263E8-4B83-4968-B58A-B8535F62F269}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseBackEnd.API", "BaseBackEnd.API\BaseBackEnd.API.csproj", "{A53263E8-4B83-4968-B58A-B8535F62F269}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseBackEnd.Domain.Service", "BaseBackEnd.Domain.Service\BaseBackEnd.Domain.Service.csproj", "{BB8C9F1B-D42F-4E2C-8E9C-EA34F6BD7ACD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseBackEnd.Domain.Service", "BaseBackEnd.Domain.Service\BaseBackEnd.Domain.Service.csproj", "{BB8C9F1B-D42F-4E2C-8E9C-EA34F6BD7ACD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

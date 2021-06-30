@@ -1,6 +1,6 @@
 using BaseBackEnd.API.Middlewares;
 using BaseBackEnd.Domain.Config;
-using BaseBackEnd.Domain.Constants;
+using BaseBackEnd.Domain.Constants.Security;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.Interfaces.UnityOfWork;
@@ -61,7 +61,7 @@ namespace BaseBackEnd.API
             services.AddCors(options =>
             {
                 options.AddPolicy(
-                    name: SecurityConstants.POLICY_DEFAULT_NAME,
+                    name: AuthConstants.POLICY_DEFAULT_NAME,
                      builder =>
                     {
                         builder
@@ -90,7 +90,7 @@ namespace BaseBackEnd.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BaseBackEnd.API v1"));
             }
 
-            app.UseCors(SecurityConstants.POLICY_DEFAULT_NAME);
+            app.UseCors(AuthConstants.POLICY_DEFAULT_NAME);
 
             app.UseMiddleware(typeof(ExceptionMiddleware));
 
@@ -149,7 +149,7 @@ namespace BaseBackEnd.API
             //// a recursos deste projeto
             services.AddAuthorization(auth =>
             {
-                auth.AddPolicy(SecurityConstants.AUTHENTICATION_HEADER_TYPE.Trim(), new AuthorizationPolicyBuilder().AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build());
+                auth.AddPolicy(AuthConstants.AUTHENTICATION_HEADER_TYPE.Trim(), new AuthorizationPolicyBuilder().AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build());
             });
         }
 
@@ -189,10 +189,17 @@ namespace BaseBackEnd.API
         {
             services.AddScoped<IUnityOfWork, UnityOfWork>();
 
+            services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ISessionRepository, SessionRepository>();
             services.AddScoped<ISessionBlackListRepository, SessionBlackListRepository>();
-            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IPageRepository, PageRepository>();
+            services.AddScoped<IModuleRepository, ModuleRepository>();
+            services.AddScoped<IModulePageRepository, ModulePageRepository>();
+            services.AddScoped<IFunctionalityRepository, FunctionalityRepository>();
+            services.AddScoped<IProfileModulePageFunctionalityRepository, ProfileModulePageFunctionalityRepository>();
+            services.AddScoped<Domain.Interfaces.Service.Security.IAuthorizationService, AuthorizationService>();
         }
 
     }

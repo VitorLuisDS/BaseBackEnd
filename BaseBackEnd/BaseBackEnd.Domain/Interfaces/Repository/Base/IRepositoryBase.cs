@@ -15,7 +15,7 @@ namespace BaseBackEnd.Domain.Interfaces.Repository.Base
                 IOrderedQueryable<TEntity>> orderBy = null,
             bool asNoTracking = true,
             params Expression<Func<TEntity, object>>[] includes);
-        Task<TEntity> GetByIdAsync(params object[] id);
+        Task<TEntity> GetByIdAsync(object id);
         Task<DateTime> GetDatabaseDateTimeAsync();
         void GetException(Exception ex);
         Task<Guid> NewGuidDatabaseAsync();

@@ -1,6 +1,6 @@
 ﻿using BaseBackEnd.API.Models.Attributes;
-using BaseBackEnd.Domain.Constants;
 using BaseBackEnd.Domain.Constants.Messages;
+using BaseBackEnd.Domain.Constants.Security;
 using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.ViewModels.SecutityVms.TokenVms;
 using Microsoft.AspNetCore.Http;
@@ -33,7 +33,7 @@ namespace BaseBackEnd.API.Models.Base
                 SameSite = SameSiteMode.None
             };
 
-            HttpContext.Response.Cookies.Append(SecurityConstants.REFRESH_TOKEN_NAME, user.RefreshToken, cookieOptions);
+            HttpContext.Response.Cookies.Append(AuthConstants.REFRESH_TOKEN_NAME, user.RefreshToken, cookieOptions);
         }
     }
 }

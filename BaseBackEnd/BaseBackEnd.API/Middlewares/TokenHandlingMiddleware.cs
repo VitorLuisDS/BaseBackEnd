@@ -19,23 +19,23 @@ namespace BaseBackEnd.API.Middlewares
             this.next = next;
         }
 
-        public async Task Invoke(HttpContext context, [FromServices] IAuthService authService)
+        public async Task Invoke(HttpContext context, [FromServices] ITokenService tokenService)
         {
-            await ValidateAccessTokenAsync(context, authService);
+            await ValidateAccessTokenAsync(context, tokenService);
 
             await next(context);
         }
 
-        private async Task ValidateAccessTokenAsync(HttpContext context, IAuthService authService)
+        private async Task ValidateAccessTokenAsync(HttpContext context, ITokenService tokenService)
         {
             var hasAccessToken = context.Request.Headers.Any(i => i.Key.Equals("Authorization") && i.Value.Count > 0);
             if (hasAccessToken)
             {
                 var headerAccessToken = context.Request.Headers.FirstOrDefault(i => i.Key.Equals("Authorization")).Value[0];
-                var accessTokenValid = await authService.ValidateToken(headerAccessToken);
+                var accessTokenValid = await tokenService.ValidateToken(headerAccessToken);
                 if (!accessTokenValid)
                 {
-                    switch (authService.InvalidTokenType)
+                    switch (tokenService.InvalidTokenType)
                     {
                         case InvalidTokenType.Expired:
                             await WriteAndCompleteWithMessageAsync(context, HttpStatusCode.Forbidden, SecurityMessages.EXPIRED_TOKEN_MSG);

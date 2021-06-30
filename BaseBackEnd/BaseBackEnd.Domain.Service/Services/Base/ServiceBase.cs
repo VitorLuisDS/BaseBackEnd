@@ -31,7 +31,7 @@ namespace BaseBackEnd.Domain.Service.Services.Base
             return await _repositoryBase.GetAsync(filter, orderBy, asNoTracking, includes);
         }
 
-        public async Task<TEntity> GetByIdAsync(params object[] id)
+        public async Task<TEntity> GetByIdAsync(object id)
         {
             return await _repositoryBase.GetByIdAsync(id);
         }

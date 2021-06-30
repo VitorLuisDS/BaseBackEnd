@@ -27,10 +27,18 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
         {
             var session = await _dbSet
                 .Include(x => x.User)
-                    .ThenInclude(x => x.Profile)
-                        .ThenInclude(x => x.ProfileModulePageFunctionalities)
-                .FirstOrDefaultAsync(x => x.Id == sessionId);
+                .SingleOrDefaultAsync(x => x.Id == sessionId && 
+                                           x.User.Status == Domain.Enums.StatusBase.Active);
             return session;
+        }
+
+        public async Task<User> GetUserFromSessionIdAsync(Guid sessionId)
+        {
+            var session = await _dbSet
+                .Include(x => x.User)
+                .SingleOrDefaultAsync(x => x.Id == sessionId &&
+                                           x.User.Status == Domain.Enums.StatusBase.Active);
+            return session.User;
         }
     }
 }

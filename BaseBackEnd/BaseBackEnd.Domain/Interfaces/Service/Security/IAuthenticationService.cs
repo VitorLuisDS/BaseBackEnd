@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace BaseBackEnd.Domain.Interfaces.Service.Security
 {
-    public interface IAuthService : IServiceBase<User>
+    public interface IAuthenticationService : IServiceBase<User>
     {
         InvalidTokenType InvalidTokenType { get; }
         Task<TokensOutputVm> AuthenticateAsync(UserAuthInputVm userAuthInputVm);
-        Task<bool> ValidateToken(string token, string tokenAudience = null);
         Task<TokensOutputVm> AuthenticateByTokenAsync(string token);
     }
 }

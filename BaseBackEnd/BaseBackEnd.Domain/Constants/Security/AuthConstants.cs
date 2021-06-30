@@ -1,6 +1,6 @@
-﻿namespace BaseBackEnd.Domain.Constants
+﻿namespace BaseBackEnd.Domain.Constants.Security
 {
-    public static class SecurityConstants
+    public static class AuthConstants
     {
         public const string POLICY_DEFAULT_NAME = "PolicyDefault";
         public const string ACCESS_TOKEN_NAME = "access_token";

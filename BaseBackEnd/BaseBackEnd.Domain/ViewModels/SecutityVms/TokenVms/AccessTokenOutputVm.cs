@@ -1,11 +1,11 @@
-﻿using BaseBackEnd.Domain.Constants;
+﻿using BaseBackEnd.Domain.Constants.Security;
 using System.Text.Json.Serialization;
 
 namespace BaseBackEnd.Domain.ViewModels.SecutityVms.TokenVms
 {
     public class AccessTokenOutputVm
     {
-        [JsonPropertyName(SecurityConstants.ACCESS_TOKEN_NAME)]
+        [JsonPropertyName(AuthConstants.ACCESS_TOKEN_NAME)]
         public string AccessToken { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 {
     public static class SecurityMessages
     {
+        public const string AUTHORIZED_MSG = "Authorized";
         public const string UNAUTHORIZED_MSG = "Not authorized";
         public const string EXPIRED_SESSION_MSG = "Session expired";
         public const string EXPIRED_TOKEN_MSG = "Token expired";

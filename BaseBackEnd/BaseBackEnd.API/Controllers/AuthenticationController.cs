@@ -38,7 +38,7 @@ namespace BaseBackEnd.API.Controllers
                 return Ok(response);
             }
             else
-                return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.USER_DOES_NOT_EXIST_MSG));
+                return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.INVALI_USER_OR_PASSWORD));
         }
 
         [HttpPost(AuthenticationEndpoints.RENEW_ACCESS_TOKEN)]
@@ -64,7 +64,7 @@ namespace BaseBackEnd.API.Controllers
                     return Ok(response);
                 }
                 else
-                    return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.USER_DOES_NOT_EXIST_MSG));
+                    return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.INVALI_USER_OR_PASSWORD));
 
             }
             else

@@ -44,6 +44,8 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             if (profileModulePageFunctionalities is null)
                 return default;
 
+            outputVm.ModuleCode = modulePage.Module.Code;
+            outputVm.PageCode = modulePage.Page.Code;
             outputVm.AllowedFunctionalities = profileModulePageFunctionalities.ToArray();
 
             return outputVm;

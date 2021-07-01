@@ -23,11 +23,17 @@ namespace BaseBackEnd.API.Controllers
             _authorizationService = authorizationService;
         }
 
-        [HttpPost(AuthorizationEndpoints.ALLOWED_PAGE_FUNCTIONALITIES)]
+        [HttpGet(AuthorizationEndpoints.ALLOWED_PAGE_FUNCTIONALITIES)]
         [ProducesBase(typeof(ResponseBase<PageAuthorizationOutputVm>))]
         [ProducesResponseTypeBase(typeof(ResponseBase), HttpStatusCode.Unauthorized)]
-        public async Task<IActionResult> AllowedPageFunctionalities([FromBody] PageAuthorizationInputVm pageModuleAuthorizationInputVm)
+        public async Task<IActionResult> AllowedPageFunctionalities(string moduleCode, string pageCode)
         {
+            var pageModuleAuthorizationInputVm = new PageAuthorizationInputVm
+            {
+                ModuleCode = moduleCode,
+                PageCode = pageCode
+            };
+
             var headerAccessToken = HttpContext.Request.Headers.First(i => i.Key.Equals("Authorization")).Value[0];
             var pageAuthorizationOutput = await _authorizationService.AuthorizeUserAsync(headerAccessToken, pageModuleAuthorizationInputVm);
             if (pageAuthorizationOutput != default && pageAuthorizationOutput.AllowedFunctionalities.Length > 0)

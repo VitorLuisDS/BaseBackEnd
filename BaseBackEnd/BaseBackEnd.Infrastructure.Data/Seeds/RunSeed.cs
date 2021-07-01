@@ -1,4 +1,4 @@
-﻿using BaseBackEnd.Domain.Constants.Security;
+﻿using BaseBackEnd.Domain.Constants;
 using BaseBackEnd.Domain.Entities.Security;
 using Microsoft.EntityFrameworkCore;
 

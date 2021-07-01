@@ -117,7 +117,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             {
                 var claims = GenerateClaimsForAccessToken(authenticatedUserOutputVm);
                 ClaimsIdentity identity = new ClaimsIdentity(claims.ToArray());
-                return _tokenService.GenerateToken(/*TimeSpan.FromSeconds(_tokenConfig.AccessTokenDurationInSeconds)*/TimeSpan.FromDays(365 / 2), identity);
+                return _tokenService.GenerateToken(TimeSpan.FromSeconds(_tokenConfig.AccessTokenDurationInSeconds)/*TimeSpan.FromDays(365 / 2)*/, identity);
             }
             else
             {

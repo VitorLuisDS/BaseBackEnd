@@ -27,6 +27,7 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
         {
             var session = await _dbSet
                 .Include(x => x.User.UserProfiles)
+                    .ThenInclude(x => x.Profile)
                 .SingleOrDefaultAsync(x => x.Id == sessionId &&
                                            x.User.Status == Domain.Enums.StatusBase.Active);
             return session;

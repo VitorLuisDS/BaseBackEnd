@@ -59,7 +59,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
         public async Task<TokensOutputVm> AuthenticateAsync(UserAuthInputVm userAuthInput)
         {
             var user = await _userRepository.GetUserByLoginAndPasswordAsync(userAuthInput);
-            if (user != null)
+            if (user != default)
             {
                 Session session = await _sessionRepository.AddAsync(user.Id, userAuthInput.StayConnected);
                 await _unityOfWork.CommitAsync();
@@ -74,11 +74,11 @@ namespace BaseBackEnd.Domain.Service.Services.Security
         public async Task<TokensOutputVm> AuthenticateByTokenAsync(string token)
         {
             var dadosDoToken = TokenToAuthenticatedUserOutputVm(token);
-            TokensOutputVm accessTokenOutput = null;
-            if (dadosDoToken != null)
+            TokensOutputVm accessTokenOutput = default;
+            if (dadosDoToken != default)
             {
                 Session session = await _sessionRepository.GetSessionAndUserAsync(dadosDoToken.Sid);
-                if (session != null)
+                if (session != default)
                 {
                     AuthenticatedUserOutputVm authenticatedUser = PopulateUserData(session.User, session.Id, dadosDoToken.StayConnected);
                     accessTokenOutput = new TokensOutputVm() { AccessToken = GenerateAccessToken(authenticatedUser), RefreshToken = GenerateRefreshToken(authenticatedUser) };
@@ -90,8 +90,8 @@ namespace BaseBackEnd.Domain.Service.Services.Security
 
         private AuthenticatedUserOutputVm PopulateUserData(User user, Guid sid, bool stayConnected)
         {
-            AuthenticatedUserOutputVm usuarioVm = null;
-            if (user != null)
+            AuthenticatedUserOutputVm usuarioVm = default;
+            if (user != default)
             {
                 var profilesNames = user
                     .UserProfiles
@@ -113,7 +113,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
 
         private string GenerateAccessToken(AuthenticatedUserOutputVm authenticatedUserOutputVm)
         {
-            if (authenticatedUserOutputVm != null)
+            if (authenticatedUserOutputVm != default)
             {
                 var claims = GenerateClaimsForAccessToken(authenticatedUserOutputVm);
                 ClaimsIdentity identity = new ClaimsIdentity(claims.ToArray());
@@ -121,13 +121,13 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             }
             else
             {
-                return null;
+                return default;
             }
         }
 
         private string GenerateRefreshToken(AuthenticatedUserOutputVm authenticatedUserOutputVm)
         {
-            if (authenticatedUserOutputVm != null)
+            if (authenticatedUserOutputVm != default)
             {
                 var claims = GenerateClaimsForRefreshToken(authenticatedUserOutputVm);
                 ClaimsIdentity identity = new ClaimsIdentity(claims.ToArray());
@@ -135,7 +135,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             }
             else
             {
-                return null;
+                return default;
             }
         }
 
@@ -172,7 +172,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
 
         public AuthenticatedUserOutputVm TokenToAuthenticatedUserOutputVm(string token)
         {
-            AuthenticatedUserOutputVm result = null;
+            AuthenticatedUserOutputVm result = default;
 
             var content = _tokenService.ReadJwtToken(token);
             if (content == default) return result;
@@ -186,11 +186,21 @@ namespace BaseBackEnd.Domain.Service.Services.Security
                 StayConnected = bool.Parse(content.Claims.FirstOrDefault(i => i.Type.Equals(ClaimTypeStayConnected))?.Value ?? false.ToString())
             };
 
-            if (sid != null)
+            if (sid != default)
             {
                 result.Sid = Guid.Parse(sid);
             }
             return result;
+        }
+
+        public async Task<User> GetUserFromTokenAsync(string token)
+        {
+            var dadosDoToken = TokenToAuthenticatedUserOutputVm(token);
+            User user = default;
+            if (dadosDoToken != default)
+                user = await _sessionRepository.GetUserFromSessionIdAsync(dadosDoToken.Sid);
+
+            return user;
         }
     }
 }

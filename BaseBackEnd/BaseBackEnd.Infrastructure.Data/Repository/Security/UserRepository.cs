@@ -18,12 +18,17 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
         public async Task<User> GetUserByLoginAndPasswordAsync(UserAuthInputVm userAuthInputVm)
         {
             string cryptPassword = GenerateMD5.Get(userAuthInputVm.Password);
-            return await _dbSet
+            var user = await _dbSet
                 .Include(x => x.UserProfiles)
                     .ThenInclude(x => x.Profile)
                 .SingleOrDefaultAsync(x => x.Login == userAuthInputVm.Login &&
                                            x.Password == cryptPassword &&
                                            x.Status == Domain.Enums.StatusBase.Active);
+
+            if (user != default)
+                user.Password = default;
+
+            return user;
         }
     }
 }

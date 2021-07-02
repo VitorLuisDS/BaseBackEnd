@@ -12,5 +12,6 @@ namespace BaseBackEnd.Domain.Interfaces.Service.Security
         InvalidTokenType InvalidTokenType { get; }
         Task<TokensOutputVm> AuthenticateAsync(UserAuthInputVm userAuthInputVm);
         Task<TokensOutputVm> AuthenticateByTokenAsync(string token);
+        Task<User> GetUserFromTokenAsync(string token);
     }
 }

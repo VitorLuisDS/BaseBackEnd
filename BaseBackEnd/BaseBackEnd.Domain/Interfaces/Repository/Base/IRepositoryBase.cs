@@ -10,9 +10,9 @@ namespace BaseBackEnd.Domain.Interfaces.Repository.Base
     {
         Task<TEntity> AddAsync(TEntity entity);
         Task<IEnumerable<TEntity>> GetAsync(
-            Expression<Func<TEntity, bool>> filter = null,
+            Expression<Func<TEntity, bool>> filter = default,
             Func<IQueryable<TEntity>,
-                IOrderedQueryable<TEntity>> orderBy = null,
+                IOrderedQueryable<TEntity>> orderBy = default,
             bool asNoTracking = true,
             params Expression<Func<TEntity, object>>[] includes);
         Task<TEntity> GetByIdAsync(object id);

@@ -72,7 +72,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             return handler.WriteToken(securityToken);
         }
 
-        public async Task<bool> ValidateToken(string token, string tokenAudience = null)
+        public async Task<bool> ValidateToken(string token, string tokenAudience = default)
         {
             if (string.IsNullOrEmpty(token))
                 return false;
@@ -87,7 +87,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
                 return false;
             }
 
-            if (tokenAudience != null)
+            if (tokenAudience != default)
             {
                 _tokenAudience = tokenAudience;
             }

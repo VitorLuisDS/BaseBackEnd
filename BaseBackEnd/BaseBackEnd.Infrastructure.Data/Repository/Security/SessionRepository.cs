@@ -30,6 +30,9 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
                     .ThenInclude(x => x.Profile)
                 .SingleOrDefaultAsync(x => x.Id == sessionId &&
                                            x.User.Status == Domain.Enums.StatusBase.Active);
+
+            session.User.Password = default;
+
             return session;
         }
 
@@ -39,6 +42,9 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
                 .Include(x => x.User)
                 .SingleOrDefaultAsync(x => x.Id == sessionId &&
                                            x.User.Status == Domain.Enums.StatusBase.Active);
+
+            session.User.Password = default;
+
             return session.User;
         }
     }

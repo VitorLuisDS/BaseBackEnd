@@ -17,7 +17,7 @@ namespace BaseBackEnd.API.Models.Base
     {
         private readonly IAuthenticationService _authenticationService;
 
-        public ControllerBaseBackEnd(IAuthenticationService authenticationService = null)
+        public ControllerBaseBackEnd(IAuthenticationService authenticationService = default)
         {
             _authenticationService = authenticationService;
         }
@@ -45,7 +45,10 @@ namespace BaseBackEnd.API.Models.Base
 
         protected async Task<User> GetUserFromTokenAsync()
         {
-            
+            var refreshToken = HttpContext.Request.GetCookieValue(AuthConstants.REFRESH_TOKEN_NAME);
+            if (refreshToken != default)
+                return await _authenticationService.GetUserFromTokenAsync(refreshToken);
+            return default;
         }
     }
 }

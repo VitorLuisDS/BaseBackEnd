@@ -23,8 +23,8 @@ namespace BaseBackEnd.Domain.Service.Services.Base
         }
 
         public async Task<IEnumerable<TEntity>> GetAsync(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            Expression<Func<TEntity, bool>> filter = default,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = default,
             bool asNoTracking = true,
             params Expression<Func<TEntity, object>>[] includes)
         {

@@ -23,26 +23,26 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
         }
 
         public async Task<IEnumerable<TEntity>> GetAsync(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            Expression<Func<TEntity, bool>> filter = default,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = default,
             bool asNoTracking = true,
             params Expression<Func<TEntity, object>>[] includes)
         {
             IQueryable<TEntity> query = _dbSet;
 
-            if (filter != null)
+            if (filter != default)
             {
                 query = query
                     .Where(filter);
             }
 
-            if (includes != null)
+            if (includes != default)
             {
                 query = query
                     .IncludeMultiple(includes);
             }
 
-            if (orderBy != null)
+            if (orderBy != default)
             {
                 query = orderBy(query)
                     .AsQueryable();
@@ -101,11 +101,11 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
 
         public void GetException(Exception ex)
         {
-            if (ex.Message.Contains("FK_") || (ex.InnerException != null && ex.InnerException.Message.Contains("FK_")))
+            if (ex.Message.Contains("FK_") || (ex.InnerException != default && ex.InnerException.Message.Contains("FK_")))
             {
                 throw new RequestErrorException("Item(s) not found for registration.");
             }
-            if (ex.Message.Contains("PK_") || (ex.InnerException != null && ex.InnerException.Message.Contains("PK_")))
+            if (ex.Message.Contains("PK_") || (ex.InnerException != default && ex.InnerException.Message.Contains("PK_")))
             {
                 throw new ConstraintViolationException("Item already exists.");
             }
@@ -120,7 +120,7 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
     {
         internal static IQueryable<TEntity> IncludeMultiple<TEntity>(this IQueryable<TEntity> query, params Expression<Func<TEntity, object>>[] includes) where TEntity : class
         {
-            if (includes != null)
+            if (includes != default)
             {
                 query = includes.Aggregate(query,
                           (current, include) => current.Include(include));

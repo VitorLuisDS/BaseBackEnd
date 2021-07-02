@@ -26,6 +26,9 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
                 .Select(u => u.IdProfile)
                 .ToArrayAsync();
 
+            if (userProfilesIds == default || !userProfilesIds.Any())
+                return default;
+
             var functionalitiesCodes = await _dbSet
                 .Include(p => p.ModulePageFunctionality.Functionality)
                 .Include(p => p.ModulePageFunctionality.ModulePage.Page)

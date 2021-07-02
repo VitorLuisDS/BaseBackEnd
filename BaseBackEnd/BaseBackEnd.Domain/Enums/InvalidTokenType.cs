@@ -3,6 +3,7 @@
     public enum InvalidTokenType
     {
         Expired,
+        NotProvided,
         Blacklisted,
         Other
     }

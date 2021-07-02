@@ -1,8 +1,11 @@
 ﻿using BaseBackEnd.API.Constants.Endpoints;
+using BaseBackEnd.API.Helpers;
+using BaseBackEnd.API.Models;
 using BaseBackEnd.API.Models.Attributes;
 using BaseBackEnd.API.Models.Base;
 using BaseBackEnd.Domain.Constants.Messages;
 using BaseBackEnd.Domain.Constants.Security;
+using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.ViewModels.SecutityVms.TokenVms;
 using BaseBackEnd.Domain.ViewModels.UserVms;
@@ -19,7 +22,7 @@ namespace BaseBackEnd.API.Controllers
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly ITokenService _tokenService;
-        public AuthenticationController(IAuthenticationService authService, ITokenService tokenService)
+        public AuthenticationController(IAuthenticationService authService, ITokenService tokenService) : base(authService)
         {
             _authenticationService = authService;
             _tokenService = tokenService;
@@ -46,12 +49,10 @@ namespace BaseBackEnd.API.Controllers
         [ProducesResponseTypeBase(HttpStatusCode.Unauthorized)]
         public async Task<IActionResult> RenewAccessToken()
         {
-            string refreshToken;
-            HttpContext.Request.Cookies.TryGetValue(AuthConstants.REFRESH_TOKEN_NAME, out refreshToken);
-
+            var refreshToken = HttpContext.Request.GetCookieValue(AuthConstants.REFRESH_TOKEN_NAME);
             var hasRefreshToken = !string.IsNullOrWhiteSpace(refreshToken);
             if (!hasRefreshToken)
-                return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.NO_REFRESH_TOKEN_MSG));
+                return UnauthorizedResponseByInvalidTokenType(TokenType.RefreshToken, InvalidTokenType.NotProvided);
 
             var isRefreshTokenValid = await _tokenService.ValidateToken(refreshToken);
             if (isRefreshTokenValid)
@@ -64,11 +65,11 @@ namespace BaseBackEnd.API.Controllers
                     return Ok(response);
                 }
                 else
-                    return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.INVALI_USER_OR_PASSWORD));
+                    return UnauthorizedResponseByInvalidTokenType(TokenType.RefreshToken, InvalidTokenType.Other);
 
             }
             else
-                return ResponseUnsuccessfulResultByInvalidTokenType(_authenticationService.InvalidTokenType);
+                return UnauthorizedResponseByInvalidTokenType(TokenType.RefreshToken, _authenticationService.InvalidTokenType);
         }
     }
 }

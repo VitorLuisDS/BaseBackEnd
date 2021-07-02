@@ -9,6 +9,7 @@
         public const string INVALID_TOKEN_MSG = "Invalid token";
         public const string BLACKLISTED_TOKEN_MSG = "Blacklisted token";
         public const string NO_REFRESH_TOKEN_MSG = "No refresh token provided";
+        public const string NO_ACCESS_TOKEN_MSG = "No access token provided";
         public const string TOKEN_CONCEIVED_MSG = "Token conceived";
         public const string USER_AUTHENTICATED_MSG = "User authenticated";
         public const string INVALI_USER_OR_PASSWORD = "Invalid user/password";

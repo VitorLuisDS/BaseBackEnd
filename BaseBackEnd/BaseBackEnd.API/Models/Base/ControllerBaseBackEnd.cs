@@ -1,26 +1,33 @@
-﻿using BaseBackEnd.API.Models.Attributes;
-using BaseBackEnd.Domain.Constants.Messages;
+﻿using BaseBackEnd.API.Helpers;
+using BaseBackEnd.API.Models.Attributes;
 using BaseBackEnd.Domain.Constants.Security;
+using BaseBackEnd.Domain.Entities.Security;
 using BaseBackEnd.Domain.Enums;
+using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.ViewModels.SecutityVms.TokenVms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace BaseBackEnd.API.Models.Base
 {
     [ProducesResponseTypeBase(typeof(ResponseBase), HttpStatusCode.InternalServerError)]
-    public class ControllerBaseBackEnd : ControllerBase
+    public abstract class ControllerBaseBackEnd : ControllerBase
     {
-        [NonAction]
-        protected IActionResult ResponseUnsuccessfulResultByInvalidTokenType(InvalidTokenType invalidTokenType)
+        private readonly IAuthenticationService _authenticationService;
+
+        public ControllerBaseBackEnd(IAuthenticationService authenticationService = null)
         {
-            return invalidTokenType switch
-            {
-                InvalidTokenType.Expired => Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.EXPIRED_TOKEN_MSG)),
-                InvalidTokenType.Blacklisted => Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.BLACKLISTED_TOKEN_MSG)),
-                _ => Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.INVALID_TOKEN_MSG))
-            };
+            _authenticationService = authenticationService;
+        }
+
+        [NonAction]
+        protected IActionResult UnauthorizedResponseByInvalidTokenType(TokenType tokenType, InvalidTokenType invalidTokenType)
+        {
+            var invalidTokenResponse = new InvalidTokenResponse(tokenType, invalidTokenType);
+            var message = InvalidTokenMessageHelper.GetMessageFromTokenTypeAndInvalidTokenType(tokenType, invalidTokenType);
+            return Unauthorized(new ResponseBase<InvalidTokenResponse>(invalidTokenResponse, HttpStatusCode.Unauthorized, message));
         }
 
         [NonAction]
@@ -34,6 +41,11 @@ namespace BaseBackEnd.API.Models.Base
             };
 
             HttpContext.Response.Cookies.Append(AuthConstants.REFRESH_TOKEN_NAME, user.RefreshToken, cookieOptions);
+        }
+
+        protected async Task<User> GetUserFromTokenAsync()
+        {
+            
         }
     }
 }

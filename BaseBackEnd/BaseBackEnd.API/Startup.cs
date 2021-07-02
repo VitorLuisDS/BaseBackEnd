@@ -1,6 +1,8 @@
+using BaseBackEnd.API.Helpers;
 using BaseBackEnd.API.Middlewares;
 using BaseBackEnd.Domain.Config;
 using BaseBackEnd.Domain.Constants.Security;
+using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.Interfaces.UnityOfWork;
@@ -20,8 +22,10 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace BaseBackEnd.API
 {
@@ -126,7 +130,6 @@ namespace BaseBackEnd.API
             {
                 var paramsValidation = bearerOptions.TokenValidationParameters;
 
-                //// Valida a assinatura de um token recebido
                 paramsValidation.ValidateIssuerSigningKey = true;
 
                 paramsValidation.ValidateLifetime = true;
@@ -139,18 +142,37 @@ namespace BaseBackEnd.API
 
                 paramsValidation.IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(tokenConfiguration.Secret));
 
-                //// Tempo de tolerância para a expiração de um token (utilizado
-                //// caso haja problemas de sincronismo de horário entre diferentes
-                //// computadores envolvidos no processo de comunicação)
                 paramsValidation.ClockSkew = TimeSpan.Zero;
+
+                bearerOptions.Events = new JwtBearerEvents
+                {
+                    OnChallenge = ValidateTokensBeforeAuthorizeAttribute()
+                };
             });
 
-            //// Ativa o uso do token como forma de autorizar o acesso
-            //// a recursos deste projeto
             services.AddAuthorization(auth =>
             {
                 auth.AddPolicy(AuthConstants.AUTHENTICATION_HEADER_TYPE.Trim(), new AuthorizationPolicyBuilder().AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build());
             });
+        }
+
+        private static Func<JwtBearerChallengeContext, Task> ValidateTokensBeforeAuthorizeAttribute()
+        {
+            return async context =>
+            {
+                var refreshToken = context.HttpContext.Request.GetCookieValue(AuthConstants.REFRESH_TOKEN_NAME);
+                var hasRefreshToken = !string.IsNullOrWhiteSpace(refreshToken);
+                if (!hasRefreshToken)
+                {
+                    await context.HttpContext.Response.WriteAndCompleteJsonAsync(TokenType.RefreshToken, InvalidTokenType.NotProvided);
+                }
+
+                var hasAccessToken = context.HttpContext.Request.Headers.Authorization.Any();
+                if (!hasAccessToken)
+                {
+                    await context.HttpContext.Response.WriteAndCompleteJsonAsync(TokenType.AccessToken, InvalidTokenType.NotProvided);
+                }
+            };
         }
 
         protected virtual void SetupDatabase(IServiceCollection services)

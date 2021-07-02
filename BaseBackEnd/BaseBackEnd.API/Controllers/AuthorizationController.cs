@@ -34,15 +34,18 @@ namespace BaseBackEnd.API.Controllers
                 PageCode = pageCode
             };
 
-            var headerAccessToken = HttpContext.Request.Headers.First(i => i.Key.Equals("Authorization")).Value[0];
+            var headerAccessToken = HttpContext.Request.Headers.Authorization.First();
             var pageAuthorizationOutput = await _authorizationService.AuthorizeUserAsync(headerAccessToken, pageModuleAuthorizationInputVm);
-            if (pageAuthorizationOutput != default && pageAuthorizationOutput.AllowedFunctionalities.Length > 0)
+            if (pageAuthorizationOutput != default)
             {
-                var response = new ResponseBase<PageAuthorizationOutputVm>(pageAuthorizationOutput, message: SecurityMessages.AUTHORIZED_MSG);
+                var response = new ResponseBase<PageAuthorizationOutputVm>(pageAuthorizationOutput);
                 return Ok(response);
             }
             else
-                return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.UNAUTHORIZED_MSG));
+            {
+                var response = new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.UNAUTHORIZED_MSG);
+                return Unauthorized(response);
+            }
         }
     }
 }

@@ -33,20 +33,18 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             var outputVm = new PageAuthorizationOutputVm();
 
             var user = await GetUserFromTokenAsync(accessToken);
-            if (user is null)
+            if (user == default)
                 return default;
 
             var modulePage = await _modulePageRepository.GetModulePageByCodesAsync(pageAuthorizationInputVm.ModuleCode, pageAuthorizationInputVm.PageCode);
-            if (modulePage is null)
+            if (modulePage == default)
                 return default;
 
             var profileModulePageFunctionalities = await _profileModulePageFunctionalityRepository.GetFunctionalitiesCodesByIdsUserProfilesAsync(modulePage.Module.Id, modulePage.Page.Id, user.Id);
-            if (profileModulePageFunctionalities is null)
-                return default;
 
             outputVm.ModuleCode = modulePage.Module.Code;
             outputVm.PageCode = modulePage.Page.Code;
-            outputVm.AllowedFunctionalities = profileModulePageFunctionalities.ToArray();
+            outputVm.AllowedFunctionalities = profileModulePageFunctionalities?.ToArray();
 
             return outputVm;
         }
@@ -58,7 +56,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
                 return default;
 
             var user = await _sessionRepository.GetUserFromSessionIdAsync(sid);
-            if (user is null)
+            if (user == default)
                 return default;
 
             return user;

@@ -1,4 +1,5 @@
-﻿using BaseBackEnd.API.Helpers;
+﻿using BaseBackEnd.API.Constants;
+using BaseBackEnd.API.Helpers;
 using BaseBackEnd.Domain.Config;
 using BaseBackEnd.Domain.Constants.Security;
 using BaseBackEnd.Domain.Enums;
@@ -21,7 +22,7 @@ namespace BaseBackEnd.API.Configs
         {
             var tokenConfiguration = new TokenConfig();
 
-            new ConfigureFromConfigurationOptions<TokenConfig>(configuration.GetSection("TokenConfiguration")).Configure(tokenConfiguration);
+            new ConfigureFromConfigurationOptions<TokenConfig>(configuration.GetSection(AppSettingsConstants.TokenConfigurationSection)).Configure(tokenConfiguration);
 
             services.AddAuthentication(authOptions =>
             {
@@ -56,7 +57,7 @@ namespace BaseBackEnd.API.Configs
                 auth.AddPolicy(AuthConstants.AUTHENTICATION_HEADER_TYPE.Trim(), new AuthorizationPolicyBuilder().AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build());
             });
 
-            services.Configure<TokenConfig>(configuration.GetSection("TokenConfiguration"));
+            services.Configure<TokenConfig>(configuration.GetSection(AppSettingsConstants.TokenConfigurationSection));
         }
 
         private static Func<JwtBearerChallengeContext, Task> ValidateTokensBeforeAuthorizeAttribute()

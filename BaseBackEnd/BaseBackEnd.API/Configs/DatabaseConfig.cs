@@ -1,25 +1,25 @@
-﻿using BaseBackEnd.Infrastructure.Data.Context;
+﻿using BaseBackEnd.API.Constants;
+using BaseBackEnd.Infrastructure.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace BaseBackEnd.API.Configs
 {
     public static class DatabaseConfig
     {
-        private static readonly string DEFAULT_DB_CONNECTION = "DefaultConnection";
-
         public static void ConfigureDatabase(this IServiceCollection services, IConfiguration configuration)
         {
-            if (Convert.ToBoolean(configuration.GetSection("UseSqlServer").Value))
+            var connectionString = configuration.GetSection(AppSettingsConstants.DefaultConnectionStringSection).Value;
+
+            if (!string.IsNullOrWhiteSpace(connectionString))
             {
-                services.AddDbContext<ProjectBaseContext>(options => options.UseSqlServer(configuration.GetConnectionString(DEFAULT_DB_CONNECTION)), ServiceLifetime.Scoped);
+                services.AddDbContext<ProjectBaseContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Scoped);
             }
             else
             {
-                services.AddDbContext<ProjectBaseContext>(options => options.UseInMemoryDatabase("KDS_CORE"));
+                services.AddDbContext<ProjectBaseContext>(options => options.UseInMemoryDatabase(DatabaseConstants.InMemoryDatabase));
             }
         }
 
@@ -31,7 +31,7 @@ namespace BaseBackEnd.API.Configs
             {
                 using (var context = serviceScope.ServiceProvider.GetService<ProjectBaseContext>())
                 {
-                    if (context.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
+                    if (context.Database.ProviderName != DatabaseConstants.InMemoryDatabaseProvider)
                     {
                         await context.Database.MigrateAsync();
                     }

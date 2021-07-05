@@ -26,10 +26,13 @@ namespace BaseBackEnd.API
 
             services
                 .AddControllers()
+                .AddAndConfigureFluentValidation()
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
                 });
+
+            services.ConfigureApiBehaviorOptions();
 
             services.ConfugureDependencyInjections();
 

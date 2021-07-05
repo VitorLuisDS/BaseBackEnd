@@ -68,13 +68,13 @@ namespace BaseBackEnd.API.Configs
                 var hasRefreshToken = !string.IsNullOrWhiteSpace(refreshToken);
                 if (!hasRefreshToken)
                 {
-                    await context.HttpContext.Response.WriteAndCompleteJsonAsync(TokenType.RefreshToken, InvalidTokenType.NotProvided);
+                    await context.HttpContext.Response.WriteAndCompleteUnauthorizedJsonAsync(TokenType.RefreshToken, InvalidTokenType.NotProvided);
                 }
 
                 var hasAccessToken = context.HttpContext.Request.Headers.Authorization.Any();
                 if (!hasAccessToken)
                 {
-                    await context.HttpContext.Response.WriteAndCompleteJsonAsync(TokenType.AccessToken, InvalidTokenType.NotProvided);
+                    await context.HttpContext.Response.WriteAndCompleteUnauthorizedJsonAsync(TokenType.AccessToken, InvalidTokenType.NotProvided);
                 }
             };
         }

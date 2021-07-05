@@ -37,7 +37,7 @@ namespace BaseBackEnd.API.Middlewares
                 var accessTokenValid = await tokenService.ValidateToken(headerAccessToken);
                 if (!accessTokenValid)
                 {
-                    await context.Response.WriteAndCompleteJsonAsync(TokenType.AccessToken, tokenService.InvalidTokenType);
+                    await context.Response.WriteAndCompleteUnauthorizedJsonAsync(TokenType.AccessToken, tokenService.InvalidTokenType);
                 }
             }
         }

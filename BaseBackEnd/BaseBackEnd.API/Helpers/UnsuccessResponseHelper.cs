@@ -10,7 +10,7 @@ namespace BaseBackEnd.API.Helpers
     public static class UnsuccessResponseHelper
     {
 
-        public static async Task WriteAndCompleteJsonAsync(this HttpResponse httpResponse, TokenType tokenType, InvalidTokenType invalidTokenType)
+        public static async Task WriteAndCompleteUnauthorizedJsonAsync(this HttpResponse httpResponse, TokenType tokenType, InvalidTokenType invalidTokenType)
         {
             var invalidTokenResponse = new InvalidTokenResponse(tokenType, invalidTokenType);
             var message = InvalidTokenMessageHelper.GetMessageFromTokenTypeAndInvalidTokenType(tokenType, invalidTokenType);

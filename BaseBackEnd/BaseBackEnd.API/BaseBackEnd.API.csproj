@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.5">
@@ -25,6 +26,7 @@
     <ProjectReference Include="..\BaseBackEnd.Domain\BaseBackEnd.Domain.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Infrastructure.Data.Repository\BaseBackEnd.Infrastructure.Data.Repository.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Infrastructure.Data\BaseBackEnd.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Service.Validator\BaseBackEnd.Service.Validator.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Service\BaseBackEnd.Service.csproj" />
   </ItemGroup>
 

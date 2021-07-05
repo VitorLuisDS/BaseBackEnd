@@ -1,4 +1,4 @@
-﻿namespace BaseBackEnd.Domain.Config
+﻿namespace BaseBackEnd.Domain.Configs
 {
     public class TokenConfig
     {

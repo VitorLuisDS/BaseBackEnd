@@ -1,4 +1,4 @@
-﻿using BaseBackEnd.Domain.Config;
+﻿using BaseBackEnd.Domain.Configs;
 using BaseBackEnd.Domain.Entities.Security;
 using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;

@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Domain.Service.Services.Security
+namespace BaseBackEnd.Domain.Service.Security
 {
     public class TokenService : ITokenService
     {

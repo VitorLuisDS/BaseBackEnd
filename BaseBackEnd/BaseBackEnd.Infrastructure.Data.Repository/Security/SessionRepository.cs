@@ -38,7 +38,7 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
                     .ThenInclude(up => up.Profile)
                 .SingleOrDefaultAsync(s => s.Id == sessionId);
 
-            if(session == default)
+            if (session == default)
                 return default;
 
             session.User.Password = default;

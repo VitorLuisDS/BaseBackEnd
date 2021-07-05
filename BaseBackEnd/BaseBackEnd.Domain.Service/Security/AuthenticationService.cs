@@ -4,7 +4,7 @@ using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.Interfaces.UnityOfWork;
-using BaseBackEnd.Domain.Service.Services.Base;
+using BaseBackEnd.Domain.Service.Base;
 using BaseBackEnd.Domain.ViewModels.SecutityVms.TokenVms;
 using BaseBackEnd.Domain.ViewModels.UserVms;
 using Microsoft.AspNetCore.Http;
@@ -15,7 +15,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Domain.Service.Services.Security
+namespace BaseBackEnd.Domain.Service.Security
 {
     public class AuthenticationService : ServiceBase<User>, IAuthenticationService
     {

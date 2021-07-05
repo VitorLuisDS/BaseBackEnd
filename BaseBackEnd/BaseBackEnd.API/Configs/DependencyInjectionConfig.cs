@@ -1,7 +1,7 @@
 ﻿using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.Interfaces.UnityOfWork;
-using BaseBackEnd.Domain.Service.Services.Security;
+using BaseBackEnd.Domain.Service.Security;
 using BaseBackEnd.Infrastructure.Data.Repository.Security;
 using BaseBackEnd.Infrastructure.Data.UnityOfWork;
 using Microsoft.Extensions.DependencyInjection;

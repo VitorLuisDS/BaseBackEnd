@@ -4,7 +4,6 @@ using BaseBackEnd.Infrastructure.Data.Context.DatabaseFunctions;
 using BaseBackEnd.Infrastructure.Util.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -22,7 +21,9 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
             _dbSet = _dbContext.Set<TEntity>();
         }
 
-        public async Task<IEnumerable<TEntity>> GetAsync(
+        protected virtual IQueryable<TEntity> QueryBase() => Get();
+
+        public IQueryable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = default,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = default,
             bool asNoTracking = true,
@@ -50,14 +51,12 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Base
 
             if (asNoTracking)
             {
-                return await query
-                    .AsNoTracking()
-                    .ToListAsync();
+                return query
+                    .AsNoTracking();
             }
             else
             {
-                return await query
-                    .ToListAsync();
+                return query;
             }
         }
 

@@ -1,7 +1,6 @@
 ﻿using BaseBackEnd.Domain.Interfaces.Repository.Base;
 using BaseBackEnd.Domain.Interfaces.Service.Base;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -22,13 +21,13 @@ namespace BaseBackEnd.Domain.Service.Services.Base
             await _repositoryBase.AddAsync(entity);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAsync(
+        public IQueryable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = default,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = default,
             bool asNoTracking = true,
             params Expression<Func<TEntity, object>>[] includes)
         {
-            return await _repositoryBase.GetAsync(filter, orderBy, asNoTracking, includes);
+            return _repositoryBase.Get(filter, orderBy, asNoTracking, includes);
         }
 
         public async Task<TEntity> GetByIdAsync(object id)

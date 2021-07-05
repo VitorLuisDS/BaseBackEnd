@@ -3,6 +3,7 @@ using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Infrastructure.Data.Context;
 using BaseBackEnd.Infrastructure.Data.Repository.Base;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BaseBackEnd.Infrastructure.Data.Repository.Security
@@ -13,16 +14,24 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
         {
         }
 
+        protected override IQueryable<ModulePage> QueryBase()
+        {
+            return
+                Get(
+                    filter: mp => mp.Status == Domain.Enums.StatusBase.Active &&
+                                  mp.Module.Status == Domain.Enums.StatusBase.Active &&
+                                  mp.Page.Status == Domain.Enums.StatusBase.Active,
+                    orderBy: null,
+                    asNoTracking: true,
+                    mp => mp.Module,
+                    mp => mp.Page);
+        }
+
         public async Task<ModulePage> GetModulePageByCodesAsync(string moduleCode, string pageCode)
         {
-            return await _dbSet
-                .Include(m => m.Module)
-                .Include(m => m.Page)
-                .SingleAsync(m => m.Module.Code == moduleCode &&
-                                  m.Page.Code == pageCode &&
-                                  m.Module.Status == Domain.Enums.StatusBase.Active &&
-                                  m.Page.Status == Domain.Enums.StatusBase.Active &&
-                                  m.Status == Domain.Enums.StatusBase.Active);
+            return await QueryBase()
+                .SingleAsync(mp => mp.Module.Code == moduleCode &&
+                                   mp.Page.Code == pageCode);
         }
     }
 }

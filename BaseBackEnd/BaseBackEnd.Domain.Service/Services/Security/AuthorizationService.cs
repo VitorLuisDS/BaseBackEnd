@@ -12,54 +12,35 @@ namespace BaseBackEnd.Domain.Service.Services.Security
     {
         private readonly IProfileModulePageFunctionalityRepository _profileModulePageFunctionalityRepository;
         private readonly IModulePageRepository _modulePageRepository;
-        private readonly ISessionRepository _sessionRepository;
-        private readonly ITokenService _tokenService;
 
         public AuthorizationService(
             IProfileModulePageFunctionalityRepository profileModulePageFunctionalityRepository,
-            IModulePageRepository modulePageRepository,
-            ISessionRepository sessionRepository,
-            ITokenService tokenService
+            IModulePageRepository modulePageRepository
             ) : base(profileModulePageFunctionalityRepository)
         {
             _profileModulePageFunctionalityRepository = profileModulePageFunctionalityRepository;
             _modulePageRepository = modulePageRepository;
-            _sessionRepository = sessionRepository;
-            _tokenService = tokenService;
         }
 
-        public async Task<PageAuthorizationOutputVm> AuthorizeUserAsync(string accessToken, PageAuthorizationInputVm pageAuthorizationInputVm)
+        public async Task<PageAuthorizationOutputVm> GetPageAuthorizationByUserAsync(int userId, PageAuthorizationInputVm pageAuthorizationInputVm)
         {
-            var outputVm = new PageAuthorizationOutputVm();
-
-            var user = await GetUserFromTokenAsync(accessToken);
-            if (user == default)
+            if (userId == default)
                 return default;
 
             var modulePage = await _modulePageRepository.GetModulePageByCodesAsync(pageAuthorizationInputVm.ModuleCode, pageAuthorizationInputVm.PageCode);
             if (modulePage == default)
                 return default;
 
-            var profileModulePageFunctionalities = await _profileModulePageFunctionalityRepository.GetFunctionalitiesCodesByIdsUserProfilesAsync(modulePage.Module.Id, modulePage.Page.Id, user.Id);
+            var profileModulePageFunctionalities = await _profileModulePageFunctionalityRepository.GetFunctionalitiesCodesByIdsUserProfilesAsync(modulePage.Module.Id, modulePage.Page.Id, userId);
 
-            outputVm.ModuleCode = modulePage.Module.Code;
-            outputVm.PageCode = modulePage.Page.Code;
-            outputVm.AllowedFunctionalities = profileModulePageFunctionalities?.ToArray();
+            var outputVm = new PageAuthorizationOutputVm
+            {
+                ModuleCode = modulePage.Module.Code,
+                PageCode = modulePage.Page.Code,
+                AllowedFunctionalities = profileModulePageFunctionalities?.ToArray()
+            };
 
             return outputVm;
-        }
-
-        private async Task<User> GetUserFromTokenAsync(string accessToken)
-        {
-            var sid = _tokenService.GetSidFromToken(accessToken);
-            if (sid == default)
-                return default;
-
-            var user = await _sessionRepository.GetUserFromSessionIdAsync(sid);
-            if (user == default)
-                return default;
-
-            return user;
         }
     }
 }

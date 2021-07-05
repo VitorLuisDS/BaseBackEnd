@@ -7,6 +7,6 @@ namespace BaseBackEnd.Domain.Interfaces.Service.Security
 {
     public interface IAuthorizationService : IServiceBase<ProfileModulePageFunctionality>
     {
-        Task<PageAuthorizationOutputVm> AuthorizeUserAsync(string accessToken, PageAuthorizationInputVm pageAuthorizationInputVm);
+        Task<PageAuthorizationOutputVm> GetPageAuthorizationByUserAsync(int userId, PageAuthorizationInputVm pageAuthorizationInputVm);
     }
 }

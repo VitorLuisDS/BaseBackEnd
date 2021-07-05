@@ -4,7 +4,6 @@ using BaseBackEnd.Domain.Constants.Security;
 using BaseBackEnd.Domain.Entities.Security;
 using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
-using BaseBackEnd.Domain.ViewModels.SecutityVms.TokenVms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -16,7 +15,8 @@ namespace BaseBackEnd.API.Models.Base
     public abstract class ControllerBaseBackEnd : ControllerBase
     {
         private readonly IAuthenticationService _authenticationService;
-
+        protected Task<int> UserId => GetUserIdFromTokenAsync();
+        protected new Task<User> User => GetUserFromTokenAsync();
         public ControllerBaseBackEnd(IAuthenticationService authenticationService = default)
         {
             _authenticationService = authenticationService;
@@ -31,24 +31,21 @@ namespace BaseBackEnd.API.Models.Base
         }
 
         [NonAction]
-        protected void SetAccessTokenOnCookies(TokensOutputVm user)
-        {
-            var cookieOptions = new CookieOptions()
-            {
-                HttpOnly = true,
-                Secure = true,
-                SameSite = SameSiteMode.None
-            };
-
-            HttpContext.Response.Cookies.Append(AuthConstants.REFRESH_TOKEN_NAME, user.RefreshToken, cookieOptions);
-        }
-
-        protected async Task<User> GetUserFromTokenAsync()
+        private async Task<User> GetUserFromTokenAsync()
         {
             var refreshToken = HttpContext.Request.GetCookieValue(AuthConstants.REFRESH_TOKEN_NAME);
             if (refreshToken != default)
                 return await _authenticationService.GetUserFromTokenAsync(refreshToken);
             return default;
+        }
+
+        [NonAction]
+        private async Task<int> GetUserIdFromTokenAsync()
+        {
+            var user = await GetUserFromTokenAsync();
+            if (user == default)
+                return default;
+            return user.Id;
         }
     }
 }

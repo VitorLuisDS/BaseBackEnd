@@ -1,6 +1,5 @@
 ﻿using BaseBackEnd.API.Constants.Endpoints;
 using BaseBackEnd.API.Helpers;
-using BaseBackEnd.API.Models;
 using BaseBackEnd.API.Models.Attributes;
 using BaseBackEnd.API.Models.Base;
 using BaseBackEnd.Domain.Constants.Messages;
@@ -36,7 +35,7 @@ namespace BaseBackEnd.API.Controllers
             var newTokens = await _authenticationService.AuthenticateAsync(userAuthInputVm);
             if (newTokens != default)
             {
-                SetAccessTokenOnCookies(newTokens);
+                HttpContext.Response.SetAccessTokenOnCookies(newTokens);
                 var response = new ResponseBase<AccessTokenOutputVm>(newTokens, message: SecurityMessages.USER_AUTHENTICATED_MSG);
                 return Ok(response);
             }
@@ -60,7 +59,7 @@ namespace BaseBackEnd.API.Controllers
                 var newTokens = await _authenticationService.AuthenticateByTokenAsync(refreshToken);
                 if (newTokens != default)
                 {
-                    SetAccessTokenOnCookies(newTokens);
+                    HttpContext.Response.SetAccessTokenOnCookies(newTokens);
                     var response = new ResponseBase<AccessTokenOutputVm>(newTokens, message: SecurityMessages.TOKEN_CONCEIVED_MSG);
                     return Ok(response);
                 }

@@ -15,32 +15,39 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
         {
         }
 
+        protected override IQueryable<ProfileModulePageFunctionality> QueryBase()
+        {
+            return Get(
+                filter: pmpf => pmpf.Status == Domain.Enums.StatusBase.Active &&
+                                pmpf.ModulePageFunctionality.Status == Domain.Enums.StatusBase.Active &&
+                                pmpf.ModulePageFunctionality.Functionality.Status == Domain.Enums.StatusBase.Active &&
+                                pmpf.ModulePageFunctionality.ModulePage.Page.Status == Domain.Enums.StatusBase.Active,
+                orderBy: null,
+                asNoTracking: true,
+                pmpf => pmpf.ModulePageFunctionality.Functionality,
+                pmpf => pmpf.ModulePageFunctionality.ModulePage.Page,
+                pmpf => pmpf.Profile.UserProfiles);
+        }
+
         public async Task<IEnumerable<string>> GetFunctionalitiesCodesByIdsUserProfilesAsync(int moduleId, int pageId, int userId)
         {
             var userProfilesIds = await _dbContext
                 .UserProfile
-                .Include(u => u.Profile)
-                .Where(u => u.IdUser == userId &&
-                            u.Status == Domain.Enums.StatusBase.Active &&
-                            u.Profile.Status == Domain.Enums.StatusBase.Active)
-                .Select(u => u.IdProfile)
+                .Include(up => up.Profile)
+                .Where(up => up.IdUser == userId &&
+                             up.Status == Domain.Enums.StatusBase.Active &&
+                             up.Profile.Status == Domain.Enums.StatusBase.Active)
+                .Select(up => up.IdProfile)
                 .ToArrayAsync();
 
             if (userProfilesIds == default || !userProfilesIds.Any())
                 return default;
 
-            var functionalitiesCodes = await _dbSet
-                .Include(p => p.ModulePageFunctionality.Functionality)
-                .Include(p => p.ModulePageFunctionality.ModulePage.Page)
-                .Include(p => p.Profile.UserProfiles)
-                .Where(p => userProfilesIds.Contains(p.IdProfile) &&
-                            p.IdModule == moduleId &&
-                            p.IdPage == pageId &&
-                            p.Status == Domain.Enums.StatusBase.Active &&
-                            p.ModulePageFunctionality.Status == Domain.Enums.StatusBase.Active &&
-                            p.ModulePageFunctionality.Functionality.Status == Domain.Enums.StatusBase.Active &&
-                            p.ModulePageFunctionality.ModulePage.Page.Status == Domain.Enums.StatusBase.Active)
-                .Select(p => p.ModulePageFunctionality.Functionality.Code)
+            var functionalitiesCodes = await QueryBase()
+                .Where(pmpf => userProfilesIds.Contains(pmpf.IdProfile) &&
+                               pmpf.IdModule == moduleId &&
+                               pmpf.IdPage == pageId)
+                .Select(pmpf => pmpf.ModulePageFunctionality.Functionality.Code)
                 .Distinct()
                 .ToArrayAsync();
 

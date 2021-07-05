@@ -5,6 +5,7 @@ using BaseBackEnd.Infrastructure.Data.Context;
 using BaseBackEnd.Infrastructure.Data.Repository.Base;
 using BaseBackEnd.Infrastructure.Util.Cryptography;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BaseBackEnd.Infrastructure.Data.Repository.Security
@@ -15,15 +16,20 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
         {
         }
 
+        protected override IQueryable<User> QueryBase()
+        {
+            return Get(
+                filter: u => u.Status == Domain.Enums.StatusBase.Active);
+        }
+
         public async Task<User> GetUserByLoginAndPasswordAsync(UserAuthInputVm userAuthInputVm)
         {
             string cryptPassword = GenerateMD5.Get(userAuthInputVm.Password);
-            var user = await _dbSet
-                .Include(x => x.UserProfiles)
-                    .ThenInclude(x => x.Profile)
-                .SingleOrDefaultAsync(x => x.Login == userAuthInputVm.Login &&
-                                           x.Password == cryptPassword &&
-                                           x.Status == Domain.Enums.StatusBase.Active);
+            var user = await QueryBase()
+                .Include(u => u.UserProfiles)
+                    .ThenInclude(up => up.Profile)
+                .SingleOrDefaultAsync(u => u.Login == userAuthInputVm.Login &&
+                                           u.Password == cryptPassword);
 
             if (user != default)
                 user.Password = default;

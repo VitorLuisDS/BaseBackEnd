@@ -3,6 +3,7 @@ using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Infrastructure.Data.Context;
 using BaseBackEnd.Infrastructure.Data.Repository.Base;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BaseBackEnd.Infrastructure.Data.Repository.Security
@@ -13,9 +14,17 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
         {
         }
 
+        protected override IQueryable<Module> QueryBase()
+        {
+            return
+                Get(
+                    filter: m => m.Status == Domain.Enums.StatusBase.Active);
+        }
+
         public async Task<Module> GetModuleByCodeAsync(string code)
         {
-            return await _dbSet.SingleAsync(c => c.Code == code && c.Status == Domain.Enums.StatusBase.Active);
+            return await QueryBase()
+                .SingleAsync(m => m.Code == code);
         }
     }
 }

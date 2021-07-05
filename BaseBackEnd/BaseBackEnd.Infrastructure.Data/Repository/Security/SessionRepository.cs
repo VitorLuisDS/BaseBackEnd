@@ -4,6 +4,7 @@ using BaseBackEnd.Infrastructure.Data.Context;
 using BaseBackEnd.Infrastructure.Data.Repository.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BaseBackEnd.Infrastructure.Data.Repository.Security
@@ -12,6 +13,13 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
     {
         public SessionRepository(ProjectBaseContext dbContext) : base(dbContext)
         {
+        }
+
+        protected override IQueryable<Session> QueryBase()
+        {
+            return
+                Get(
+                    filter: s => s.User.Status == Domain.Enums.StatusBase.Active);
         }
 
         public async Task<Session> AddAsync(int userId, bool stayConnected = false)
@@ -23,13 +31,12 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
             });
         }
 
-        public async Task<Session> GetSessionAndUserAsync(Guid sessionId)
+        public async Task<Session> GetSessionAndUserWithProfilesAsync(Guid sessionId)
         {
-            var session = await _dbSet
-                .Include(x => x.User.UserProfiles)
-                    .ThenInclude(x => x.Profile)
-                .SingleOrDefaultAsync(x => x.Id == sessionId &&
-                                           x.User.Status == Domain.Enums.StatusBase.Active);
+            var session = await QueryBase()
+                .Include(s => s.User.UserProfiles)
+                    .ThenInclude(up => up.Profile)
+                .SingleOrDefaultAsync(s => s.Id == sessionId);
 
             session.User.Password = default;
 
@@ -38,14 +45,18 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
 
         public async Task<User> GetUserFromSessionIdAsync(Guid sessionId)
         {
-            var session = await _dbSet
-                .Include(x => x.User)
-                .SingleOrDefaultAsync(x => x.Id == sessionId &&
-                                           x.User.Status == Domain.Enums.StatusBase.Active);
+            var session = await QueryBase()
+                .Include(s => s.User)
+                .SingleOrDefaultAsync(s => s.Id == sessionId);
 
-            session.User.Password = default;
+            if (session == default || session.User == default)
+                return default;
 
-            return session.User;
+            var user = session.User;
+            user.Password = default;
+            user.Sessions = default;
+
+            return user;
         }
     }
 }

@@ -77,7 +77,7 @@ namespace BaseBackEnd.Domain.Service.Services.Security
             TokensOutputVm accessTokenOutput = default;
             if (dadosDoToken != default)
             {
-                Session session = await _sessionRepository.GetSessionAndUserAsync(dadosDoToken.Sid);
+                Session session = await _sessionRepository.GetSessionAndUserWithProfilesAsync(dadosDoToken.Sid);
                 if (session != default)
                 {
                     AuthenticatedUserOutputVm authenticatedUser = PopulateUserData(session.User, session.Id, dadosDoToken.StayConnected);

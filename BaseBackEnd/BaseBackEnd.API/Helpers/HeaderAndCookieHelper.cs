@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BaseBackEnd.Domain.Constants.Security;
+using BaseBackEnd.Domain.ViewModels.SecutityVms.TokenVms;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BaseBackEnd.API.Helpers
 {
     public static class HeaderAndCookieHelper
     {
-        public static string GetHeaderValue(this HttpRequest httpRequest,string key)
+        public static string GetHeaderValue(this HttpRequest httpRequest, string key)
         {
             StringValues value = default;
             httpRequest.Headers.TryGetValue(key, out value);
@@ -21,6 +19,18 @@ namespace BaseBackEnd.API.Helpers
             string value = default;
             httpRequest.Cookies.TryGetValue(key, out value);
             return value;
+        }
+
+        public static void SetAccessTokenOnCookies(this HttpResponse httpResponse, TokensOutputVm user)
+        {
+            var cookieOptions = new CookieOptions()
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None
+            };
+
+            httpResponse.Cookies.Append(AuthConstants.REFRESH_TOKEN_NAME, user.RefreshToken, cookieOptions);
         }
     }
 }

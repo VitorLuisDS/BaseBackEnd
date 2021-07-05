@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BaseBackEnd.API.ViewModel\BaseBackEnd.Domain.ViewModel.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Domain.ViewModel\BaseBackEnd.Domain.ViewModel.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Domain\BaseBackEnd.Domain.csproj" />
   </ItemGroup>
 

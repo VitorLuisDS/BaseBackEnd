@@ -11,10 +11,11 @@ namespace BaseBackEnd.API.Configs
     {
         public static void ConfigureDatabase(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetSection(AppSettingsConstants.DefaultConnectionStringSection).Value;
+            bool.TryParse(configuration.GetSection(AppSettingsConstants.UseSqlServerSection).Value, out bool useSqlServer);
 
-            if (!string.IsNullOrWhiteSpace(connectionString))
+            if (useSqlServer)
             {
+                var connectionString = configuration.GetSection(AppSettingsConstants.DefaultConnectionStringSection).Value;
                 services.AddDbContext<ProjectBaseContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Scoped);
             }
             else

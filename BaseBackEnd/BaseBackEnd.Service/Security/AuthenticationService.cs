@@ -1,12 +1,12 @@
-﻿using BaseBackEnd.API.ViewModel.SecutityVms.TokenVms;
-using BaseBackEnd.API.ViewModel.UserVms;
-using BaseBackEnd.Domain.Configs;
+﻿using BaseBackEnd.Domain.Configs;
 using BaseBackEnd.Domain.Entities.Security;
 using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.Interfaces.UnityOfWork;
-using BaseBackEnd.Domain.Service.Base;
+using BaseBackEnd.Domain.ViewModel.SecutityVms.TokenVms;
+using BaseBackEnd.Domain.ViewModel.UserVms;
+using BaseBackEnd.Service.Base;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System;
@@ -15,7 +15,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Domain.Service.Security
+namespace BaseBackEnd.Domain.Security
 {
     public class AuthenticationService : ServiceBase<User>, IAuthenticationService
     {

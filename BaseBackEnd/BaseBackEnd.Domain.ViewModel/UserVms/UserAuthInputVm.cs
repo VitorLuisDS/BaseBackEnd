@@ -1,4 +1,4 @@
-﻿namespace BaseBackEnd.API.ViewModel.UserVms
+﻿namespace BaseBackEnd.Domain.ViewModel.UserVms
 {
     public class UserAuthInputVm
     {

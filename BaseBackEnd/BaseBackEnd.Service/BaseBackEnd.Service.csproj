@@ -1,8 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>preview</LangVersion>
+    <AssemblyName>BaseBackEnd.Service</AssemblyName>
+    <RootNamespace>BaseBackEnd.Service</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,9 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BaseBackEnd.API.ViewModel\BaseBackEnd.API.ViewModel.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.API.ViewModel\BaseBackEnd.Domain.ViewModel.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Domain\BaseBackEnd.Domain.csproj" />
-    <ProjectReference Include="..\BaseBackEnd.Infrastructure.Util\BaseBackEnd.Infrastructure.CrossCutting.csproj" />
   </ItemGroup>
 
 </Project>

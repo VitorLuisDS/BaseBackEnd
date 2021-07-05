@@ -1,7 +1,7 @@
 ﻿using BaseBackEnd.Domain.Interfaces.Repository.Base;
+using BaseBackEnd.Infrastructure.CrossCutting.Exceptions;
 using BaseBackEnd.Infrastructure.Data.Context;
 using BaseBackEnd.Infrastructure.Data.Context.DatabaseFunctions;
-using BaseBackEnd.Infrastructure.CrossCutting.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;

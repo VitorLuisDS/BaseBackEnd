@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BaseBackEnd.Domain\BaseBackEnd.Domain.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Infrastructure.CrossCutting\BaseBackEnd.Infrastructure.CrossCutting.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Infrastructure.Data\BaseBackEnd.Infrastructure.Data.csproj" />
   </ItemGroup>
 

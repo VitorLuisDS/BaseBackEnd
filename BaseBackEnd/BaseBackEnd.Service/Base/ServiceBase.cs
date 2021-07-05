@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Domain.Service.Base
+namespace BaseBackEnd.Service.Base
 {
     public class ServiceBase<TEntity> : IServiceBase<TEntity> where TEntity : class
     {

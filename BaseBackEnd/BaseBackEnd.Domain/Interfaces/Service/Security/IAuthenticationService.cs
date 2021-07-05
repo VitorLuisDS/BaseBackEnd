@@ -1,8 +1,8 @@
-﻿using BaseBackEnd.API.ViewModel.SecutityVms.TokenVms;
-using BaseBackEnd.API.ViewModel.UserVms;
-using BaseBackEnd.Domain.Entities.Security;
+﻿using BaseBackEnd.Domain.Entities.Security;
 using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.Interfaces.Service.Base;
+using BaseBackEnd.Domain.ViewModel.SecutityVms.TokenVms;
+using BaseBackEnd.Domain.ViewModel.UserVms;
 using System.Threading.Tasks;
 
 namespace BaseBackEnd.Domain.Interfaces.Service.Security

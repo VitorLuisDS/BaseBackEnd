@@ -1,9 +1,10 @@
 ﻿using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using BaseBackEnd.Domain.Interfaces.UnityOfWork;
-using BaseBackEnd.Domain.Service.Security;
+using BaseBackEnd.Domain.Security;
 using BaseBackEnd.Infrastructure.Data.Repository.Security;
 using BaseBackEnd.Infrastructure.Data.UnityOfWork;
+using BaseBackEnd.Service.Security;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BaseBackEnd.API.Configs

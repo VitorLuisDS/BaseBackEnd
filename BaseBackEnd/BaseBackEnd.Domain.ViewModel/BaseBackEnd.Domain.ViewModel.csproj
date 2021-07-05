@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>BaseBackEnd.Domain.ViewModel</AssemblyName>
+    <RootNamespace>BaseBackEnd.Domain.ViewModel</RootNamespace>
+  </PropertyGroup>
+
+</Project>

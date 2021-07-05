@@ -1,12 +1,12 @@
-﻿using BaseBackEnd.API.ViewModel.SecutityVms.PageVms;
-using BaseBackEnd.Domain.Entities.Security;
+﻿using BaseBackEnd.Domain.Entities.Security;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
-using BaseBackEnd.Domain.Service.Base;
+using BaseBackEnd.Domain.ViewModel.SecutityVms.PageVms;
+using BaseBackEnd.Service.Base;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Domain.Service.Security
+namespace BaseBackEnd.Service.Security
 {
     public class AuthorizationService : ServiceBase<ProfileModulePageFunctionality>, IAuthorizationService
     {

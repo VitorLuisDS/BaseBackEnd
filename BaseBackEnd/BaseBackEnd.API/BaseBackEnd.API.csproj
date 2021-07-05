@@ -29,8 +29,4 @@
     <ProjectReference Include="..\BaseBackEnd.Infrastructure.Util\BaseBackEnd.Infrastructure.Util.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Filters\" />
-  </ItemGroup>
-
 </Project>

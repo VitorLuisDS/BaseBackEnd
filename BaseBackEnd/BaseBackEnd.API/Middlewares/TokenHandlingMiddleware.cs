@@ -1,4 +1,5 @@
-﻿using BaseBackEnd.API.Helpers;
+﻿using BaseBackEnd.API.Constants.Security;
+using BaseBackEnd.API.Helpers;
 using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +31,9 @@ namespace BaseBackEnd.API.Middlewares
             if (hasAccessToken)
             {
                 var headerAccessToken = context.Request.Headers.Authorization.First();
+                if (headerAccessToken.StartsWith(AuthConstants.AUTHENTICATION_HEADER_TYPE))
+                    headerAccessToken = headerAccessToken.Substring(7);
+
                 var accessTokenValid = await tokenService.ValidateToken(headerAccessToken);
                 if (!accessTokenValid)
                 {

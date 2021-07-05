@@ -1,6 +1,5 @@
 ﻿using BaseBackEnd.Domain.Entities.Security;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
-using BaseBackEnd.Domain.ViewModels.UserVms;
 using BaseBackEnd.Infrastructure.Data.Context;
 using BaseBackEnd.Infrastructure.Data.Repository.Base;
 using BaseBackEnd.Infrastructure.Util.Cryptography;
@@ -22,13 +21,13 @@ namespace BaseBackEnd.Infrastructure.Data.Repository.Security
                 filter: u => u.Status == Domain.Enums.StatusBase.Active);
         }
 
-        public async Task<User> GetUserByLoginAndPasswordAsync(UserAuthInputVm userAuthInputVm)
+        public async Task<User> GetUserByLoginAndPasswordAsync(string login, string password)
         {
-            string cryptPassword = GenerateMD5.Get(userAuthInputVm.Password);
+            string cryptPassword = GenerateMD5.Get(password);
             var user = await QueryBase()
                 .Include(u => u.UserProfiles)
                     .ThenInclude(up => up.Profile)
-                .SingleOrDefaultAsync(u => u.Login == userAuthInputVm.Login &&
+                .SingleOrDefaultAsync(u => u.Login == login &&
                                            u.Password == cryptPassword);
 
             if (user != default)

@@ -1,9 +1,9 @@
 ﻿using BaseBackEnd.API.Constants.Endpoints;
+using BaseBackEnd.API.Constants.Messages;
 using BaseBackEnd.API.Models.Attributes;
 using BaseBackEnd.API.Models.Base;
-using BaseBackEnd.Domain.Constants.Messages;
+using BaseBackEnd.API.ViewModel.SecutityVms.PageVms;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
-using BaseBackEnd.Domain.ViewModels.SecutityVms.PageVms;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;

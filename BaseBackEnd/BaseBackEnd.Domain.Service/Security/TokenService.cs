@@ -1,5 +1,4 @@
 ﻿using BaseBackEnd.Domain.Configs;
-using BaseBackEnd.Domain.Constants.Security;
 using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
@@ -77,9 +76,6 @@ namespace BaseBackEnd.Domain.Service.Security
             if (string.IsNullOrEmpty(token))
                 return false;
 
-            if (token.StartsWith(AuthConstants.AUTHENTICATION_HEADER_TYPE))
-                token = token.Substring(7);
-
             var sid = GetSidFromToken(token);
             if (sid == default)
             {
@@ -144,9 +140,6 @@ namespace BaseBackEnd.Domain.Service.Security
 
         public Guid GetSidFromToken(string token)
         {
-            if (token.StartsWith(AuthConstants.AUTHENTICATION_HEADER_TYPE))
-                token = token.Substring(7);
-
             var content = ReadJwtToken(token);
             if (content == default) return default;
 

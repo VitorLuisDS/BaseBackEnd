@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BaseBackEnd.Domain.ViewModels.UserVms
+namespace BaseBackEnd.API.ViewModel.UserVms
 {
     public class AuthenticatedUserOutputVm
     {

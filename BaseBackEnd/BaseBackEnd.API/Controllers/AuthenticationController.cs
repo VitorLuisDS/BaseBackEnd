@@ -1,13 +1,13 @@
 ﻿using BaseBackEnd.API.Constants.Endpoints;
+using BaseBackEnd.API.Constants.Messages;
+using BaseBackEnd.API.Constants.Security;
 using BaseBackEnd.API.Helpers;
 using BaseBackEnd.API.Models.Attributes;
 using BaseBackEnd.API.Models.Base;
-using BaseBackEnd.Domain.Constants.Messages;
-using BaseBackEnd.Domain.Constants.Security;
+using BaseBackEnd.API.ViewModel.SecutityVms.TokenVms;
+using BaseBackEnd.API.ViewModel.UserVms;
 using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.Interfaces.Service.Security;
-using BaseBackEnd.Domain.ViewModels.SecutityVms.TokenVms;
-using BaseBackEnd.Domain.ViewModels.UserVms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;

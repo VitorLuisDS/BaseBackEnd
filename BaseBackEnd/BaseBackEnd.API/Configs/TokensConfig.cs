@@ -1,7 +1,7 @@
 ﻿using BaseBackEnd.API.Constants;
+using BaseBackEnd.API.Constants.Security;
 using BaseBackEnd.API.Helpers;
 using BaseBackEnd.Domain.Configs;
-using BaseBackEnd.Domain.Constants.Security;
 using BaseBackEnd.Domain.Enums;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;

@@ -1,4 +1,4 @@
-﻿using BaseBackEnd.Domain.Constants.Messages;
+﻿using BaseBackEnd.API.Constants.Messages;
 using BaseBackEnd.Domain.Enums;
 
 namespace BaseBackEnd.API.Helpers

@@ -1,6 +1,6 @@
 using BaseBackEnd.API.Configs;
+using BaseBackEnd.API.Constants.Security;
 using BaseBackEnd.API.Middlewares;
-using BaseBackEnd.Domain.Constants.Security;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

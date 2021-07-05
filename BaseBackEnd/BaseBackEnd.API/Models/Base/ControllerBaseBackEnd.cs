@@ -1,6 +1,6 @@
-﻿using BaseBackEnd.API.Helpers;
+﻿using BaseBackEnd.API.Constants.Security;
+using BaseBackEnd.API.Helpers;
 using BaseBackEnd.API.Models.Attributes;
-using BaseBackEnd.Domain.Constants.Security;
 using BaseBackEnd.Domain.Entities.Security;
 using BaseBackEnd.Domain.Enums;
 using BaseBackEnd.Domain.Interfaces.Service.Security;

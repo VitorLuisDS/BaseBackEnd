@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BaseBackEnd.API.ViewModel\BaseBackEnd.API.ViewModel.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Domain.Service\BaseBackEnd.Domain.Service.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Domain\BaseBackEnd.Domain.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Infrastructure.Data.Repository\BaseBackEnd.Infrastructure.Data.Repository.csproj" />

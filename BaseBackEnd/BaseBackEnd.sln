@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{601F626C-DD89-4601-9A10-469D3307A8B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseBackEnd.Infrastructure.Util", "BaseBackEnd.Infrastructure.Util\BaseBackEnd.Infrastructure.Util.csproj", "{62010526-028C-4A36-8E0E-0FD81AABCEA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseBackEnd.Infrastructure.CrossCutting", "BaseBackEnd.Infrastructure.Util\BaseBackEnd.Infrastructure.CrossCutting.csproj", "{62010526-028C-4A36-8E0E-0FD81AABCEA1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseBackEnd.Infrastructure.Data", "BaseBackEnd.Infrastructure.Data\BaseBackEnd.Infrastructure.Data.csproj", "{8A7228FB-E475-4C2F-8CBB-6C8784AD9715}"
 EndProject

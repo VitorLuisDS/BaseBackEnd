@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace BaseBackEnd.Infrastructure.Util.Cryptography
+namespace BaseBackEnd.Infrastructure.CrossCutting.Cryptography
 {
     public static class GenerateMD5
     {

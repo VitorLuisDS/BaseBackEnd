@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BaseBackEnd.API.ViewModel\BaseBackEnd.API.ViewModel.csproj" />
-    <ProjectReference Include="..\BaseBackEnd.Infrastructure.Util\BaseBackEnd.Infrastructure.Util.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Infrastructure.Util\BaseBackEnd.Infrastructure.CrossCutting.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,7 +2,7 @@
 using BaseBackEnd.Domain.Interfaces.Repository.Security;
 using BaseBackEnd.Infrastructure.Data.Context;
 using BaseBackEnd.Infrastructure.Data.Repository.Base;
-using BaseBackEnd.Infrastructure.Util.Cryptography;
+using BaseBackEnd.Infrastructure.CrossCutting.Cryptography;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;

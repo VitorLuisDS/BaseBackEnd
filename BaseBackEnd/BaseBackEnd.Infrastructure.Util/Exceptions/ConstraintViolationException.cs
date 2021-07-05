@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BaseBackEnd.Infrastructure.Util.Exceptions
+namespace BaseBackEnd.Infrastructure.CrossCutting.Exceptions
 {
     public class ConstraintViolationException : Exception
     {

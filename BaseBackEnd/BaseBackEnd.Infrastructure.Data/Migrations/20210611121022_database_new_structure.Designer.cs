@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Migrations
 {
-    [DbContext(typeof(ProjectBaseContext))]
+    [DbContext(typeof(ProjectBaseSecurityContext))]
     [Migration("20210611121022_database_new_structure")]
     partial class database_new_structure
     {

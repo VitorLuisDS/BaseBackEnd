@@ -1,8 +1,8 @@
-﻿using BaseBackEnd.Security.API.ViewModels.SecutityVms.TokenVms;
+﻿using BaseBackEnd.Security.API.ViewModels.TokenVms;
 using BaseBackEnd.Security.API.ViewModels.UserVms;
 using BaseBackEnd.Security.Domain.Configs;
 using BaseBackEnd.Security.Domain.Enums;
-using BaseBackEnd.Security.Domain.Interfaces.Repository.Security;
+using BaseBackEnd.Security.Domain.Interfaces.Repository;
 using BaseBackEnd.Security.Domain.Interfaces.UnityOfWork;
 using BaseBackEnd.Security.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Http;

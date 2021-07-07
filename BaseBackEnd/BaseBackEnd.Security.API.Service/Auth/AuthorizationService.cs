@@ -1,5 +1,5 @@
-﻿using BaseBackEnd.Security.API.ViewModels.SecutityVms.PageVms;
-using BaseBackEnd.Security.Domain.Interfaces.Repository.Security;
+﻿using BaseBackEnd.Security.API.ViewModels.PageVms;
+using BaseBackEnd.Security.Domain.Interfaces.Repository;
 using System.Linq;
 using System.Threading.Tasks;
 

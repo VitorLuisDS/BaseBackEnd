@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Migrations
 {
-    [DbContext(typeof(ProjectBaseContext))]
+    [DbContext(typeof(ProjectBaseSecurityContext))]
     [Migration("20210630131735_create_user_profile_and_seed")]
     partial class create_user_profile_and_seed
     {

@@ -12,10 +12,10 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base
 {
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
-        protected readonly ProjectBaseContext _dbContext;
+        protected readonly ProjectBaseSecurityContext _dbContext;
         protected readonly DbSet<TEntity> _dbSet;
 
-        public RepositoryBase(ProjectBaseContext dbContext)
+        public RepositoryBase(ProjectBaseSecurityContext dbContext)
         {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<TEntity>();

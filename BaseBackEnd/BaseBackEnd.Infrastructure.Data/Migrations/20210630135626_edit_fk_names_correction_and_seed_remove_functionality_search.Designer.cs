@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Migrations
 {
-    [DbContext(typeof(ProjectBaseContext))]
+    [DbContext(typeof(ProjectBaseSecurityContext))]
     [Migration("20210630135626_edit_fk_names_correction_and_seed_remove_functionality_search")]
     partial class edit_fk_names_correction_and_seed_remove_functionality_search
     {

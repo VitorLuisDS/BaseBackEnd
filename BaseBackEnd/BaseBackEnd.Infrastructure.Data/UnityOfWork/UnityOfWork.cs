@@ -7,9 +7,9 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.UnityOfWork
 {
     public class UnityOfWork : IUnityOfWork
     {
-        private readonly ProjectBaseContext _dbContext;
+        private readonly ProjectBaseSecurityContext _dbContext;
 
-        public UnityOfWork(ProjectBaseContext dbContext)
+        public UnityOfWork(ProjectBaseSecurityContext dbContext)
         {
             _dbContext = dbContext;
         }

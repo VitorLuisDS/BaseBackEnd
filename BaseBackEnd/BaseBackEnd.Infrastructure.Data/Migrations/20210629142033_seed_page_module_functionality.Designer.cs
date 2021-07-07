@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Migrations
 {
-    [DbContext(typeof(ProjectBaseContext))]
+    [DbContext(typeof(ProjectBaseSecurityContext))]
     [Migration("20210629142033_seed_page_module_functionality")]
     partial class seed_page_module_functionality
     {

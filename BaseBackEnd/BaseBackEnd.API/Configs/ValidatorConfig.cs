@@ -1,4 +1,4 @@
-﻿using BaseBackEnd.Security.API.ViewModels.Validators.Security;
+﻿using BaseBackEnd.Security.API.ViewModels.Validators;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 

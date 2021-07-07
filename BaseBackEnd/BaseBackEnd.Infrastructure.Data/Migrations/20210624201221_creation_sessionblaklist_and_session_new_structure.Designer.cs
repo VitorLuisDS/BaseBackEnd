@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Migrations
 {
-    [DbContext(typeof(ProjectBaseContext))]
+    [DbContext(typeof(ProjectBaseSecurityContext))]
     [Migration("20210624201221_creation_sessionblaklist_and_session_new_structure")]
     partial class creation_sessionblaklist_and_session_new_structure
     {

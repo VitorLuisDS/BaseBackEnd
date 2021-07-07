@@ -1,5 +1,5 @@
-﻿using BaseBackEnd.Security.API.Constants.Security;
-using BaseBackEnd.Security.API.ViewModels.SecutityVms.TokenVms;
+﻿using BaseBackEnd.Security.API.Constants;
+using BaseBackEnd.Security.API.ViewModels.TokenVms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 

@@ -1,5 +1,5 @@
 using BaseBackEnd.Security.API.Configs;
-using BaseBackEnd.Security.API.Constants.Security;
+using BaseBackEnd.Security.API.Constants;
 using BaseBackEnd.Security.API.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

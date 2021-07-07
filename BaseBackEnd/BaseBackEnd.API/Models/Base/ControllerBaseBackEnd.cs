@@ -1,4 +1,4 @@
-﻿using BaseBackEnd.Security.API.Constants.Security;
+﻿using BaseBackEnd.Security.API.Constants;
 using BaseBackEnd.Security.API.Helpers;
 using BaseBackEnd.Security.API.Models.Attributes;
 using BaseBackEnd.Security.API.Services.Auth;

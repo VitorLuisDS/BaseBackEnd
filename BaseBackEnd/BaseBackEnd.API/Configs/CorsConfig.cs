@@ -1,4 +1,4 @@
-﻿using BaseBackEnd.Security.API.Constants.Security;
+﻿using BaseBackEnd.Security.API.Constants;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BaseBackEnd.Security.API.Configs

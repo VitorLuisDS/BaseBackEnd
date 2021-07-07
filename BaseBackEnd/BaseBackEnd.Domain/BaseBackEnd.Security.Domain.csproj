@@ -17,8 +17,4 @@
     <ProjectReference Include="..\BaseBackEnd.Security.Infrastructure.Data.Model\BaseBackEnd.Security.Infrastructure.Data.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\Service\Security\" />
-  </ItemGroup>
-
 </Project>

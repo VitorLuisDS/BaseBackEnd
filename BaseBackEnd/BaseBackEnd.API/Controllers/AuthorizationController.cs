@@ -3,7 +3,7 @@ using BaseBackEnd.Security.API.Constants.Messages;
 using BaseBackEnd.Security.API.Models.Attributes;
 using BaseBackEnd.Security.API.Models.Base;
 using BaseBackEnd.Security.API.Services.Auth;
-using BaseBackEnd.Security.API.ViewModels.SecutityVms.PageVms;
+using BaseBackEnd.Security.API.ViewModels.PageVms;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;

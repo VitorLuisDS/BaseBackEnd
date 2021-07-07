@@ -16,11 +16,11 @@ namespace BaseBackEnd.Security.API.Configs
             if (useSqlServer)
             {
                 var connectionString = configuration.GetSection(AppSettingsConstants.DefaultConnectionStringSection).Value;
-                services.AddDbContext<ProjectBaseContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Scoped);
+                services.AddDbContext<ProjectBaseSecurityContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Scoped);
             }
             else
             {
-                services.AddDbContext<ProjectBaseContext>(options => options.UseInMemoryDatabase(DatabaseConstants.InMemoryDatabase));
+                services.AddDbContext<ProjectBaseSecurityContext>(options => options.UseInMemoryDatabase(DatabaseConstants.InMemoryDatabase));
             }
         }
 
@@ -30,7 +30,7 @@ namespace BaseBackEnd.Security.API.Configs
                 .GetRequiredService<IServiceScopeFactory>()
                 .CreateScope())
             {
-                using (var context = serviceScope.ServiceProvider.GetService<ProjectBaseContext>())
+                using (var context = serviceScope.ServiceProvider.GetService<ProjectBaseSecurityContext>())
                 {
                     if (context.Database.ProviderName != DatabaseConstants.InMemoryDatabaseProvider)
                     {

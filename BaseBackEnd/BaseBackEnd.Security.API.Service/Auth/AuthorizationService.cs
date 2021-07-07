@@ -1,10 +1,11 @@
-﻿using BaseBackEnd.Service.Base;
+﻿using BaseBackEnd.Security.API.ViewModels.SecutityVms.PageVms;
+using BaseBackEnd.Security.Domain.Interfaces.Repository.Security;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Service.Security
+namespace BaseBackEnd.Security.API.Services.Auth
 {
-    public class AuthorizationService : ServiceBase<ProfileModulePageFunctionality>, IAuthorizationService
+    public class AuthorizationService
     {
         private readonly IProfileModulePageFunctionalityRepository _profileModulePageFunctionalityRepository;
         private readonly IModulePageRepository _modulePageRepository;
@@ -12,7 +13,7 @@ namespace BaseBackEnd.Service.Security
         public AuthorizationService(
             IProfileModulePageFunctionalityRepository profileModulePageFunctionalityRepository,
             IModulePageRepository modulePageRepository
-            ) : base(profileModulePageFunctionalityRepository)
+            )
         {
             _profileModulePageFunctionalityRepository = profileModulePageFunctionalityRepository;
             _modulePageRepository = modulePageRepository;

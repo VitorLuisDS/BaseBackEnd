@@ -1,4 +1,9 @@
-﻿using BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base;
+﻿using BaseBackEnd.Security.Domain.Interfaces.Repository.Security;
+using BaseBackEnd.Security.Infrastructure.Data.EFCore.Context;
+using BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base;
+using BaseBackEnd.Security.Infrastructure.Data.Models;
+using BaseBackEnd.Security.Infrastructure.Data.Models.Enums;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,9 +19,9 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Security
         {
             return
                 Get(
-                    filter: mp => mp.Status == Domain.Enums.StatusBase.Active &&
-                                  mp.Module.Status == Domain.Enums.StatusBase.Active &&
-                                  mp.Page.Status == Domain.Enums.StatusBase.Active,
+                    filter: mp => mp.Status == StatusBase.Active &&
+                                  mp.Module.Status == StatusBase.Active &&
+                                  mp.Page.Status == StatusBase.Active,
                     orderBy: null,
                     asNoTracking: true,
                     mp => mp.Module,

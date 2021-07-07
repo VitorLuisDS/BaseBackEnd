@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BaseBackEnd.Security.Infrastructure.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds
 {
@@ -35,7 +36,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds
                     new Functionality
                     {
                         Id = 1,
-                        Code = FunctionalityCodes.Approve,
+                        Code = "approve",
                         Name = "Approve",
                         Description = "Change status to Approved",
                         IdCreationUser = IdUserDev
@@ -43,7 +44,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds
                     new Functionality
                     {
                         Id = 2,
-                        Code = FunctionalityCodes.Disapprove,
+                        Code = "disapprove",
                         Name = "Disapprove",
                         Description = "Change status to Disapproved",
                         IdCreationUser = IdUserDev
@@ -51,7 +52,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds
                     new Functionality
                     {
                         Id = 3,
-                        Code = FunctionalityCodes.Activate,
+                        Code = "activate",
                         Name = "Activate",
                         Description = "Change status to Active",
                         IdCreationUser = IdUserDev
@@ -59,7 +60,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds
                     new Functionality
                     {
                         Id = 4,
-                        Code = FunctionalityCodes.Inactivate,
+                        Code = "inactivate",
                         Name = "Inactivate",
                         Description = "Change status to Inactive",
                         IdCreationUser = IdUserDev
@@ -67,7 +68,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds
                     new Functionality
                     {
                         Id = 5,
-                        Code = FunctionalityCodes.Confirm,
+                        Code = "confirm",
                         Name = "Confirm",
                         Description = "Change status to Confirmed",
                         IdCreationUser = IdUserDev
@@ -75,7 +76,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds
                     new Functionality
                     {
                         Id = 6,
-                        Code = FunctionalityCodes.Cancel,
+                        Code = "cancel",
                         Name = "Cancel",
                         Description = "Change status to Canceled",
                         IdCreationUser = IdUserDev
@@ -83,7 +84,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds
                     new Functionality
                     {
                         Id = 7,
-                        Code = FunctionalityCodes.Export,
+                        Code = "export",
                         Name = "Export",
                         Description = "Permits export",
                         IdCreationUser = IdUserDev
@@ -91,7 +92,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds
                     new Functionality
                     {
                         Id = IdAddFunctionality,
-                        Code = FunctionalityCodes.Add,
+                        Code = "add",
                         Name = "Add",
                         Description = "Permits add",
                         IdCreationUser = IdUserDev
@@ -99,7 +100,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds
                     new Functionality
                     {
                         Id = IdUpdateFunctionality,
-                        Code = FunctionalityCodes.Update,
+                        Code = "update",
                         Name = "Update",
                         Description = "Permits update",
                         IdCreationUser = IdUserDev
@@ -107,7 +108,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds
                     new Functionality
                     {
                         Id = IdRemoveFunctionality,
-                        Code = FunctionalityCodes.Remove,
+                        Code = "remove",
                         Name = "Remove",
                         Description = "Permits remove",
                         IdCreationUser = IdUserDev
@@ -115,7 +116,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds
                     new Functionality
                     {
                         Id = IdConsultFunctionality,
-                        Code = FunctionalityCodes.Consult,
+                        Code = "consult",
                         Name = "Consult",
                         Description = "Permits consult",
                         IdCreationUser = IdUserDev

@@ -2,11 +2,12 @@
 using BaseBackEnd.Security.API.Constants.Messages;
 using BaseBackEnd.Security.API.Models.Attributes;
 using BaseBackEnd.Security.API.Models.Base;
+using BaseBackEnd.Security.API.Services.Auth;
+using BaseBackEnd.Security.API.ViewModels.SecutityVms.PageVms;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Threading.Tasks;
-using IAuthorizationService = BaseBackEnd.Domain.Interfaces.Service.Security.IAuthorizationService;
 
 namespace BaseBackEnd.Security.API.Controllers
 {
@@ -15,8 +16,8 @@ namespace BaseBackEnd.Security.API.Controllers
     [Authorize]
     public class AuthorizationController : ControllerBaseBackEnd
     {
-        private readonly IAuthorizationService _authorizationService;
-        public AuthorizationController(IAuthorizationService authorizationService, IAuthenticationService authenticationService) : base(authenticationService)
+        private readonly AuthorizationService _authorizationService;
+        public AuthorizationController(AuthorizationService authorizationService, AuthenticationService authenticationService) : base(authenticationService)
         {
             _authorizationService = authorizationService;
         }

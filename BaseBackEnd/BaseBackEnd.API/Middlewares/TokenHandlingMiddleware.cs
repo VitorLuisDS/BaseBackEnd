@@ -1,5 +1,7 @@
 ﻿using BaseBackEnd.Security.API.Constants.Security;
 using BaseBackEnd.Security.API.Helpers;
+using BaseBackEnd.Security.API.Services.Auth;
+using BaseBackEnd.Security.Domain.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -16,14 +18,14 @@ namespace BaseBackEnd.Security.API.Middlewares
             this.next = next;
         }
 
-        public async Task Invoke(HttpContext context, [FromServices] ITokenService tokenService)
+        public async Task Invoke(HttpContext context, [FromServices] TokenService tokenService)
         {
             await ValidateAccessTokenAsync(context, tokenService);
 
             await next(context);
         }
 
-        private async Task ValidateAccessTokenAsync(HttpContext context, ITokenService tokenService)
+        private async Task ValidateAccessTokenAsync(HttpContext context, TokenService tokenService)
         {
             var hasAccessToken = context.Request.Headers.Authorization.Any();
             if (hasAccessToken)

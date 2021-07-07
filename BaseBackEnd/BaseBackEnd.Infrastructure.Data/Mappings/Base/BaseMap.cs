@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BaseBackEnd.Security.Infrastructure.Data.Models.Base;
+using BaseBackEnd.Security.Infrastructure.Data.Models.Enums;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Mappings.Base

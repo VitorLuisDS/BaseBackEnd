@@ -1,4 +1,9 @@
-﻿using BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base;
+﻿using BaseBackEnd.Security.Domain.Interfaces.Repository.Security;
+using BaseBackEnd.Security.Infrastructure.Data.EFCore.Context;
+using BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base;
+using BaseBackEnd.Security.Infrastructure.Data.Models;
+using BaseBackEnd.Security.Infrastructure.Data.Models.Enums;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +20,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Security
         {
             return
                 Get(
-                    filter: s => s.User.Status == Domain.Enums.StatusBase.Active);
+                    filter: s => s.User.Status == StatusBase.Active);
         }
 
         public async Task<Session> AddAsync(int userId, bool stayConnected = false)

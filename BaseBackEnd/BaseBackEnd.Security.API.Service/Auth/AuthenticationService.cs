@@ -1,18 +1,26 @@
-﻿using BaseBackEnd.Service.Base;
+﻿using BaseBackEnd.Security.API.ViewModels.SecutityVms.TokenVms;
+using BaseBackEnd.Security.API.ViewModels.UserVms;
+using BaseBackEnd.Security.Domain.Configs;
+using BaseBackEnd.Security.Domain.Enums;
+using BaseBackEnd.Security.Domain.Interfaces.Repository.Security;
+using BaseBackEnd.Security.Domain.Interfaces.UnityOfWork;
+using BaseBackEnd.Security.Infrastructure.Data.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Domain.Security
+namespace BaseBackEnd.Security.API.Services.Auth
 {
-    public class AuthenticationService : ServiceBase<User>, IAuthenticationService
+    public class AuthenticationService
     {
         private readonly IUserRepository _userRepository;
         private readonly ISessionRepository _sessionRepository;
         private readonly IUnityOfWork _unityOfWork;
-        private readonly ITokenService _tokenService;
+        private readonly TokenService _tokenService;
 
         public InvalidTokenType InvalidTokenType => _tokenService.InvalidTokenType;
 
@@ -35,8 +43,8 @@ namespace BaseBackEnd.Domain.Security
             IOptions<TokenConfig> options,
             IHttpContextAccessor httpContextAccessor,
             IUnityOfWork unityOfWork,
-            ITokenService tokenService
-            ) : base(userRepository)
+            TokenService tokenService
+            )
         {
             _userRepository = userRepository;
             _sessionRepository = sessionRepository;

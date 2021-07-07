@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using BaseBackEnd.Security.API.ViewModels.UserVms;
+using FluentValidation;
 
 namespace BaseBackEnd.Security.API.ViewModels.Validators.Security
 {

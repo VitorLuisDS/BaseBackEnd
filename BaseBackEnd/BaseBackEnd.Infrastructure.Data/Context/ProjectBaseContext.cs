@@ -1,6 +1,7 @@
 ﻿using BaseBackEnd.Security.Infrastructure.Data.EFCore.Context.DatabaseFunctions;
 using BaseBackEnd.Security.Infrastructure.Data.EFCore.Mappings.Security;
 using BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds;
+using BaseBackEnd.Security.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Context
@@ -9,7 +10,6 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Context
     {
         public ProjectBaseContext(DbContextOptions<ProjectBaseContext> options) : base(options) { }
 
-        #region Security
         public virtual DbSet<Department> Department { get; set; }
         public virtual DbSet<Functionality> Functionality { get; set; }
         public virtual DbSet<Module> Module { get; set; }
@@ -21,7 +21,6 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Context
         public virtual DbSet<Session> Session { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserProfile> UserProfile { get; set; }
-        #endregion
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -1,4 +1,5 @@
 ﻿using BaseBackEnd.Security.API.Constants.Messages;
+using BaseBackEnd.Security.Domain.Enums;
 
 namespace BaseBackEnd.Security.API.Helpers
 {

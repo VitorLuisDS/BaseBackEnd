@@ -1,5 +1,6 @@
 ﻿using BaseBackEnd.Security.API.Models;
 using BaseBackEnd.Security.API.Models.Base;
+using BaseBackEnd.Security.Domain.Enums;
 using Microsoft.AspNetCore.Http;
 using System.Net;
 using System.Threading.Tasks;

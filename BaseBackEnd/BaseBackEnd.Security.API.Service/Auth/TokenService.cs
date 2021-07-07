@@ -1,4 +1,9 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using BaseBackEnd.Security.Domain.Configs;
+using BaseBackEnd.Security.Domain.Enums;
+using BaseBackEnd.Security.Domain.Interfaces.Repository.Security;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -7,9 +12,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Service.Security
+namespace BaseBackEnd.Security.API.Services.Auth
 {
-    public class TokenService : ITokenService
+    public class TokenService
     {
         private readonly ISessionBlackListRepository _sessionBlackListRepository;
 

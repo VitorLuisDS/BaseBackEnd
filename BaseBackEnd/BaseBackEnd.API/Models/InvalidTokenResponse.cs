@@ -1,4 +1,6 @@
-﻿namespace BaseBackEnd.Security.API.Models
+﻿using BaseBackEnd.Security.Domain.Enums;
+
+namespace BaseBackEnd.Security.API.Models
 {
     public class InvalidTokenResponse
     {

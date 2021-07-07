@@ -4,6 +4,10 @@ using BaseBackEnd.Security.API.Constants.Security;
 using BaseBackEnd.Security.API.Helpers;
 using BaseBackEnd.Security.API.Models.Attributes;
 using BaseBackEnd.Security.API.Models.Base;
+using BaseBackEnd.Security.API.Services.Auth;
+using BaseBackEnd.Security.API.ViewModels.SecutityVms.TokenVms;
+using BaseBackEnd.Security.API.ViewModels.UserVms;
+using BaseBackEnd.Security.Domain.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -15,9 +19,9 @@ namespace BaseBackEnd.Security.API.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBaseBackEnd
     {
-        private readonly IAuthenticationService _authenticationService;
-        private readonly ITokenService _tokenService;
-        public AuthenticationController(IAuthenticationService authService, ITokenService tokenService) : base(authService)
+        private readonly AuthenticationService _authenticationService;
+        private readonly TokenService _tokenService;
+        public AuthenticationController(AuthenticationService authService, TokenService tokenService) : base(authService)
         {
             _authenticationService = authService;
             _tokenService = tokenService;

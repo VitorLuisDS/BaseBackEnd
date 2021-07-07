@@ -1,4 +1,8 @@
-﻿using BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base;
+﻿using BaseBackEnd.Security.Domain.Interfaces.Repository.Security;
+using BaseBackEnd.Security.Infrastructure.Data.EFCore.Context;
+using BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base;
+using BaseBackEnd.Security.Infrastructure.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 

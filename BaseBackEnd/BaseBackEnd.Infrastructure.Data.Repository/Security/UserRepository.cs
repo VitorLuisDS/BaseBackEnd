@@ -1,4 +1,10 @@
-﻿using BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base;
+﻿using BaseBackEnd.Security.Domain.Interfaces.Repository.Security;
+using BaseBackEnd.Security.Infrastructure.CrossCutting.Cryptography;
+using BaseBackEnd.Security.Infrastructure.Data.EFCore.Context;
+using BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base;
+using BaseBackEnd.Security.Infrastructure.Data.Models;
+using BaseBackEnd.Security.Infrastructure.Data.Models.Enums;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +19,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Security
         protected override IQueryable<User> QueryBase()
         {
             return Get(
-                filter: u => u.Status == Domain.Enums.StatusBase.Active);
+                filter: u => u.Status == StatusBase.Active);
         }
 
         public async Task<User> GetUserByLoginAndPasswordAsync(string login, string password)

@@ -1,6 +1,9 @@
 ﻿using BaseBackEnd.Security.API.Constants.Security;
 using BaseBackEnd.Security.API.Helpers;
 using BaseBackEnd.Security.API.Models.Attributes;
+using BaseBackEnd.Security.API.Services.Auth;
+using BaseBackEnd.Security.Domain.Enums;
+using BaseBackEnd.Security.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -11,10 +14,10 @@ namespace BaseBackEnd.Security.API.Models.Base
     [ProducesResponseTypeBase(typeof(ResponseBase), HttpStatusCode.InternalServerError)]
     public abstract class ControllerBaseBackEnd : ControllerBase
     {
-        private readonly IAuthenticationService _authenticationService;
+        private readonly AuthenticationService _authenticationService;
         protected Task<int> UserId => GetUserIdFromTokenAsync();
         protected new Task<User> User => GetUserFromTokenAsync();
-        public ControllerBaseBackEnd(IAuthenticationService authenticationService = default)
+        public ControllerBaseBackEnd(AuthenticationService authenticationService = default)
         {
             _authenticationService = authenticationService;
         }

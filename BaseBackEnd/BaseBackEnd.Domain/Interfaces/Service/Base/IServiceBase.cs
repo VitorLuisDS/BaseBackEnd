@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Domain.Interfaces.Service.Base
+namespace BaseBackEnd.Security.Domain.Interfaces.Service.Base
 {
     public interface IServiceBase<TEntity> where TEntity : class
     {

@@ -1,14 +1,9 @@
-﻿using BaseBackEnd.Domain.Interfaces.Repository.Base;
-using BaseBackEnd.Infrastructure.CrossCutting.Exceptions;
-using BaseBackEnd.Infrastructure.Data.Context;
-using BaseBackEnd.Infrastructure.Data.Context.DatabaseFunctions;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Infrastructure.Data.Repository.Base
+namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base
 {
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {

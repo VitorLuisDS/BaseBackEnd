@@ -1,4 +1,4 @@
-﻿namespace BaseBackEnd.API.Constants.Endpoints
+﻿namespace BaseBackEnd.Security.API.Constants.Endpoints
 {
     public static class AuthorizationEndpoints
     {

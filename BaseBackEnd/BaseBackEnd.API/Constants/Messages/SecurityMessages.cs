@@ -1,4 +1,4 @@
-﻿namespace BaseBackEnd.API.Constants.Messages
+﻿namespace BaseBackEnd.Security.API.Constants.Messages
 {
     public static class SecurityMessages
     {

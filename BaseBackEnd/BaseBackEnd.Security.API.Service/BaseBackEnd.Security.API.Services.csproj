@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>BaseBackEnd.Security.API.Services</AssemblyName>
+    <RootNamespace>BaseBackEnd.Security.API.Services</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BaseBackEnd.Domain.ViewModel\BaseBackEnd.Security.API.ViewModels.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Domain\BaseBackEnd.Security.Domain.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Infrastructure.CrossCutting\BaseBackEnd.Security.Infrastructure.CrossCutting.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Security.Domain.Service\BaseBackEnd.Security.Domain.Services.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Security.Infrastructure.Service\BaseBackEnd.Security.Infrastructure.Services.csproj" />
+  </ItemGroup>
+
+</Project>

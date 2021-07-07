@@ -1,12 +1,8 @@
-﻿using BaseBackEnd.Domain.Entities.Security;
-using BaseBackEnd.Domain.Interfaces.Repository.Security;
-using BaseBackEnd.Infrastructure.Data.Context;
-using BaseBackEnd.Infrastructure.Data.Repository.Base;
-using Microsoft.EntityFrameworkCore;
+﻿using BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Infrastructure.Data.Repository.Security
+namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Security
 {
     public class ModulePageRepository : RepositoryBase<ModulePage>, IModulePageRepository
     {

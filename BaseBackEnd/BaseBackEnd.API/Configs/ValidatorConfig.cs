@@ -1,8 +1,7 @@
-﻿using BaseBackEnd.Service.Validator.Security;
-using FluentValidation.AspNetCore;
+﻿using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BaseBackEnd.API.Configs
+namespace BaseBackEnd.Security.API.Configs
 {
     public static class ValidatorConfig
     {

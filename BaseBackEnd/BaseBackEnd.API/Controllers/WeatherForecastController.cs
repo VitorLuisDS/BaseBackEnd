@@ -1,4 +1,4 @@
-﻿using BaseBackEnd.API.Models.Base;
+﻿using BaseBackEnd.Security.API.Models.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BaseBackEnd.API.Controllers
+namespace BaseBackEnd.Security.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

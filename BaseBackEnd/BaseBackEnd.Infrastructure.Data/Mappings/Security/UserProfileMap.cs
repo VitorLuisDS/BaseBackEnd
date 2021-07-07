@@ -1,9 +1,8 @@
-﻿using BaseBackEnd.Domain.Entities.Security;
-using BaseBackEnd.Infrastructure.Data.Mappings.Base;
+﻿using BaseBackEnd.Security.Infrastructure.Data.EFCore.Mappings.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
+namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Mappings.Security
 {
     public class UserProfileMap : IEntityTypeConfiguration<UserProfile>
     {

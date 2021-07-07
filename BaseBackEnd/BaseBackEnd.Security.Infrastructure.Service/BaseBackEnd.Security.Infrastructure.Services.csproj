@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BaseBackEnd.Infrastructure.CrossCutting\BaseBackEnd.Security.Infrastructure.CrossCutting.csproj" />
+  </ItemGroup>
+
+</Project>

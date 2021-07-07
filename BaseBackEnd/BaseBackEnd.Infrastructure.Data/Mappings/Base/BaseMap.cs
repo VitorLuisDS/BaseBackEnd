@@ -1,9 +1,7 @@
-﻿using BaseBackEnd.Domain.Entities.Base;
-using BaseBackEnd.Domain.Enums;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BaseBackEnd.Infrastructure.Data.Mappings.Base
+namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Mappings.Base
 {
     public static class BaseMap
     {

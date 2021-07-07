@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>BaseBackEnd.Security.API.ViewModels</AssemblyName>
+    <RootNamespace>BaseBackEnd.Security.API.ViewModels</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BaseBackEnd.Infrastructure.CrossCutting\BaseBackEnd.Security.Infrastructure.CrossCutting.csproj" />
+  </ItemGroup>
+
+</Project>

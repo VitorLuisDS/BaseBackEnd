@@ -1,4 +1,4 @@
-﻿namespace BaseBackEnd.Domain.Enums
+﻿namespace BaseBackEnd.Security.Domain.Enums
 {
     public enum InvalidTokenType
     {

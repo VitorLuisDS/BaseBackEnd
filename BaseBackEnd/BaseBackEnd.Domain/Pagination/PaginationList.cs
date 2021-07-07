@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BaseBackEnd.Domain.Pagination
+namespace BaseBackEnd.Security.Domain.Pagination
 {
     public class PaginationList<TItem> : IPagination
     {

@@ -1,9 +1,8 @@
-﻿using BaseBackEnd.Domain.Interfaces.UnityOfWork;
-using BaseBackEnd.Infrastructure.Data.Context;
+﻿using BaseBackEnd.Security.Infrastructure.Data.EFCore.Context;
 using System;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Infrastructure.Data.UnityOfWork
+namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.UnityOfWork
 {
     public class UnityOfWork : IUnityOfWork
     {

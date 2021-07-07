@@ -1,10 +1,4 @@
-﻿using BaseBackEnd.Domain.Configs;
-using BaseBackEnd.Domain.Enums;
-using BaseBackEnd.Domain.Interfaces.Repository.Security;
-using BaseBackEnd.Domain.Interfaces.Service.Security;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;

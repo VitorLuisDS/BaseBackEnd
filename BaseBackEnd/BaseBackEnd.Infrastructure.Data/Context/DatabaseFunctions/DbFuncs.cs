@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BaseBackEnd.Infrastructure.Data.Context.DatabaseFunctions
+namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Context.DatabaseFunctions
 {
     public class DbFuncs
     {

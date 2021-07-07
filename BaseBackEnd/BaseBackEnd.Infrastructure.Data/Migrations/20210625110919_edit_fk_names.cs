@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BaseBackEnd.Infrastructure.Data.Migrations
+namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Migrations
 {
     public partial class edit_fk_names : Migration
     {

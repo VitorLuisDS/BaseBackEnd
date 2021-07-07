@@ -1,14 +1,4 @@
-﻿using BaseBackEnd.Domain.Configs;
-using BaseBackEnd.Domain.Entities.Security;
-using BaseBackEnd.Domain.Enums;
-using BaseBackEnd.Domain.Interfaces.Repository.Security;
-using BaseBackEnd.Domain.Interfaces.Service.Security;
-using BaseBackEnd.Domain.Interfaces.UnityOfWork;
-using BaseBackEnd.Domain.ViewModel.SecutityVms.TokenVms;
-using BaseBackEnd.Domain.ViewModel.UserVms;
-using BaseBackEnd.Service.Base;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
+﻿using BaseBackEnd.Service.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;

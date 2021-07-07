@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using System.Text.RegularExpressions;
 
-namespace BaseBackEnd.Service.Validator
+namespace BaseBackEnd.Security.API.ViewModels.Validators
 {
     public static class DefaultValitations
     {

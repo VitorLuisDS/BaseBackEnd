@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace BaseBackEnd.API
+namespace BaseBackEnd.Security.API
 {
     public class Program
     {

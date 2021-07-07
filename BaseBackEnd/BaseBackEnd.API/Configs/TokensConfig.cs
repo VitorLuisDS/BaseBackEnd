@@ -1,8 +1,6 @@
-﻿using BaseBackEnd.API.Constants;
-using BaseBackEnd.API.Constants.Security;
-using BaseBackEnd.API.Helpers;
-using BaseBackEnd.Domain.Configs;
-using BaseBackEnd.Domain.Enums;
+﻿using BaseBackEnd.Security.API.Constants;
+using BaseBackEnd.Security.API.Constants.Security;
+using BaseBackEnd.Security.API.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.API.Configs
+namespace BaseBackEnd.Security.API.Configs
 {
     public static class TokensConfig
     {

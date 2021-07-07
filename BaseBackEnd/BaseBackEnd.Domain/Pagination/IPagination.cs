@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BaseBackEnd.Domain.Pagination
+namespace BaseBackEnd.Security.Domain.Pagination
 {
     public interface IPagination
     {

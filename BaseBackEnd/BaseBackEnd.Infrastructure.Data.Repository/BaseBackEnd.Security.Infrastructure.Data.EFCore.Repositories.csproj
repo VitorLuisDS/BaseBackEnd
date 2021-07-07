@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories</AssemblyName>
+    <RootNamespace>BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BaseBackEnd.Domain\BaseBackEnd.Security.Domain.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Infrastructure.CrossCutting\BaseBackEnd.Security.Infrastructure.CrossCutting.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Infrastructure.Data\BaseBackEnd.Security.Infrastructure.Data.EFCore.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Security.Infrastructure.Data.Model\BaseBackEnd.Security.Infrastructure.Data.Models.csproj" />
+  </ItemGroup>
+
+</Project>

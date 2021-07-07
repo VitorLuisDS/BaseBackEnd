@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>BaseBackEnd.Security.API.ViewModels.Validators</AssemblyName>
+    <RootNamespace>BaseBackEnd.Security.API.ViewModels.Validators</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BaseBackEnd.Domain.ViewModel\BaseBackEnd.Security.API.ViewModels.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Infrastructure.CrossCutting\BaseBackEnd.Security.Infrastructure.CrossCutting.csproj" />
+  </ItemGroup>
+
+</Project>

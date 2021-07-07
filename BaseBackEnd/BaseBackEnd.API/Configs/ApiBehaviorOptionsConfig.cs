@@ -1,12 +1,12 @@
-﻿using BaseBackEnd.API.Constants.Messages;
-using BaseBackEnd.API.Models;
-using BaseBackEnd.API.Models.Base;
+﻿using BaseBackEnd.Security.API.Constants.Messages;
+using BaseBackEnd.Security.API.Models;
+using BaseBackEnd.Security.API.Models.Base;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Net;
 
-namespace BaseBackEnd.API.Configs
+namespace BaseBackEnd.Security.API.Configs
 {
     public static class ApiBehaviorOptionsConfig
     {

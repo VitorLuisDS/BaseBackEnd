@@ -1,6 +1,6 @@
-using BaseBackEnd.API.Configs;
-using BaseBackEnd.API.Constants.Security;
-using BaseBackEnd.API.Middlewares;
+using BaseBackEnd.Security.API.Configs;
+using BaseBackEnd.Security.API.Constants.Security;
+using BaseBackEnd.Security.API.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 
-namespace BaseBackEnd.API
+namespace BaseBackEnd.Security.API
 {
     public class Startup
     {
@@ -40,7 +40,7 @@ namespace BaseBackEnd.API
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BaseBackEnd.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BaseBackEnd.Security.API", Version = "v1" });
             });
 
             services.AddHttpContextAccessor();
@@ -57,7 +57,7 @@ namespace BaseBackEnd.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BaseBackEnd.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BaseBackEnd.Security.API v1"));
             }
 
             app.UseCors(AuthConstants.POLICY_DEFAULT_NAME);

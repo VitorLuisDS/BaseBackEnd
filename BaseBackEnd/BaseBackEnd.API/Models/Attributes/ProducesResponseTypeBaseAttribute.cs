@@ -1,9 +1,9 @@
-﻿using BaseBackEnd.API.Models.Base;
+﻿using BaseBackEnd.Security.API.Models.Base;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net;
 
-namespace BaseBackEnd.API.Models.Attributes
+namespace BaseBackEnd.Security.API.Models.Attributes
 {
     public class ProducesResponseTypeBaseAttribute : ProducesResponseTypeAttribute
     {

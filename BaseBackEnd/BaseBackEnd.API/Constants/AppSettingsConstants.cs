@@ -1,4 +1,4 @@
-﻿namespace BaseBackEnd.API.Constants
+﻿namespace BaseBackEnd.Security.API.Constants
 {
     public static class AppSettingsConstants
     {

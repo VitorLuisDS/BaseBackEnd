@@ -1,8 +1,8 @@
-﻿using BaseBackEnd.API.Constants;
+﻿using BaseBackEnd.Security.API.Constants;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace BaseBackEnd.API.Models.Attributes
+namespace BaseBackEnd.Security.API.Models.Attributes
 {
     public class ProducesBaseAttribute : ProducesAttribute
     {

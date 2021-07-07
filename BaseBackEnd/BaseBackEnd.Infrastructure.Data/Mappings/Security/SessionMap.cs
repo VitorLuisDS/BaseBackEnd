@@ -1,8 +1,7 @@
-﻿using BaseBackEnd.Domain.Entities.Security;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BaseBackEnd.Infrastructure.Data.Mappings.Security
+namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Mappings.Security
 {
     public class SessionMap : IEntityTypeConfiguration<Session>
     {

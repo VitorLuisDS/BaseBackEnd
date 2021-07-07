@@ -1,11 +1,10 @@
-﻿using BaseBackEnd.API.Constants;
-using BaseBackEnd.Infrastructure.Data.Context;
+﻿using BaseBackEnd.Security.API.Constants;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BaseBackEnd.API.Configs
+namespace BaseBackEnd.Security.API.Configs
 {
     public static class DatabaseConfig
     {

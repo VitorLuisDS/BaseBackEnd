@@ -1,9 +1,8 @@
-﻿using BaseBackEnd.API.Constants.Security;
-using BaseBackEnd.Domain.ViewModel.SecutityVms.TokenVms;
+﻿using BaseBackEnd.Security.API.Constants.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 
-namespace BaseBackEnd.API.Helpers
+namespace BaseBackEnd.Security.API.Helpers
 {
     public static class HeaderAndCookieHelper
     {

@@ -1,7 +1,7 @@
-﻿using BaseBackEnd.Domain.Entities.Base;
+﻿using BaseBackEnd.Security.Domain.Entities.Base;
 using System.Collections.Generic;
 
-namespace BaseBackEnd.Domain.Entities.Security
+namespace BaseBackEnd.Security.Domain.Entities.Security
 {
     public class ModulePage : EntityAuditStatusBase
     {

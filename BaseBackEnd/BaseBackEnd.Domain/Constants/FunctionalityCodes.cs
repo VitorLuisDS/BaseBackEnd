@@ -1,4 +1,4 @@
-﻿namespace BaseBackEnd.Domain.Constants
+﻿namespace BaseBackEnd.Security.Domain.Constants
 {
     public static class FunctionalityCodes
     {

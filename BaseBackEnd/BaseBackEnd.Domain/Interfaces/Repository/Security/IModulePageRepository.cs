@@ -1,8 +1,8 @@
-﻿using BaseBackEnd.Domain.Entities.Security;
-using BaseBackEnd.Domain.Interfaces.Repository.Base;
+﻿using BaseBackEnd.Security.Domain.Entities.Security;
+using BaseBackEnd.Security.Domain.Interfaces.Repository.Base;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Domain.Interfaces.Repository.Security
+namespace BaseBackEnd.Security.Domain.Interfaces.Repository.Security
 {
     public interface IModulePageRepository : IRepositoryBase<ModulePage>
     {

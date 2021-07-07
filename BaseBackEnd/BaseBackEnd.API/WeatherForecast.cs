@@ -1,6 +1,6 @@
 using System;
 
-namespace BaseBackEnd.API
+namespace BaseBackEnd.Security.API
 {
     public class WeatherForecast
     {

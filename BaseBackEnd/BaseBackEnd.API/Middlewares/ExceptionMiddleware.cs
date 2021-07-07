@@ -1,11 +1,11 @@
-﻿using BaseBackEnd.API.Constants;
-using BaseBackEnd.API.Models.Base;
+﻿using BaseBackEnd.Security.API.Constants;
+using BaseBackEnd.Security.API.Models.Base;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.API.Middlewares
+namespace BaseBackEnd.Security.API.Middlewares
 {
     public class ExceptionMiddleware
     {

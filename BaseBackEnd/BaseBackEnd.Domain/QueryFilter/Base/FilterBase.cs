@@ -1,7 +1,7 @@
-﻿using BaseBackEnd.Domain.Pagination;
+﻿using BaseBackEnd.Security.Domain.Pagination;
 using Newtonsoft.Json;
 
-namespace BaseBackEnd.Domain.QueryFilter.Base
+namespace BaseBackEnd.Security.Domain.QueryFilter.Base
 {
     public abstract class FilterBase : IPagination, IClassificationOrder
     {

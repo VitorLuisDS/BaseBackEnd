@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>preview</LangVersion>
+    <AssemblyName>BaseBackEnd.Security.Domain</AssemblyName>
+    <RootNamespace>BaseBackEnd.Security.Domain</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BaseBackEnd.Domain.ViewModel\BaseBackEnd.Domain.ViewModel.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Infrastructure.CrossCutting\BaseBackEnd.Security.Infrastructure.CrossCutting.csproj" />
   </ItemGroup>
 
 </Project>

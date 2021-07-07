@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Domain.Interfaces.UnityOfWork
+namespace BaseBackEnd.Security.Domain.Interfaces.UnityOfWork
 {
     public interface IUnityOfWork : IDisposable
     {

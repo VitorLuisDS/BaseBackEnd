@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "BaseBackEnd.API": {
+    "BaseBackEnd.Security.API": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": false,

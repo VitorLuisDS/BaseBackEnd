@@ -1,4 +1,4 @@
-﻿namespace BaseBackEnd.Domain.ViewModel.SecutityVms.TokenVms
+﻿namespace BaseBackEnd.Security.API.ViewModels.SecutityVms.TokenVms
 {
     public class AccessTokenOutputVm
     {

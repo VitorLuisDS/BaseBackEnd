@@ -1,8 +1,4 @@
-﻿using BaseBackEnd.Domain.Entities.Security;
-using BaseBackEnd.Domain.Interfaces.Repository.Security;
-using BaseBackEnd.Domain.Interfaces.Service.Security;
-using BaseBackEnd.Domain.ViewModel.SecutityVms.PageVms;
-using BaseBackEnd.Service.Base;
+﻿using BaseBackEnd.Service.Base;
 using System.Linq;
 using System.Threading.Tasks;
 

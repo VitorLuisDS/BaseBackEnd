@@ -1,4 +1,4 @@
-﻿namespace BaseBackEnd.API.Constants.Security
+﻿namespace BaseBackEnd.Security.API.Constants.Security
 {
     public static class AuthConstants
     {

@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace BaseBackEnd.API.Models.Base
+namespace BaseBackEnd.Security.API.Models.Base
 {
     public class ResponseBase<T>
     {

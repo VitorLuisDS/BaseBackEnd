@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace BaseBackEnd.Infrastructure.Data.Migrations
+namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Migrations
 {
     public partial class create_user_profile_and_seed : Migration
     {

@@ -22,12 +22,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BaseBackEnd.Domain.ViewModel\BaseBackEnd.Domain.ViewModel.csproj" />
-    <ProjectReference Include="..\BaseBackEnd.Domain\BaseBackEnd.Domain.csproj" />
-    <ProjectReference Include="..\BaseBackEnd.Infrastructure.Data.Repository\BaseBackEnd.Infrastructure.Data.Repository.csproj" />
-    <ProjectReference Include="..\BaseBackEnd.Infrastructure.Data\BaseBackEnd.Infrastructure.Data.csproj" />
-    <ProjectReference Include="..\BaseBackEnd.Service.Validator\BaseBackEnd.Service.Validator.csproj" />
-    <ProjectReference Include="..\BaseBackEnd.Service\BaseBackEnd.Service.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Domain.ViewModel\BaseBackEnd.Security.API.ViewModels.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Domain\BaseBackEnd.Security.Domain.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Infrastructure.CrossCutting\BaseBackEnd.Security.Infrastructure.CrossCutting.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Infrastructure.Data.Repository\BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Security.API.Service\BaseBackEnd.Security.API.Services.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Security.Infrastructure.Data.Model\BaseBackEnd.Security.Infrastructure.Data.Models.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Security.Infrastructure.Service\BaseBackEnd.Security.Infrastructure.Services.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Service.Validator\BaseBackEnd.Security.API.ViewModels.Validators.csproj" />
   </ItemGroup>
 
 </Project>

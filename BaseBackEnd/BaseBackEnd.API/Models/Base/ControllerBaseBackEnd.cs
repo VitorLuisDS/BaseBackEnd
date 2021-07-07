@@ -1,15 +1,12 @@
-﻿using BaseBackEnd.API.Constants.Security;
-using BaseBackEnd.API.Helpers;
-using BaseBackEnd.API.Models.Attributes;
-using BaseBackEnd.Domain.Entities.Security;
-using BaseBackEnd.Domain.Enums;
-using BaseBackEnd.Domain.Interfaces.Service.Security;
+﻿using BaseBackEnd.Security.API.Constants.Security;
+using BaseBackEnd.Security.API.Helpers;
+using BaseBackEnd.Security.API.Models.Attributes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.API.Models.Base
+namespace BaseBackEnd.Security.API.Models.Base
 {
     [ProducesResponseTypeBase(typeof(ResponseBase), HttpStatusCode.InternalServerError)]
     public abstract class ControllerBaseBackEnd : ControllerBase

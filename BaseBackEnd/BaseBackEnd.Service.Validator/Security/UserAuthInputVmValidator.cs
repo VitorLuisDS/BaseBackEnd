@@ -1,7 +1,6 @@
-﻿using BaseBackEnd.Domain.ViewModel.UserVms;
-using FluentValidation;
+﻿using FluentValidation;
 
-namespace BaseBackEnd.Service.Validator.Security
+namespace BaseBackEnd.Security.API.ViewModels.Validators.Security
 {
     public class UserAuthInputVmValidator : AbstractValidator<UserAuthInputVm>
     {

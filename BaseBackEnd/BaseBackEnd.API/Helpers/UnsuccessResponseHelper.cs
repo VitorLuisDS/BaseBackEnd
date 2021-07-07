@@ -1,11 +1,10 @@
-﻿using BaseBackEnd.API.Models;
-using BaseBackEnd.API.Models.Base;
-using BaseBackEnd.Domain.Enums;
+﻿using BaseBackEnd.Security.API.Models;
+using BaseBackEnd.Security.API.Models.Base;
 using Microsoft.AspNetCore.Http;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.API.Helpers
+namespace BaseBackEnd.Security.API.Helpers
 {
     public static class UnsuccessResponseHelper
     {

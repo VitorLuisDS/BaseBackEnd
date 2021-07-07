@@ -12,9 +12,4 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.11.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BaseBackEnd.Domain.ViewModel\BaseBackEnd.Domain.ViewModel.csproj" />
-    <ProjectReference Include="..\BaseBackEnd.Domain\BaseBackEnd.Domain.csproj" />
-  </ItemGroup>
-
 </Project>

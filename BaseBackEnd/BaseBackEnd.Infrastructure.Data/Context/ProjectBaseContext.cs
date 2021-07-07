@@ -1,10 +1,9 @@
-﻿using BaseBackEnd.Domain.Entities.Security;
-using BaseBackEnd.Infrastructure.Data.Context.DatabaseFunctions;
-using BaseBackEnd.Infrastructure.Data.Mappings.Security;
-using BaseBackEnd.Infrastructure.Data.Seeds;
+﻿using BaseBackEnd.Security.Infrastructure.Data.EFCore.Context.DatabaseFunctions;
+using BaseBackEnd.Security.Infrastructure.Data.EFCore.Mappings.Security;
+using BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds;
 using Microsoft.EntityFrameworkCore;
 
-namespace BaseBackEnd.Infrastructure.Data.Context
+namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Context
 {
     public partial class ProjectBaseContext : DbContext
     {

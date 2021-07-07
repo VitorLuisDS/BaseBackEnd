@@ -1,13 +1,11 @@
-﻿using BaseBackEnd.API.Constants.Security;
-using BaseBackEnd.API.Helpers;
-using BaseBackEnd.Domain.Enums;
-using BaseBackEnd.Domain.Interfaces.Service.Security;
+﻿using BaseBackEnd.Security.API.Constants.Security;
+using BaseBackEnd.Security.API.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.API.Middlewares
+namespace BaseBackEnd.Security.API.Middlewares
 {
     public class TokenHandlingMiddleware
     {

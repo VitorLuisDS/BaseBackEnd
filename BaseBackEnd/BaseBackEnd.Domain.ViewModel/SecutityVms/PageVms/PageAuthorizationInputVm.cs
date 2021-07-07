@@ -1,4 +1,4 @@
-﻿namespace BaseBackEnd.Domain.ViewModel.SecutityVms.PageVms
+﻿namespace BaseBackEnd.Security.API.ViewModels.SecutityVms.PageVms
 {
     public class PageAuthorizationInputVm
     {

@@ -1,7 +1,7 @@
-﻿using BaseBackEnd.Domain.Entities.Security;
+﻿using BaseBackEnd.Security.Domain.Entities.Security;
 using System;
 
-namespace BaseBackEnd.Domain.Entities.Base
+namespace BaseBackEnd.Security.Domain.Entities.Base
 {
     public abstract class EntityAuditBase
     {

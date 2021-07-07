@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BaseBackEnd.Domain.Entities.Security
+namespace BaseBackEnd.Security.Domain.Entities.Security
 {
     public class Session
     {

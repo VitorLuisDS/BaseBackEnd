@@ -1,8 +1,6 @@
-﻿using BaseBackEnd.Domain.Constants;
-using BaseBackEnd.Domain.Entities.Security;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace BaseBackEnd.Infrastructure.Data.Seeds
+namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds
 {
     public static class RunSeed
     {

@@ -1,4 +1,4 @@
-﻿namespace BaseBackEnd.API.Models
+﻿namespace BaseBackEnd.Security.API.Models
 {
     public class ValidationErrorResponse
     {

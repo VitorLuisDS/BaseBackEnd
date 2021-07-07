@@ -1,19 +1,15 @@
-﻿using BaseBackEnd.API.Constants.Endpoints;
-using BaseBackEnd.API.Constants.Messages;
-using BaseBackEnd.API.Constants.Security;
-using BaseBackEnd.API.Helpers;
-using BaseBackEnd.API.Models.Attributes;
-using BaseBackEnd.API.Models.Base;
-using BaseBackEnd.Domain.Enums;
-using BaseBackEnd.Domain.Interfaces.Service.Security;
-using BaseBackEnd.Domain.ViewModel.SecutityVms.TokenVms;
-using BaseBackEnd.Domain.ViewModel.UserVms;
+﻿using BaseBackEnd.Security.API.Constants.Endpoints;
+using BaseBackEnd.Security.API.Constants.Messages;
+using BaseBackEnd.Security.API.Constants.Security;
+using BaseBackEnd.Security.API.Helpers;
+using BaseBackEnd.Security.API.Models.Attributes;
+using BaseBackEnd.Security.API.Models.Base;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.API.Controllers
+namespace BaseBackEnd.Security.API.Controllers
 {
     [Route(AuthenticationEndpoints.BASE_ENDPOINT)]
     [ApiController]

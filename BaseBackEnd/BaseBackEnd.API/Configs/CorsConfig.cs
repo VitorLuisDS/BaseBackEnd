@@ -1,7 +1,7 @@
-﻿using BaseBackEnd.API.Constants.Security;
+﻿using BaseBackEnd.Security.API.Constants.Security;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BaseBackEnd.API.Configs
+namespace BaseBackEnd.Security.API.Configs
 {
     public static class CorsConfig
     {

@@ -1,6 +1,6 @@
-﻿using BaseBackEnd.Domain.Entities.Base;
+﻿using BaseBackEnd.Security.Domain.Entities.Base;
 
-namespace BaseBackEnd.Domain.Entities.Security
+namespace BaseBackEnd.Security.Domain.Entities.Security
 {
     public class UserProfile : EntityAuditStatusBase
     {

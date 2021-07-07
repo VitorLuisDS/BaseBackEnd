@@ -1,6 +1,6 @@
-﻿using BaseBackEnd.Domain.Enums;
+﻿using BaseBackEnd.Security.Domain.Enums;
 
-namespace BaseBackEnd.Domain.Entities.Base
+namespace BaseBackEnd.Security.Domain.Entities.Base
 {
     public abstract class EntityAuditStatusBase : EntityAuditBase
     {

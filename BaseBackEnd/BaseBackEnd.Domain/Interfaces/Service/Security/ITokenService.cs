@@ -1,10 +1,10 @@
-﻿using BaseBackEnd.Domain.Enums;
+﻿using BaseBackEnd.Security.Domain.Enums;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace BaseBackEnd.Domain.Interfaces.Service.Security
+namespace BaseBackEnd.Security.Domain.Interfaces.Service.Security
 {
     public interface ITokenService
     {

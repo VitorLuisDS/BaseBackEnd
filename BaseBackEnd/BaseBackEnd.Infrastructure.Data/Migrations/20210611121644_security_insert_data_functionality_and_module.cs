@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BaseBackEnd.Infrastructure.Data.Migrations
+namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Migrations
 {
     public partial class security_insert_data_functionality_and_module : Migration
     {

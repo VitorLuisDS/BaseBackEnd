@@ -1,7 +1,6 @@
-﻿using BaseBackEnd.API.Constants.Messages;
-using BaseBackEnd.Domain.Enums;
+﻿using BaseBackEnd.Security.API.Constants.Messages;
 
-namespace BaseBackEnd.API.Helpers
+namespace BaseBackEnd.Security.API.Helpers
 {
     public static class InvalidTokenMessageHelper
     {

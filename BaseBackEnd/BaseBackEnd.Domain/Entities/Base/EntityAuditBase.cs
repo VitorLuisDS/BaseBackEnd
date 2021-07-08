@@ -1,14 +1,13 @@
-﻿using System;
+﻿using Flunt.Notifications;
+using System;
 
 namespace BaseBackEnd.Security.Domain.Entities.Base
 {
-    public abstract class EntityAuditBase
+    public abstract class EntityAuditBase : Notifiable<Notification>
     {
-        public DateTime CreationDate { get; set; }
-        public DateTime? LastModificationDate { get; set; }
-        public int IdCreationUser { get; set; }
-        public virtual User CreationUser { get; set; }
-        public int? IdLastModificationUser { get; set; }
-        public virtual User LastModificationUser { get; set; }
+        public DateTime CreationDate { get; protected set; }
+        public DateTime? LastModificationDate { get; protected set; }
+        public User CreationUser { get; protected set; }
+        public User LastModificationUser { get; protected set; }
     }
 }

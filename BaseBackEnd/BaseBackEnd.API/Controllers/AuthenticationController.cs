@@ -40,7 +40,7 @@ namespace BaseBackEnd.Security.API.Controllers
                 return Ok(response);
             }
             else
-                return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.INVALI_USER_OR_PASSWORD));
+                return Unauthorized(new ResponseBase(HttpStatusCode.Unauthorized, SecurityMessages.INVALID_USER_OR_PASSWORD));
         }
 
         [HttpPost(AuthenticationEndpoints.RENEW_ACCESS_TOKEN)]

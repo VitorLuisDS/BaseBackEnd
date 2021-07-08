@@ -1,4 +1,4 @@
-﻿using BaseBackEnd.Security.Infrastructure.Data.Models;
+﻿using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds

@@ -1,4 +1,4 @@
-﻿namespace BaseBackEnd.Security.Infrastructure.Data.Models.Enums
+﻿namespace BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.Enums
 {
     public enum StatusBase
     {

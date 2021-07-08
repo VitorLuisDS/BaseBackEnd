@@ -29,15 +29,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseBackEnd.Security.API.Vi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.1 - Data", "3.1 - Data", "{7191EFEC-A3F1-40B7-B446-869BB9AB543A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseBackEnd.Security.API.Services", "BaseBackEnd.Security.API.Service\BaseBackEnd.Security.API.Services.csproj", "{F8A71F50-7C34-42AB-9140-69DEA6EAA3F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseBackEnd.Security.API.Services", "BaseBackEnd.Security.API.Service\BaseBackEnd.Security.API.Services.csproj", "{F8A71F50-7C34-42AB-9140-69DEA6EAA3F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 - ViewModel", "1.1 - ViewModel", "{530B2103-7379-4383-8E39-007762D33A64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseBackEnd.Security.Domain.Services", "BaseBackEnd.Security.Domain.Service\BaseBackEnd.Security.Domain.Services.csproj", "{8FF49797-186E-47EE-936F-051C55BA9081}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseBackEnd.Security.Domain.Services", "BaseBackEnd.Security.Domain.Service\BaseBackEnd.Security.Domain.Services.csproj", "{8FF49797-186E-47EE-936F-051C55BA9081}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseBackEnd.Security.Infrastructure.Data.Models", "BaseBackEnd.Security.Infrastructure.Data.Model\BaseBackEnd.Security.Infrastructure.Data.Models.csproj", "{4B7B1A40-D614-4D0D-B4B0-19188C4FD276}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseBackEnd.Security.Infrastructure.Data.PersistenceModels", "BaseBackEnd.Security.Infrastructure.Data.Model\BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.csproj", "{4B7B1A40-D614-4D0D-B4B0-19188C4FD276}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseBackEnd.Security.Infrastructure.Services", "BaseBackEnd.Security.Infrastructure.Service\BaseBackEnd.Security.Infrastructure.Services.csproj", "{A9B9349D-188F-4FC4-91F9-A75C4A65C3E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseBackEnd.Security.Infrastructure.Services", "BaseBackEnd.Security.Infrastructure.Service\BaseBackEnd.Security.Infrastructure.Services.csproj", "{A9B9349D-188F-4FC4-91F9-A75C4A65C3E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

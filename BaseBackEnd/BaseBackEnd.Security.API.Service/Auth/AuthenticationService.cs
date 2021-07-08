@@ -4,7 +4,7 @@ using BaseBackEnd.Security.Domain.Configs;
 using BaseBackEnd.Security.Domain.Enums;
 using BaseBackEnd.Security.Domain.Interfaces.Repository;
 using BaseBackEnd.Security.Domain.Interfaces.UnityOfWork;
-using BaseBackEnd.Security.Infrastructure.Data.Models;
+using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System;

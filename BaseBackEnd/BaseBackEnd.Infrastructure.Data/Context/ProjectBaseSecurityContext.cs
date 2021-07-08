@@ -1,7 +1,7 @@
 ﻿using BaseBackEnd.Security.Infrastructure.Data.EFCore.Context.DatabaseFunctions;
 using BaseBackEnd.Security.Infrastructure.Data.EFCore.Mappings;
 using BaseBackEnd.Security.Infrastructure.Data.EFCore.Seeds;
-using BaseBackEnd.Security.Infrastructure.Data.Models;
+using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Context

@@ -3,7 +3,7 @@ using BaseBackEnd.Security.API.Helpers;
 using BaseBackEnd.Security.API.Models.Attributes;
 using BaseBackEnd.Security.API.Services.Auth;
 using BaseBackEnd.Security.Domain.Enums;
-using BaseBackEnd.Security.Infrastructure.Data.Models;
+using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;

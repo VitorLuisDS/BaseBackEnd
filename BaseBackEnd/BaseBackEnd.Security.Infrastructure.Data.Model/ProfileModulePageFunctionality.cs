@@ -1,6 +1,6 @@
-﻿using BaseBackEnd.Security.Infrastructure.Data.Models.Base;
+﻿using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.Base;
 
-namespace BaseBackEnd.Security.Infrastructure.Data.Models
+namespace BaseBackEnd.Security.Infrastructure.Data.PersistenceModels
 {
     public class ProfileModulePageFunctionality : EntityAuditStatusBase
     {

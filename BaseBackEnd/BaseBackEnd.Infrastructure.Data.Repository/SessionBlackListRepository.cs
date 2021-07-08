@@ -1,7 +1,7 @@
 ﻿using BaseBackEnd.Security.Domain.Interfaces.Repository;
 using BaseBackEnd.Security.Infrastructure.Data.EFCore.Context;
 using BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base;
-using BaseBackEnd.Security.Infrastructure.Data.Models;
+using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;

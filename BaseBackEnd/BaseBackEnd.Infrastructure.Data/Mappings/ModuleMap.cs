@@ -1,5 +1,5 @@
 ﻿using BaseBackEnd.Security.Infrastructure.Data.EFCore.Mappings.Base;
-using BaseBackEnd.Security.Infrastructure.Data.Models;
+using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

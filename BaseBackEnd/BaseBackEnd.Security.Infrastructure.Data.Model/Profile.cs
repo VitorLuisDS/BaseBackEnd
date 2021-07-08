@@ -1,7 +1,7 @@
-﻿using BaseBackEnd.Security.Infrastructure.Data.Models.Base;
+﻿using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.Base;
 using System.Collections.Generic;
 
-namespace BaseBackEnd.Security.Infrastructure.Data.Models
+namespace BaseBackEnd.Security.Infrastructure.Data.PersistenceModels
 {
     public class Profile : EntityAuditStatusBase
     {

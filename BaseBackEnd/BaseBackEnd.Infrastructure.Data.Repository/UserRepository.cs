@@ -2,8 +2,8 @@
 using BaseBackEnd.Security.Infrastructure.CrossCutting.Cryptography;
 using BaseBackEnd.Security.Infrastructure.Data.EFCore.Context;
 using BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base;
-using BaseBackEnd.Security.Infrastructure.Data.Models;
-using BaseBackEnd.Security.Infrastructure.Data.Models.Enums;
+using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels;
+using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.Enums;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;

@@ -27,7 +27,7 @@
     <ProjectReference Include="..\BaseBackEnd.Infrastructure.CrossCutting\BaseBackEnd.Security.Infrastructure.CrossCutting.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Infrastructure.Data.Repository\BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Security.API.Service\BaseBackEnd.Security.API.Services.csproj" />
-    <ProjectReference Include="..\BaseBackEnd.Security.Infrastructure.Data.Model\BaseBackEnd.Security.Infrastructure.Data.Models.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Security.Infrastructure.Data.Model\BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Security.Infrastructure.Service\BaseBackEnd.Security.Infrastructure.Services.csproj" />
     <ProjectReference Include="..\BaseBackEnd.Service.Validator\BaseBackEnd.Security.API.ViewModels.Validators.csproj" />
   </ItemGroup>

@@ -1,6 +1,6 @@
-﻿using BaseBackEnd.Security.Infrastructure.Data.Models.Enums;
+﻿using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.Enums;
 
-namespace BaseBackEnd.Security.Infrastructure.Data.Models.Base
+namespace BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.Base
 {
     public abstract class EntityAuditStatusBase : EntityAuditBase
     {

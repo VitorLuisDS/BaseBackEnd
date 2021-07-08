@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BaseBackEnd.Security.Infrastructure.Data.Models
+namespace BaseBackEnd.Security.Infrastructure.Data.PersistenceModels
 {
     public class Session
     {

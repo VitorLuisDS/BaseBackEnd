@@ -1,5 +1,5 @@
-﻿using BaseBackEnd.Security.Infrastructure.Data.Models.Base;
-using BaseBackEnd.Security.Infrastructure.Data.Models.Enums;
+﻿using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.Base;
+using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

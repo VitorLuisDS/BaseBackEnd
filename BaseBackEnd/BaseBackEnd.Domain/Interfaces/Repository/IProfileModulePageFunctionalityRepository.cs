@@ -1,5 +1,5 @@
 ﻿using BaseBackEnd.Security.Domain.Interfaces.Repository.Base;
-using BaseBackEnd.Security.Infrastructure.Data.Models;
+using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

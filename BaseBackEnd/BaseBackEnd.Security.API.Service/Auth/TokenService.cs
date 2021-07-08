@@ -1,5 +1,6 @@
 ﻿using BaseBackEnd.Security.Domain.Configs;
 using BaseBackEnd.Security.Domain.Enums;
+using BaseBackEnd.Security.Domain.Interfaces.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

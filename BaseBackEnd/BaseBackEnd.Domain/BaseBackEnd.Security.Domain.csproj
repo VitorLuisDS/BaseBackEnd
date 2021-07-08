@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BaseBackEnd.Infrastructure.CrossCutting\BaseBackEnd.Security.Infrastructure.CrossCutting.csproj" />
-    <ProjectReference Include="..\BaseBackEnd.Security.Infrastructure.Data.Model\BaseBackEnd.Security.Infrastructure.Data.Models.csproj" />
+    <ProjectReference Include="..\BaseBackEnd.Security.Infrastructure.Data.Model\BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.csproj" />
   </ItemGroup>
 
 </Project>

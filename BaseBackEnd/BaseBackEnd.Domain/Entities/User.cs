@@ -14,8 +14,8 @@ namespace BaseBackEnd.Security.Domain.Entities
         public PasswordVO Password { get; private set; }
         public Department Department { get; private set; }
 
-        private ICollection<UserProfile> _userProfiles { get; set; }
-        public IReadOnlyCollection<UserProfile> UserProfiles { get { return _userProfiles.ToArray(); } }
+        private ICollection<Profile> _userProfiles { get; set; }
+        public IReadOnlyCollection<Profile> UserProfiles { get { return _userProfiles.ToArray(); } }
 
         public User(NameVO name, LoginVO login, PasswordVO password, Department department)
         {
@@ -28,16 +28,16 @@ namespace BaseBackEnd.Security.Domain.Entities
         }
 
 
-        public void AddProfile(UserProfile userProfile)
+        public void AddProfile(Profile profile)
         {
             var profileAlreadyExists = _userProfiles
-                .Any(up => up.Profile.Id == userProfile.Profile.Id);
+                .Any(up => up.Id == profile.Id);
 
             AddNotifications(new Contract<User>()
-                .IsFalse(profileAlreadyExists, $"{nameof(User)}.{nameof(UserProfiles)}", $"{nameof(User)} already has this profile"));
+                .IsFalse(profileAlreadyExists, $"{nameof(User)}.{nameof(UserProfiles)}", $"{nameof(User)} already has this {nameof(Profile)}"));
 
             if (IsValid)
-                _userProfiles.Add(userProfile);
+                _userProfiles.Add(profile);
         }
     }
 }

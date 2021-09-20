@@ -1,5 +1,6 @@
 ﻿using BaseBackEnd.Security.Domain.Entities.Base;
 using BaseBackEnd.Security.Domain.ValueObjects;
+using Flunt.Validations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,9 +12,25 @@ namespace BaseBackEnd.Security.Domain.Entities
         public NameVO Name { get; private set; }
         public DescriptionVO Description { get; set; }
 
-        private ICollection<Profile> _profiles { get; set; }
-        public IReadOnlyCollection<Profile> Profiles { get { return _profiles.ToArray(); } }
+        private ICollection<User> _users { get; set; }
+        public IReadOnlyCollection<User> Users { get { return _users.ToArray(); } }
 
-        public virtual ICollection<User> Users { get; set; } = new HashSet<User>();
+        public Department(NameVO name, DescriptionVO description)
+        {
+            Name = name;
+            Description = description;
+        }
+
+        public void AddUser(User user)
+        {
+            var userAlreadyExists = _users
+                .Any(u => u.Id == user.Id);
+
+            AddNotifications(new Contract<User>()
+                .IsFalse(userAlreadyExists, $"{nameof(Department)}.{nameof(Users)}", $"{nameof(Department)} already has this {nameof(User)}"));
+
+            if (IsValid)
+                _users.Add(user);
+        }
     }
 }

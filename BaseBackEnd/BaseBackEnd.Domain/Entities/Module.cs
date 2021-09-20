@@ -1,14 +1,39 @@
 ﻿using BaseBackEnd.Security.Domain.Entities.Base;
+using BaseBackEnd.Security.Domain.ValueObjects;
+using Flunt.Validations;
 using System.Collections.Generic;
 
 namespace BaseBackEnd.Security.Domain.Entities
 {
     public class Module : EntityAuditStatusBase
     {
-        public int Id { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public virtual ICollection<ModulePage> ModulePages { get; set; } = new HashSet<ModulePage>();
+        public int Id { get; }
+        public CodeVO Code { get; private set; }
+        public NameVO Name { get; private set; }
+        public DescriptionVO Description { get; private set; }
+
+        private ICollection<Page> _pages { get; set; }
+        public IReadOnlyCollection<Page> Pages { get { return _pages.ToArray(); } }
+
+        public Module(CodeVO code, NameVO name, DescriptionVO description)
+        {
+            Code = code;
+            Name = name;
+            Description = description;
+
+            AddNotifications(code, name, description);
+        }
+
+        public void AddProfile(Page page)
+        {
+            var pageAlreadyExists = _pages
+                .Any(up => up.Id == page.Id);
+
+            AddNotifications(new Contract<Page>()
+                .IsFalse(pageAlreadyExists, $"{nameof(Module)}.{nameof(Pages)}", $"{nameof(Module)} already has this {nameof(Page)}"));
+
+            if (IsValid)
+                _pages.Add(page);
+        }
     }
 }

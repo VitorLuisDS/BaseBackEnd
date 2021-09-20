@@ -14,6 +14,9 @@ namespace BaseBackEnd.Security.Domain.Entities
         private ICollection<User> _users { get; set; }
         public IReadOnlyCollection<User> Users { get { return _users.ToArray(); } }
 
+        private ICollection<Functionality> _functionalities { get; set; }
+        public IReadOnlyCollection<Functionality> Functionalities { get { return _functionalities.ToArray(); } }
+
         public Profile(NameVO name, DescriptionVO description)
         {
             Name = name;
@@ -35,6 +38,22 @@ namespace BaseBackEnd.Security.Domain.Entities
                 _users.Add(user);
                 if (!user.UserProfiles.Contains(this))
                     user.AddProfile(this);
+            }
+        }
+
+        public void AddFunctionality(Functionality functionality)
+        {
+            var functionalityAlreadyExists = _functionalities
+                .Any(u => u.Id == functionality.Id);
+
+            AddNotifications(new Contract<Functionality>()
+                .IsFalse(functionalityAlreadyExists, $"{nameof(Profile)}.{nameof(Functionalities)}", $"{nameof(Profile)} already has this {nameof(Functionality)}"));
+
+            if (IsValid)
+            {
+                _functionalities.Add(functionality);
+                if (!functionality.UserProfiles.Contains(this))
+                    functionality.AddProfile(this);
             }
         }
     }

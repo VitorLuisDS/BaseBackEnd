@@ -35,7 +35,21 @@ namespace BaseBackEnd.Security.Domain.Entities
                 .IsFalse(functionalityAlreadyExists, $"{nameof(Page)}.{nameof(Functionalities)}", $"{nameof(Page)} already has this {nameof(Functionality)}"));
 
             if (IsValid)
+            {
                 _functionalities.Add(functionality);
+                if (!functionality.Pages.Contains(this))
+                    functionality.AddPage(this);
+            }
+        }
+
+        public void SetModule(Module module)
+        {
+            if (module.IsValid)
+            {
+                Module = module;
+                if (!module.Pages.Contains(this))
+                    module.AddPage(this);
+            }
         }
     }
 }

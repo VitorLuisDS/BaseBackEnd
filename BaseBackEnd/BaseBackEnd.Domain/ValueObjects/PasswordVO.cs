@@ -10,15 +10,16 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
 {
     public class PasswordVO : ValueObjectBase
     {
-
+        private const int MIN_LENGTH = 3;
+        private const int MAX_LENGTH = 30;
         public string Password { get; private set; }
         public PasswordVO(string password)
         {
             Password = password;
 
             AddNotifications(new Contract<PasswordVO>()
-                .IsLowerThan(Password, 3, $"{nameof(Password)} should have at least 3 chars")
-                .IsGreaterThan(Password, 30, $"{nameof(Password)} should have no more than 30 chars"));
+                .IsLowerThan(Password, MIN_LENGTH, $"{nameof(Password)} should have at least {MIN_LENGTH} chars")
+                .IsGreaterThan(Password, MAX_LENGTH, $"{nameof(Password)} should have no more than {MAX_LENGTH} chars"));
         }
     }
 }

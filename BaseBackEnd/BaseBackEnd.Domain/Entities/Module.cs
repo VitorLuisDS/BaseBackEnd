@@ -24,7 +24,7 @@ namespace BaseBackEnd.Security.Domain.Entities
             AddNotifications(code, name, description);
         }
 
-        public void AddProfile(Page page)
+        public void AddPage(Page page)
         {
             var pageAlreadyExists = _pages
                 .Any(up => up.Id == page.Id);
@@ -33,7 +33,11 @@ namespace BaseBackEnd.Security.Domain.Entities
                 .IsFalse(pageAlreadyExists, $"{nameof(Module)}.{nameof(Pages)}", $"{nameof(Module)} already has this {nameof(Page)}"));
 
             if (IsValid)
+            {
                 _pages.Add(page);
+                if (page.Module != this)
+                    page.SetModule(this);
+            }
         }
     }
 }

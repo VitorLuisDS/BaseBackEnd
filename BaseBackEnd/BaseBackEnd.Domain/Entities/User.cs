@@ -37,7 +37,22 @@ namespace BaseBackEnd.Security.Domain.Entities
                 .IsFalse(profileAlreadyExists, $"{nameof(User)}.{nameof(UserProfiles)}", $"{nameof(User)} already has this {nameof(Profile)}"));
 
             if (IsValid)
+            {
                 _userProfiles.Add(profile);
+
+                if (!profile.Users.Contains(this))
+                    profile.AddUser(this);
+            }
+        }
+
+        public void SetDepartment(Department department)
+        {
+            if (department.IsValid)
+            {
+                this.Department = department;
+                if(!department.Users.Contains(this))
+                    department.AddUser(this);
+            }
         }
     }
 }

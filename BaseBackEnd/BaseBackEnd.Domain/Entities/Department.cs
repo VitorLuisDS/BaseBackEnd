@@ -19,6 +19,8 @@ namespace BaseBackEnd.Security.Domain.Entities
         {
             Name = name;
             Description = description;
+
+            AddNotifications(name, description);
         }
 
         public void AddUser(User user)
@@ -30,7 +32,11 @@ namespace BaseBackEnd.Security.Domain.Entities
                 .IsFalse(userAlreadyExists, $"{nameof(Department)}.{nameof(Users)}", $"{nameof(Department)} already has this {nameof(User)}"));
 
             if (IsValid)
+            {
                 _users.Add(user);
+                if (user.Department != this)
+                    user.SetDepartment(this);
+            }
         }
     }
 }

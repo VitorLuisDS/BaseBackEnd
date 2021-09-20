@@ -33,7 +33,11 @@ namespace BaseBackEnd.Security.Domain.Entities
                 .IsFalse(pageAlreadyExists, $"{nameof(Functionality)}.{nameof(Page)}", $"{nameof(Functionality)} already has this {nameof(Page)}"));
 
             if (IsValid)
+            {
                 _pages.Add(page);
+                if (!page.Functionalities.Contains(this))
+                    page.AddFunctionality(this);
+            }
         }
     }
 }

@@ -5,6 +5,9 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
 {
     public class LoginVO : ValueObjectBase
     {
+        private const int MIN_LENGTH = 3;
+        private const int MAX_LENGTH = 30;
+
         public string Login { get; private set; }
 
         public LoginVO(string login)
@@ -12,8 +15,8 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
             Login = login;
 
             AddNotifications(new Contract<LoginVO>()
-                .IsLowerThan(Login, 3, $"{nameof(Login)} should have at least 3 chars")
-                .IsGreaterThan(Login, 30, $"{nameof(Login)} should have no more than 30 chars"));
+                .IsLowerThan(Login, MIN_LENGTH, $"{nameof(Login)} should have at least {MIN_LENGTH} chars")
+                .IsGreaterThan(Login, MAX_LENGTH, $"{nameof(Login)} should have no more than {MAX_LENGTH} chars"));
         }
     }
 }

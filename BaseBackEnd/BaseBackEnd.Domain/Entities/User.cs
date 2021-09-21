@@ -17,6 +17,9 @@ namespace BaseBackEnd.Security.Domain.Entities
         private ICollection<Profile> _userProfiles { get; set; }
         public IReadOnlyCollection<Profile> UserProfiles { get { return _userProfiles.ToArray(); } }
 
+        private ICollection<Session> _sessions { get; set; }
+        public IReadOnlyCollection<Session> Sessions { get { return _sessions.ToArray(); } }
+
         public User(NameVO name, LoginVO login, PasswordVO password, Department department)
         {
             Name = name;
@@ -42,6 +45,23 @@ namespace BaseBackEnd.Security.Domain.Entities
 
                 if (!profile.Users.Contains(this))
                     profile.AddUser(this);
+            }
+        }
+
+        public void AddSession(Session session)
+        {
+            var sessionAlreadyExists = _sessions
+                .Any(up => up.Id == session.Id);
+
+            AddNotifications(new Contract<Session>()
+                .IsFalse(sessionAlreadyExists, $"{nameof(User)}.{nameof(Sessions)}", $"{nameof(User)} already has this {nameof(Session)}"));
+
+            if (IsValid)
+            {
+                _sessions.Add(session);
+
+                if (session.User != this)
+                    session.SetUser(this);
             }
         }
 

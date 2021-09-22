@@ -12,7 +12,6 @@ namespace BaseBackEnd.Security.Domain.Entities
         public NameVO Name { get; private set; }
         public LoginVO Login { get; private set; }
         public PasswordVO Password { get; private set; }
-        public Department Department { get; private set; }
 
         private ICollection<Profile> _userProfiles { get; set; }
         public IReadOnlyCollection<Profile> UserProfiles { get { return _userProfiles.ToArray(); } }
@@ -20,14 +19,13 @@ namespace BaseBackEnd.Security.Domain.Entities
         private ICollection<Session> _sessions { get; set; }
         public IReadOnlyCollection<Session> Sessions { get { return _sessions.ToArray(); } }
 
-        public User(NameVO name, LoginVO login, PasswordVO password, Department department)
+        public User(NameVO name, LoginVO login, PasswordVO password)
         {
             Name = name;
             Login = login;
             Password = password;
-            Department = department;
 
-            AddNotifications(name, login, password, department);
+            AddNotifications(name, login, password);
         }
 
 
@@ -62,16 +60,6 @@ namespace BaseBackEnd.Security.Domain.Entities
 
                 if (session.User != this)
                     session.SetUser(this);
-            }
-        }
-
-        public void SetDepartment(Department department)
-        {
-            if (department.IsValid)
-            {
-                this.Department = department;
-                if(!department.Users.Contains(this))
-                    department.AddUser(this);
             }
         }
     }

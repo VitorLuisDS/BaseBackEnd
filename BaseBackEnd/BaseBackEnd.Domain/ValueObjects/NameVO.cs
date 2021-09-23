@@ -1,4 +1,6 @@
-﻿using BaseBackEnd.Security.Domain.Rules;
+﻿using BaseBackEnd.Security.Domain.Constants;
+using BaseBackEnd.Security.Domain.Flunt;
+using BaseBackEnd.Security.Domain.Rules;
 using BaseBackEnd.Security.Domain.ValueObjects.Base;
 using Flunt.Validations;
 
@@ -14,10 +16,10 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
 
             AddNotifications(new Contract<NameVO>()
                 .Requires()
-                    .IsNotNullOrWhiteSpace(Name, "Null or white space", $"{nameof(Name)} cannot be null")
-                    .IsGreaterThan(Name, NameVORules.MIN_LENGTH, "To short", $"{nameof(Name)} should have at least {NameVORules.MIN_LENGTH} chars")
-                    .IsLowerThan(Name, NameVORules.MAX_LENGTH, "Too long", $"{nameof(Name)} should have no more than {NameVORules.MAX_LENGTH} chars")
-                    .Matches(Name, NameVORules.ValidChars, "Invalid chars", $"{nameof(Name)} should have only alphabetical or \"'\" chars"));
+                    .IsNotNullOrWhiteSpaceWithDefaultMessage(Name)
+                    .IsGreaterThanWithDefaultMessage(Name, NameVORules.MIN_LENGTH)
+                    .IsLowerThanWithDefaultMessage(Name, NameVORules.MAX_LENGTH)
+                    .MatchesWithDefaultMessage(Name, NameVORules.ValidChars));
         }
     }
 }

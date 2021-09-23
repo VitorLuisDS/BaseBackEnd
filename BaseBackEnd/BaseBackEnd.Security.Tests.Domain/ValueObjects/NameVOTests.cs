@@ -7,7 +7,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
     public class NameVOTests
     {
         [TestMethod()]
-        public void Constructor_NullName_ThrowsException()
+        public void Constructor_NullName_VOIsNotValid()
         {
             //Arrange
             string name = null;

@@ -16,10 +16,10 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
 
             AddNotifications(new Contract<LoginVO>()
                 .Requires()
-                    .IsNotNullOrWhiteSpaceWithDefaultMessage(Login)
-                    .IsGreaterThanWithDefaultMessage(Login, LoginVORules.MIN_LENGTH)
-                    .IsLowerThanWithDefaultMessage(Login, LoginVORules.MAX_LENGTH)
-                    .MatchesWithDefaultMessage(Login, LoginVORules.ValidChars));
+                    .IsNotNullOrWhiteSpaceWithDefaultMessage(nameof(Login), Login)
+                    .IsGreaterThanWithDefaultMessage(nameof(Login), Login, LoginVORules.MIN_LENGTH)
+                    .IsLowerThanWithDefaultMessage(nameof(Login), Login, LoginVORules.MAX_LENGTH)
+                    .MatchesWithDefaultMessage(nameof(Login), Login, LoginVORules.ValidChars));
         }
     }
 }

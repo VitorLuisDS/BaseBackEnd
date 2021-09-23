@@ -15,7 +15,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
 
             AddNotifications(new Contract<DescriptionVO>()
                 .Requires()
-                    .IsLowerThanWithDefaultMessage(Description, DescriptionVORules.MAX_LENGTH));
+                    .IsLowerThanWithDefaultMessage(nameof(Description), Description, DescriptionVORules.MAX_LENGTH));
         }
     }
 }

@@ -16,10 +16,10 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
 
             AddNotifications(new Contract<NameVO>()
                 .Requires()
-                    .IsNotNullOrWhiteSpaceWithDefaultMessage(Name)
-                    .IsGreaterThanWithDefaultMessage(Name, NameVORules.MIN_LENGTH)
-                    .IsLowerThanWithDefaultMessage(Name, NameVORules.MAX_LENGTH)
-                    .MatchesWithDefaultMessage(Name, NameVORules.ValidChars));
+                    .IsNotNullOrWhiteSpaceWithDefaultMessage(nameof(Name), Name)
+                    .IsGreaterThanWithDefaultMessage(nameof(Name), Name, NameVORules.MIN_LENGTH)
+                    .IsLowerThanWithDefaultMessage(nameof(Name), Name, NameVORules.MAX_LENGTH)
+                    .MatchesWithDefaultMessage(nameof(Name), Name, NameVORules.ValidChars));
         }
     }
 }

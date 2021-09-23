@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BaseBackEnd.Security.Domain.RegexPatterns
+﻿namespace BaseBackEnd.Security.Domain.RegexPatterns
 {
     public static class LoginVORules
     {

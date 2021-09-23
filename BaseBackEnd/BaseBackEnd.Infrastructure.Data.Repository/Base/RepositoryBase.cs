@@ -3,10 +3,7 @@ using BaseBackEnd.Security.Infrastructure.CrossCutting.Exceptions;
 using BaseBackEnd.Security.Infrastructure.Data.EFCore.Context;
 using BaseBackEnd.Security.Infrastructure.Data.EFCore.Context.DatabaseFunctions;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base
 {

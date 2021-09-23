@@ -1,11 +1,10 @@
 ﻿using Flunt.Notifications;
-using System;
 
 namespace BaseBackEnd.Security.Domain.Entities
 {
     public class SessionBlackList : Notifiable<Notification>
     {
-        public Guid Id { get;}
+        public Guid Id { get; }
         public Session Session { get; private set; }
 
         public SessionBlackList(Session session)

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.Base
+﻿namespace BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.Base
 {
     public abstract class EntityAuditBase
     {

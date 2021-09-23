@@ -1,7 +1,6 @@
 ﻿using BaseBackEnd.Security.Domain.Entities.Base;
 using BaseBackEnd.Security.Domain.ValueObjects;
 using Flunt.Validations;
-using System.Collections.Generic;
 
 namespace BaseBackEnd.Security.Domain.Entities
 {

@@ -1,7 +1,5 @@
 ﻿using BaseBackEnd.Security.Domain.Interfaces.UnityOfWork;
 using BaseBackEnd.Security.Infrastructure.Data.EFCore.Context;
-using System;
-using System.Threading.Tasks;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.UnityOfWork
 {

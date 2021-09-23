@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BaseBackEnd.Security.Infrastructure.CrossCutting.Exceptions
+﻿namespace BaseBackEnd.Security.Infrastructure.CrossCutting.Exceptions
 {
     public class RequestErrorException : Exception
     {

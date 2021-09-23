@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BaseBackEnd.Security.Infrastructure.Data.PersistenceModels
+﻿namespace BaseBackEnd.Security.Infrastructure.Data.PersistenceModels
 {
     public class SessionBlackList
     {

@@ -1,5 +1,4 @@
 ﻿using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.Base;
-using System.Collections.Generic;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.PersistenceModels
 {

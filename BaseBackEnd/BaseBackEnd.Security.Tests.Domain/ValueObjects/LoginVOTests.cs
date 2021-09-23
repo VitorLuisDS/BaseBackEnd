@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BaseBackEnd.Security.Domain.RegexPatterns;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
 {
@@ -35,7 +36,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
         public void Constructor_LongLogin_VOIsNotValid()
         {
             //Arrange
-            string login = string.Concat(Enumerable.Repeat("dev", 50));
+            string login = string.Concat(Enumerable.Repeat("d", LoginVORules.MAX_LENGTH + 1));
 
             //Act
             LoginVO loginVO = new LoginVO(login);

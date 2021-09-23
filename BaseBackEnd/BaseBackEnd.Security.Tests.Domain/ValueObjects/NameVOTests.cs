@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BaseBackEnd.Security.Domain.Rules;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
 {
@@ -35,7 +36,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
         public void Constructor_LongName_VOIsNotValid()
         {
             //Arrange
-            string name = string.Concat(Enumerable.Repeat("dev", 50));
+            string name = string.Concat(Enumerable.Repeat("d", NameVORules.MAX_LENGTH + 1));
 
             //Act
             NameVO nameVO = new NameVO(name);

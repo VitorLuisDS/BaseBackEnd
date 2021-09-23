@@ -63,5 +63,18 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             //Assert
             Assert.IsFalse(codeVO.IsValid);
         }
+
+        [TestMethod()]
+        public void Constructor_CorrectCodeLengthWithValidChars_VOIsValid()
+        {
+            //Arrange
+            string code = "dev-code";
+
+            //Act
+            CodeVO codeVO = new CodeVO(code);
+
+            //Assert
+            Assert.IsTrue(codeVO.IsValid);
+        }
     }
 }

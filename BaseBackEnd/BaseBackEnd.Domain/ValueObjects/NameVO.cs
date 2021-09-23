@@ -1,4 +1,5 @@
-﻿using BaseBackEnd.Security.Domain.ValueObjects.Base;
+﻿using BaseBackEnd.Security.Domain.Rules;
+using BaseBackEnd.Security.Domain.ValueObjects.Base;
 using Flunt.Validations;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,6 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
 {
     public class NameVO : ValueObjectBase
     {
-        private const int MIN_LENGTH = 3;
-        private const int MAX_LENGTH = 50;
-
         public string Name { get; private set; }
 
         public NameVO(string name)
@@ -20,8 +18,11 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
             Name = name;
 
             AddNotifications(new Contract<NameVO>()
-                .IsLowerThan(Name, MIN_LENGTH, $"{nameof(Name)} should have at least {MIN_LENGTH} chars")
-                .IsGreaterThan(Name, MAX_LENGTH, $"{nameof(Name)} should have no more than {MAX_LENGTH} chars"));
+                .Requires()
+                    .IsNotNullOrWhiteSpace(Name, "Null or white space", $"{nameof(Name)} cannot be null")
+                    .IsGreaterThan(Name, NameVORules.MIN_LENGTH, "To short", $"{nameof(Name)} should have at least {NameVORules.MIN_LENGTH} chars")
+                    .IsLowerThan(Name, NameVORules.MAX_LENGTH, "Too long", $"{nameof(Name)} should have no more than {NameVORules.MAX_LENGTH} chars")
+                    .Matches(Name, NameVORules.ValidChars, "Invalid chars", $"{nameof(Name)} should have only alphabetical or \"'\" chars"));
         }
     }
 }

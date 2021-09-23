@@ -1,13 +1,11 @@
-﻿using BaseBackEnd.Security.Domain.ValueObjects.Base;
+﻿using BaseBackEnd.Security.Domain.RegexPatterns;
+using BaseBackEnd.Security.Domain.ValueObjects.Base;
 using Flunt.Validations;
 
 namespace BaseBackEnd.Security.Domain.ValueObjects
 {
     public class LoginVO : ValueObjectBase
     {
-        private const int MIN_LENGTH = 3;
-        private const int MAX_LENGTH = 30;
-
         public string Login { get; private set; }
 
         public LoginVO(string login)
@@ -15,8 +13,11 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
             Login = login;
 
             AddNotifications(new Contract<LoginVO>()
-                .IsLowerThan(Login, MIN_LENGTH, $"{nameof(Login)} should have at least {MIN_LENGTH} chars")
-                .IsGreaterThan(Login, MAX_LENGTH, $"{nameof(Login)} should have no more than {MAX_LENGTH} chars"));
+                .Requires()
+                    .IsNotNullOrWhiteSpace(Login, "Null or white space", $"{nameof(Login)} cannot be null")
+                    .IsGreaterThan(Login, LoginVORules.MIN_LENGTH, "To short", $"{nameof(Login)} should have at least {LoginVORules.MIN_LENGTH} chars")
+                    .IsLowerThan(Login, LoginVORules.MAX_LENGTH, "Too long", $"{nameof(Login)} should have no more than {LoginVORules.MAX_LENGTH} chars")
+                    .Matches(Login, LoginVORules.ValidChars, "Invalid chars", $"{nameof(Login)} should have only alphabetical, number, \".\" or \"_\" chars"));
         }
     }
 }

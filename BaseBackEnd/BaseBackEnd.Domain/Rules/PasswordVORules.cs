@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BaseBackEnd.Security.Domain.Rules
+﻿namespace BaseBackEnd.Security.Domain.Rules
 {
     public static class PasswordVORules
     {

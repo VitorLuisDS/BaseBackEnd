@@ -15,8 +15,8 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
 
             AddNotifications(new Contract<CodeVO>()
                 .IsNotNullOrWhiteSpaceWithDefaultMessage(nameof(Code), Code)
-                .IsGreaterThanWithDefaultMessage(nameof(Code), Code, CodeVORules.MIN_LENGTH)
-                .IsLowerThanWithDefaultMessage(nameof(Code), Code, CodeVORules.MAX_LENGTH)
+                .IsGreaterOrEqualThanWithDefaultMessage(nameof(Code), Code, CodeVORules.MIN_LENGTH)
+                .IsLowerOrEqualThanWithDefaultMessage(nameof(Code), Code, CodeVORules.MAX_LENGTH)
                 .MatchesWithDefaultMessage(nameof(Code), Code, CodeVORules.VALID_CHARS));
         }
     }

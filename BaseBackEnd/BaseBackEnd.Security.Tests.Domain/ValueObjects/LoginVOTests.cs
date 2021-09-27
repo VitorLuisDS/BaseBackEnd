@@ -75,7 +75,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
         public void Constructor_CorrectLoginLengthWithValidChars_VOIsValid()
         {
             //Arrange
-            string login = "dev.login";
+            string login = "dev";
 
             //Act
             LoginVO loginVO = new LoginVO(login);

@@ -1,5 +1,4 @@
-﻿using BaseBackEnd.Security.Domain.Constants;
-using BaseBackEnd.Security.Domain.Flunt;
+﻿using BaseBackEnd.Security.Domain.Flunt;
 using BaseBackEnd.Security.Domain.RegexPatterns;
 using BaseBackEnd.Security.Domain.ValueObjects.Base;
 using Flunt.Validations;
@@ -17,8 +16,8 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
             AddNotifications(new Contract<LoginVO>()
                 .Requires()
                     .IsNotNullOrWhiteSpaceWithDefaultMessage(nameof(Login), Login)
-                    .IsGreaterThanWithDefaultMessage(nameof(Login), Login, LoginVORules.MIN_LENGTH)
-                    .IsLowerThanWithDefaultMessage(nameof(Login), Login, LoginVORules.MAX_LENGTH)
+                    .IsGreaterOrEqualThanWithDefaultMessage(nameof(Login), Login, LoginVORules.MIN_LENGTH)
+                    .IsLowerOrEqualThanWithDefaultMessage(nameof(Login), Login, LoginVORules.MAX_LENGTH)
                     .MatchesWithDefaultMessage(nameof(Login), Login, LoginVORules.ValidChars));
         }
     }

@@ -14,8 +14,8 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
 
             AddNotifications(new Contract<PasswordVO>()
                 .IsNotNullOrWhiteSpaceWithDefaultMessage(nameof(Password), Password)
-                .IsGreaterThanWithDefaultMessage(nameof(Password), Password, PasswordVORules.MIN_LENGTH)
-                .IsLowerThanWithDefaultMessage(nameof(Password), Password, PasswordVORules.MAX_LENGTH));
+                .IsGreaterOrEqualThanWithDefaultMessage(nameof(Password), Password, PasswordVORules.MIN_LENGTH)
+                .IsLowerOrEqualThanWithDefaultMessage(nameof(Password), Password, PasswordVORules.MAX_LENGTH));
         }
     }
 }

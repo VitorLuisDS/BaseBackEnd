@@ -17,28 +17,56 @@ namespace BaseBackEnd.Security.Domain.Flunt
         {
             return valueObjectBase
                 .Requires()
-                    .IsGreaterThan(value, comparer, FluntContractNames.TOO_SHORT, $"{propertyName} should have at least {comparer} chars");
+                    .IsGreaterThan(value, comparer, FluntContractNames.TOO_SHORT, $"{propertyName} should more than {comparer} chars");
         }
 
         public static Contract<T> IsLowerThanWithDefaultMessage<T>(this Contract<T> valueObjectBase, string propertyName, int value, int comparer) where T : ValueObjectBase
         {
             return valueObjectBase
                 .Requires()
-                    .IsLowerThan(value, comparer, FluntContractNames.TOO_LONG, $"{propertyName} should have no more than {comparer} chars");
+                    .IsLowerThan(value, comparer, FluntContractNames.TOO_LONG, $"{propertyName} should have less than {comparer} chars");
         }
 
         public static Contract<T> IsGreaterThanWithDefaultMessage<T>(this Contract<T> valueObjectBase, string propertyName, string value, int comparer) where T : ValueObjectBase
         {
             return valueObjectBase
                 .Requires()
-                    .IsGreaterThan(value, comparer, FluntContractNames.TOO_SHORT, $"{propertyName} should have at least {comparer} chars");
+                    .IsGreaterThan(value, comparer, FluntContractNames.TOO_SHORT, $"{propertyName} should more than {comparer} chars");
         }
 
         public static Contract<T> IsLowerThanWithDefaultMessage<T>(this Contract<T> valueObjectBase, string propertyName, string value, int comparer) where T : ValueObjectBase
         {
             return valueObjectBase
                 .Requires()
-                    .IsLowerThan(value, comparer, FluntContractNames.TOO_LONG, $"{propertyName} should have no more than {comparer} chars");
+                    .IsLowerThan(value, comparer, FluntContractNames.TOO_LONG, $"{propertyName} should less than {comparer} chars");
+        }
+
+        public static Contract<T> IsGreaterOrEqualThanWithDefaultMessage<T>(this Contract<T> valueObjectBase, string propertyName, int value, int comparer) where T : ValueObjectBase
+        {
+            return valueObjectBase
+                .Requires()
+                    .IsGreaterOrEqualsThan(value, comparer, FluntContractNames.TOO_SHORT, $"{propertyName} should have at least {comparer} chars");
+        }
+
+        public static Contract<T> IsLowerOrEqualThanWithDefaultMessage<T>(this Contract<T> valueObjectBase, string propertyName, int value, int comparer) where T : ValueObjectBase
+        {
+            return valueObjectBase
+                .Requires()
+                    .IsLowerOrEqualsThan(value, comparer, FluntContractNames.TOO_LONG, $"{propertyName} should have no more than {comparer} chars");
+        }
+
+        public static Contract<T> IsGreaterOrEqualThanWithDefaultMessage<T>(this Contract<T> valueObjectBase, string propertyName, string value, int comparer) where T : ValueObjectBase
+        {
+            return valueObjectBase
+                .Requires()
+                    .IsGreaterOrEqualsThan(value, comparer, FluntContractNames.TOO_SHORT, $"{propertyName} should have at least {comparer} chars");
+        }
+
+        public static Contract<T> IsLowerOrEqualThanWithDefaultMessage<T>(this Contract<T> valueObjectBase, string propertyName, string value, int comparer) where T : ValueObjectBase
+        {
+            return valueObjectBase
+                .Requires()
+                    .IsLowerOrEqualsThan(value, comparer, FluntContractNames.TOO_LONG, $"{propertyName} should have no more than {comparer} chars");
         }
 
         public static Contract<T> MatchesWithDefaultMessage<T>(this Contract<T> valueObjectBase, string propertyName, string value, string pattern) where T : ValueObjectBase

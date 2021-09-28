@@ -14,7 +14,7 @@ namespace BaseBackEnd.Security.Domain.Entities
         public LoginVO Login { get; private set; }
         public PasswordVO Password { get; private set; }
 
-        private ICollection<Profile> _userProfiles { get; set; }
+        private ICollection<Profile> _userProfiles;
         public IReadOnlyCollection<Profile> UserProfiles
         {
             get
@@ -23,7 +23,7 @@ namespace BaseBackEnd.Security.Domain.Entities
             }
         }
 
-        private ICollection<Session> _sessions { get; set; }
+        private ICollection<Session> _sessions;
         public IReadOnlyCollection<Session> Sessions
         {
             get

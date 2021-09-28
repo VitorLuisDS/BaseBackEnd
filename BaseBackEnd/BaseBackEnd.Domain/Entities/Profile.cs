@@ -2,6 +2,7 @@
 using BaseBackEnd.Security.Domain.ValueObjects;
 using Flunt.Validations;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace BaseBackEnd.Security.Domain.Entities
@@ -12,11 +13,23 @@ namespace BaseBackEnd.Security.Domain.Entities
         public NameVO Name { get; private set; }
         public DescriptionVO Description { get; private set; }
 
-        private ICollection<User> _users { get; set; }
-        public IReadOnlyCollection<User> Users { get { return _users.ToArray(); } }
+        private ICollection<User> _users;
+        public IReadOnlyCollection<User> Users
+        {
+            get
+            {
+                return _users?.ToArray() ?? (_users = new Collection<User>()).ToArray();
+            }
+        }
 
-        private ICollection<Functionality> _functionalities { get; set; }
-        public IReadOnlyCollection<Functionality> Functionalities { get { return _functionalities.ToArray(); } }
+        private ICollection<Functionality> _functionalities;
+        public IReadOnlyCollection<Functionality> Functionalities
+        {
+            get
+            {
+                return _functionalities?.ToArray() ?? (_functionalities = new Collection<Functionality>()).ToArray();
+            }
+        }
 
         public Profile(NameVO name, DescriptionVO description)
         {

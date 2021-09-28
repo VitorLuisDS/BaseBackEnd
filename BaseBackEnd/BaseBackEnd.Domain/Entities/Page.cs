@@ -2,6 +2,7 @@
 using BaseBackEnd.Security.Domain.ValueObjects;
 using Flunt.Validations;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace BaseBackEnd.Security.Domain.Entities
@@ -14,8 +15,14 @@ namespace BaseBackEnd.Security.Domain.Entities
         public DescriptionVO Description { get; private set; }
         public Module Module { get; private set; }
 
-        private ICollection<Functionality> _functionalities { get; set; }
-        public IReadOnlyCollection<Functionality> Functionalities { get { return _functionalities.ToArray(); } }
+        private ICollection<Functionality> _functionalities;
+        public IReadOnlyCollection<Functionality> Functionalities
+        {
+            get
+            {
+                return _functionalities?.ToArray() ?? (_functionalities = new Collection<Functionality>()).ToArray();
+            }
+        }
 
         public Page(CodeVO code, NameVO name, DescriptionVO description, Module module)
         {

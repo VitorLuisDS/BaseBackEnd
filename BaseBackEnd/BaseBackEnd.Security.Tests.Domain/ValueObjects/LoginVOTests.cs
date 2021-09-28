@@ -7,7 +7,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
     public class LoginVOTests
     {
         [TestMethod()]
-        public void Constructor_NullLogin_ThrowsException()
+        public void Constructor_NullLogin_VOIsNotValid()
         {
             //Arrange
             string login = null;

@@ -1,5 +1,6 @@
 ﻿using BaseBackEnd.Security.Domain.Rules;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
 {
@@ -13,7 +14,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string password = null;
 
             //Act
-            PasswordVO passwordVO = new PasswordVO(password);
+            PasswordVO passwordVO = new (password);
 
             //Assert
             Assert.IsFalse(passwordVO.IsValid);
@@ -26,7 +27,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string password = "d";
 
             //Act
-            PasswordVO passwordVO = new PasswordVO(password);
+            PasswordVO passwordVO = new (password);
 
             //Assert
             Assert.IsFalse(passwordVO.IsValid);
@@ -39,7 +40,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string password = string.Concat(Enumerable.Repeat("d", PasswordVORules.MAX_LENGTH + 1));
 
             //Act
-            PasswordVO passwordVO = new PasswordVO(password);
+            PasswordVO passwordVO = new (password);
 
             //Assert
             Assert.IsFalse(passwordVO.IsValid);
@@ -52,7 +53,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string password = "dev-password";
 
             //Act
-            PasswordVO passwordVO = new PasswordVO(password);
+            PasswordVO passwordVO = new (password);
 
             //Assert
             Assert.IsTrue(passwordVO.IsValid);

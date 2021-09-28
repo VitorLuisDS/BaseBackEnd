@@ -17,7 +17,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
             PasswordVO password = new("111111");
 
             //Act
-            Func<object> newUser = () => new User(name, login, password);
+            object newUser() => new User(name, login, password);
 
             //Assert
             Assert.ThrowsException<NullReferenceException>(newUser);
@@ -32,7 +32,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
             PasswordVO password = new("111111");
 
             //Act
-            Func<object> newUser = () => new User(name, login, password);
+            object newUser() => new User(name, login, password);
 
             //Assert
             Assert.ThrowsException<NullReferenceException>(newUser);
@@ -47,7 +47,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
             PasswordVO? password = null;
 
             //Act
-            Func<object> newUser = () => new User(name, login, password);
+            object newUser() => new User(name, login, password);
 
             //Assert
             Assert.ThrowsException<NullReferenceException>(newUser);

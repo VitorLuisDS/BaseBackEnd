@@ -1,7 +1,9 @@
 ﻿using BaseBackEnd.Security.Domain.Entities.Base;
 using BaseBackEnd.Security.Domain.ValueObjects;
 using Flunt.Validations;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace BaseBackEnd.Security.Domain.Entities
 {
@@ -44,7 +46,7 @@ namespace BaseBackEnd.Security.Domain.Entities
         {
             if (profile is not null)
             {
-                var profileAlreadyExists = _userProfiles
+                bool profileAlreadyExists = _userProfiles
                     .Any(up => up.Id == profile.Id);
 
                 AddNotifications(new Contract<User>()
@@ -64,7 +66,7 @@ namespace BaseBackEnd.Security.Domain.Entities
         {
             if (session is not null)
             {
-                var sessionAlreadyExists = _sessions
+                bool sessionAlreadyExists = _sessions
                     .Any(up => up.Id == session.Id);
 
                 AddNotifications(new Contract<Session>()

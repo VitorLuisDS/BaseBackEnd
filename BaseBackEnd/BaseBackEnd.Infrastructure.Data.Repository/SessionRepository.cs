@@ -4,6 +4,9 @@ using BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories.Base;
 using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels;
 using BaseBackEnd.Security.Infrastructure.Data.PersistenceModels.Enums;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories
 {

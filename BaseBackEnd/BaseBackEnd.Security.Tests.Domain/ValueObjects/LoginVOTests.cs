@@ -1,5 +1,6 @@
 ﻿using BaseBackEnd.Security.Domain.RegexPatterns;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
 {

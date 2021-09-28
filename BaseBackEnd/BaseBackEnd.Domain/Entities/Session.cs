@@ -1,4 +1,6 @@
 ﻿using Flunt.Notifications;
+using System;
+using System.Linq;
 
 namespace BaseBackEnd.Security.Domain.Entities
 {

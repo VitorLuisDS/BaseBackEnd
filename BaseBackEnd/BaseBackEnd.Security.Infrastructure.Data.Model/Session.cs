@@ -1,4 +1,6 @@
-﻿namespace BaseBackEnd.Security.Infrastructure.Data.PersistenceModels
+﻿using System;
+
+namespace BaseBackEnd.Security.Infrastructure.Data.PersistenceModels
 {
     public class Session
     {

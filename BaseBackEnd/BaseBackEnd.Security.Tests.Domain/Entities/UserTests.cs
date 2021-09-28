@@ -1,5 +1,7 @@
 ﻿using BaseBackEnd.Security.Domain.ValueObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq;
 
 namespace BaseBackEnd.Security.Domain.Entities.Tests
 {
@@ -55,7 +57,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void AddProfile_NullProfile_DoesNotAdd()
         {
             //Arrange
-            var user = new User(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            User? user = new User(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
             Profile profile = null;
 
             //Act
@@ -69,7 +71,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void AddSession_NullSession_DoesNotAdd()
         {
             //Arrange
-            var user = new User(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            User? user = new User(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
             Session session = null;
 
             //Act

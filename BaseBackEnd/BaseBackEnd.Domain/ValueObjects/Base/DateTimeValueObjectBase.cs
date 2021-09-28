@@ -1,5 +1,6 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
+using System;
 
 namespace BaseBackEnd.Security.Domain.ValueObjects.Base
 {

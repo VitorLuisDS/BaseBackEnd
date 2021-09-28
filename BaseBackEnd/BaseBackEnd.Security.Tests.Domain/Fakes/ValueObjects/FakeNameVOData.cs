@@ -1,6 +1,9 @@
 ﻿using BaseBackEnd.Security.Domain.Rules;
 using BaseBackEnd.Security.Domain.ValueObjects;
 using Fare;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BaseBackEnd.Security.Tests.Domain.Fakes.ValueObjects
 {

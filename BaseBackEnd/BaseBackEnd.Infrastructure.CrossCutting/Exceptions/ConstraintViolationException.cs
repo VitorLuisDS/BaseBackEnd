@@ -1,4 +1,6 @@
-﻿namespace BaseBackEnd.Security.Infrastructure.CrossCutting.Exceptions
+﻿using System;
+
+namespace BaseBackEnd.Security.Infrastructure.CrossCutting.Exceptions
 {
     public class ConstraintViolationException : Exception
     {

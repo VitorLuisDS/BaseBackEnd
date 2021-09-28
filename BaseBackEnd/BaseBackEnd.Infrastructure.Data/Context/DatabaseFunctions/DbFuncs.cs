@@ -1,4 +1,6 @@
-﻿namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Context.DatabaseFunctions
+﻿using System;
+
+namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Context.DatabaseFunctions
 {
     public class DbFuncs
     {

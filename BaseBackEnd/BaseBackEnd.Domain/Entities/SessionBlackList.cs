@@ -17,7 +17,7 @@ namespace BaseBackEnd.Security.Domain.Entities
         {
             if (session.IsValid)
             {
-                this.Session = session;
+                Session = session;
                 if (session.SessionBlackList != this)
                     session.SetSessionBlackList(this);
             }

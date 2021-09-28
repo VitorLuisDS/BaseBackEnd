@@ -23,7 +23,7 @@ namespace BaseBackEnd.Security.Domain.Entities
         {
             if (user.IsValid)
             {
-                this.User = user;
+                User = user;
                 if (!user.Sessions.Contains(this))
                     user.AddSession(this);
             }
@@ -33,7 +33,7 @@ namespace BaseBackEnd.Security.Domain.Entities
         {
             if (sessionBlackList.IsValid)
             {
-                this.SessionBlackList = sessionBlackList;
+                SessionBlackList = sessionBlackList;
                 if (sessionBlackList.Session != this)
                     sessionBlackList.SetSession(this);
             }

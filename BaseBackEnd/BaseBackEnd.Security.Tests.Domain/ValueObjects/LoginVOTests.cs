@@ -11,7 +11,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
         public void Constructor_NullLogin_VOIsNotValid()
         {
             //Arrange
-            string login = null;
+            string? login = null;
 
             //Act
             LoginVO loginVO = new(login);

@@ -24,7 +24,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
         public void Constructor_NullDescription_VOIsValid()
         {
             //Arrange
-            string description = null;
+            string? description = null;
 
             //Act
             DescriptionVO descriptionVO = new(description);

@@ -11,7 +11,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
         public void Constructor_NullPassword_VOIsNotValid()
         {
             //Arrange
-            string password = null;
+            string? password = null;
 
             //Act
             PasswordVO passwordVO = new(password);

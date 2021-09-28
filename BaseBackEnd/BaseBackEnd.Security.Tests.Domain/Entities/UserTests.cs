@@ -12,7 +12,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void Constructor_NullName_ThrowsException()
         {
             //Arrange
-            NameVO name = null;
+            NameVO? name = null;
             LoginVO login = new("123");
             PasswordVO password = new("111111");
 
@@ -28,7 +28,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         {
             //Arrange
             NameVO name = new("Vitor");
-            LoginVO login = null;
+            LoginVO? login = null;
             PasswordVO password = new("111111");
 
             //Act
@@ -44,7 +44,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
             //Arrange
             NameVO name = new("Vitor");
             LoginVO login = new("123");
-            PasswordVO password = null;
+            PasswordVO? password = null;
 
             //Act
             Func<object> newUser = () => new User(name, login, password);
@@ -58,7 +58,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         {
             //Arrange
             User? user = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
-            Profile profile = null;
+            Profile? profile = null;
 
             //Act
             user.AddProfile(profile);
@@ -72,7 +72,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         {
             //Arrange
             User? user = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
-            Session session = null;
+            Session? session = null;
 
             //Act
             user.AddSession(session);

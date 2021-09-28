@@ -16,7 +16,7 @@ namespace BaseBackEnd.Security.Domain.Factory.Entities.Tests
             //Arrange
             string login = "dev";
             string name = "Jack Dev Junior";
-            string password = null;
+            string? password = null;
             NameVO nameVOExpected = new(name);
             LoginVO loginVOExpected = new(login);
             PasswordVO passwordVOExpected = new(password);
@@ -43,7 +43,7 @@ namespace BaseBackEnd.Security.Domain.Factory.Entities.Tests
         {
             //Arrange
             string login = "dev";
-            string name = null;
+            string? name = null;
             string password = "dev-password";
             NameVO nameVOExpected = new(name);
             LoginVO loginVOExpected = new(login);
@@ -70,7 +70,7 @@ namespace BaseBackEnd.Security.Domain.Factory.Entities.Tests
         public void CreateUser_NullLogin_UserIsNotValid()
         {
             //Arrange
-            string login = null;
+            string? login = null;
             string name = "Jack Dev Junior";
             string password = "dev-password";
             NameVO nameVOExpected = new(name);

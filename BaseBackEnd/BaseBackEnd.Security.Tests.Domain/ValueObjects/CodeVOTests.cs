@@ -11,7 +11,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
         public void Constructor_NullCode_VOIsNotValid()
         {
             //Arrange
-            string code = null;
+            string? code = null;
 
             //Act
             CodeVO codeVO = new(code);

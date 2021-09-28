@@ -19,12 +19,12 @@ namespace BaseBackEnd.Security.Tests.Domain.Fakes.ValueObjects
         private static ICollection<NameVO> CreateNameVOs()
         {
             ICollection<NameVO> nameVOs = new List<NameVO>();
-            Xeger xeger = new Xeger(NameVORules.ValidChars);
+            Xeger xeger = new(NameVORules.ValidChars);
 
             for (int i = 0; i < 100; i++)
             {
                 string generatedLogin = xeger.Generate();
-                NameVO nameVO = new NameVO(generatedLogin);
+                NameVO nameVO = new(generatedLogin);
 
                 nameVOs.Add(nameVO);
             }
@@ -39,7 +39,7 @@ namespace BaseBackEnd.Security.Tests.Domain.Fakes.ValueObjects
 
         public static NameVO GetNameVO()
         {
-            Random random = new Random();
+            Random random = new();
             int index = random.Next(0, 100);
 
             return NameVOs.ElementAt(index);

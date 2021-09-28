@@ -14,7 +14,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string code = null;
 
             //Act
-            CodeVO codeVO = new CodeVO(code);
+            CodeVO codeVO = new(code);
 
             //Assert
             Assert.IsFalse(codeVO.IsValid);
@@ -27,7 +27,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string code = "d";
 
             //Act
-            CodeVO codeVO = new CodeVO(code);
+            CodeVO codeVO = new(code);
 
             //Assert
             Assert.IsFalse(codeVO.IsValid);
@@ -40,7 +40,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string code = "dev dev";
 
             //Act
-            CodeVO codeVO = new CodeVO(code);
+            CodeVO codeVO = new(code);
 
             //Assert
             Assert.IsFalse(codeVO.IsValid);
@@ -53,7 +53,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string code = string.Concat(Enumerable.Repeat("d", CodeVORules.MAX_LENGTH + 1));
 
             //Act
-            CodeVO codeVO = new CodeVO(code);
+            CodeVO codeVO = new(code);
 
             //Assert
             Assert.IsFalse(codeVO.IsValid);
@@ -66,7 +66,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string code = "dev";
 
             //Act
-            CodeVO codeVO = new CodeVO(code);
+            CodeVO codeVO = new(code);
 
             //Assert
             Assert.IsTrue(codeVO.IsValid);

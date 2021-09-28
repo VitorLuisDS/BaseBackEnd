@@ -9,7 +9,7 @@ namespace BaseBackEnd.Security.Infrastructure.CrossCutting.Cryptography
         {
             using MD5 md5Hash = MD5.Create();
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-            StringBuilder sBuilder = new StringBuilder();
+            StringBuilder sBuilder = new();
 
             for (int i = 0; i < data.Length; i++)
             {

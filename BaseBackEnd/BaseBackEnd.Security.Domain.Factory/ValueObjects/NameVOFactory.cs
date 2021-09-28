@@ -7,7 +7,7 @@ namespace BaseBackEnd.Security.Domain.Factory.ValueObjects
     {
         public NameVO CreateNameVO(string name)
         {
-            NameVO nameVo = new NameVO(name);
+            NameVO nameVo = new(name);
             return nameVo;
         }
     }

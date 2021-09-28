@@ -14,7 +14,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string name = null;
 
             //Act
-            NameVO nameVO = new NameVO(name);
+            NameVO nameVO = new(name);
 
             //Assert
             Assert.IsFalse(nameVO.IsValid);
@@ -27,7 +27,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string name = "d";
 
             //Act
-            NameVO nameVO = new NameVO(name);
+            NameVO nameVO = new(name);
 
             //Assert
             Assert.IsFalse(nameVO.IsValid);
@@ -40,7 +40,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string name = string.Concat(Enumerable.Repeat("d", NameVORules.MAX_LENGTH + 1));
 
             //Act
-            NameVO nameVO = new NameVO(name);
+            NameVO nameVO = new(name);
 
             //Assert
             Assert.IsFalse(nameVO.IsValid);
@@ -53,7 +53,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string name = "dev dev ";
 
             //Act
-            NameVO nameVO = new NameVO(name);
+            NameVO nameVO = new(name);
 
             //Assert
             Assert.IsFalse(nameVO.IsValid);
@@ -66,7 +66,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string name = "dev-dev";
 
             //Act
-            NameVO nameVO = new NameVO(name);
+            NameVO nameVO = new(name);
 
             //Assert
             Assert.IsFalse(nameVO.IsValid);
@@ -79,7 +79,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string name = "Jack Dev Junior";
 
             //Act
-            NameVO nameVO = new NameVO(name);
+            NameVO nameVO = new(name);
 
             //Assert
             Assert.IsTrue(nameVO.IsValid);

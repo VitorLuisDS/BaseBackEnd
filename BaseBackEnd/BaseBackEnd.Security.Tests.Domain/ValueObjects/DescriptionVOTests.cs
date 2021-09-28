@@ -14,7 +14,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string description = string.Concat(Enumerable.Repeat("d", DescriptionVORules.MAX_LENGTH + 1));
 
             //Act
-            DescriptionVO descriptionVO = new DescriptionVO(description);
+            DescriptionVO descriptionVO = new(description);
 
             //Assert
             Assert.IsFalse(descriptionVO.IsValid);
@@ -27,7 +27,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string description = null;
 
             //Act
-            DescriptionVO descriptionVO = new DescriptionVO(description);
+            DescriptionVO descriptionVO = new(description);
 
             //Assert
             Assert.IsTrue(descriptionVO.IsValid);
@@ -40,7 +40,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string description = "d";
 
             //Act
-            DescriptionVO descriptionVO = new DescriptionVO(description);
+            DescriptionVO descriptionVO = new(description);
 
             //Assert
             Assert.IsTrue(descriptionVO.IsValid);

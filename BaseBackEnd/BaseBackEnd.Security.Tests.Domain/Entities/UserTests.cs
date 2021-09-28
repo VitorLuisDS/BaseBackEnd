@@ -13,8 +13,8 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         {
             //Arrange
             NameVO name = null;
-            LoginVO login = new LoginVO("123");
-            PasswordVO password = new PasswordVO("111111");
+            LoginVO login = new("123");
+            PasswordVO password = new("111111");
 
             //Act
             Func<object> newUser = () => new User(name, login, password);
@@ -27,9 +27,9 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void Constructor_NullLogin_ThrowsException()
         {
             //Arrange
-            NameVO name = new NameVO("Vitor");
+            NameVO name = new("Vitor");
             LoginVO login = null;
-            PasswordVO password = new PasswordVO("111111");
+            PasswordVO password = new("111111");
 
             //Act
             Func<object> newUser = () => new User(name, login, password);
@@ -42,8 +42,8 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void Constructor_NullPassword_ThrowsException()
         {
             //Arrange
-            NameVO name = new NameVO("Vitor");
-            LoginVO login = new LoginVO("123");
+            NameVO name = new("Vitor");
+            LoginVO login = new("123");
             PasswordVO password = null;
 
             //Act
@@ -57,7 +57,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void AddProfile_NullProfile_DoesNotAdd()
         {
             //Arrange
-            User? user = new User(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            User? user = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
             Profile profile = null;
 
             //Act
@@ -71,7 +71,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void AddSession_NullSession_DoesNotAdd()
         {
             //Arrange
-            User? user = new User(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            User? user = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
             Session session = null;
 
             //Act

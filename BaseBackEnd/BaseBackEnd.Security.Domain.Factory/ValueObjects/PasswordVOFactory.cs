@@ -7,7 +7,7 @@ namespace BaseBackEnd.Security.Domain.Factory.ValueObjects
     {
         public PasswordVO CreatePasswordVO(string password)
         {
-            PasswordVO passwordVO = new PasswordVO(password);
+            PasswordVO passwordVO = new(password);
             return passwordVO;
         }
     }

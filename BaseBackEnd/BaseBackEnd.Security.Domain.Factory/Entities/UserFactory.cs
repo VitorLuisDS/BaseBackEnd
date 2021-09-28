@@ -24,7 +24,7 @@ namespace BaseBackEnd.Security.Domain.Factory.Entities
             LoginVO loginVO = _loginVOFactory.CreateLoginVO(login);
             PasswordVO passwordVO = _passwordVOFactory.CreatePasswordVO(password);
 
-            User user = new User(nameVO, loginVO, passwordVO);
+            User user = new(nameVO, loginVO, passwordVO);
 
             return user;
         }

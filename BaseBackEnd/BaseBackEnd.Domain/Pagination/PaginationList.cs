@@ -31,6 +31,6 @@ namespace BaseBackEnd.Security.Domain.Pagination
         }
 
         public PaginationList<TDestination> Map<TDestination>(Func<TItem, TDestination> mapFunction) =>
-            new PaginationList<TDestination>(Items.Select(mapFunction).ToList(), QtdPerPage, CurrentPage, ItemsTotal);
+            new(Items.Select(mapFunction).ToList(), QtdPerPage, CurrentPage, ItemsTotal);
     }
 }

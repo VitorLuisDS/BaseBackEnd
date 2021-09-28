@@ -19,12 +19,12 @@ namespace BaseBackEnd.Security.Tests.Domain.Fakes.ValueObjects
         private static ICollection<LoginVO> CreateLoginVOs()
         {
             ICollection<LoginVO> loginVOs = new List<LoginVO>();
-            Xeger xeger = new Xeger(LoginVORules.ValidChars);
+            Xeger xeger = new(LoginVORules.ValidChars);
 
             for (int i = 0; i < 100; i++)
             {
                 string generatedLogin = xeger.Generate();
-                LoginVO loginVO = new LoginVO(generatedLogin);
+                LoginVO loginVO = new(generatedLogin);
 
                 loginVOs.Add(loginVO);
             }
@@ -39,7 +39,7 @@ namespace BaseBackEnd.Security.Tests.Domain.Fakes.ValueObjects
 
         public static LoginVO GetLoginVO()
         {
-            Random random = new Random();
+            Random random = new();
             int index = random.Next(0, 100);
 
             return LoginVOs.ElementAt(index);

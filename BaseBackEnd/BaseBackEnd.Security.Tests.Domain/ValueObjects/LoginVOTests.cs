@@ -14,7 +14,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string login = null;
 
             //Act
-            LoginVO loginVO = new LoginVO(login);
+            LoginVO loginVO = new(login);
 
             //Assert
             Assert.IsFalse(loginVO.IsValid);
@@ -27,7 +27,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string login = "d";
 
             //Act
-            LoginVO loginVO = new LoginVO(login);
+            LoginVO loginVO = new(login);
 
             //Assert
             Assert.IsFalse(loginVO.IsValid);
@@ -40,7 +40,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string login = string.Concat(Enumerable.Repeat("d", LoginVORules.MAX_LENGTH + 1));
 
             //Act
-            LoginVO loginVO = new LoginVO(login);
+            LoginVO loginVO = new(login);
 
             //Assert
             Assert.IsFalse(loginVO.IsValid);
@@ -53,7 +53,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string login = "dev dev";
 
             //Act
-            LoginVO loginVO = new LoginVO(login);
+            LoginVO loginVO = new(login);
 
             //Assert
             Assert.IsFalse(loginVO.IsValid);
@@ -66,7 +66,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string login = "dev-dev";
 
             //Act
-            LoginVO loginVO = new LoginVO(login);
+            LoginVO loginVO = new(login);
 
             //Assert
             Assert.IsFalse(loginVO.IsValid);
@@ -79,7 +79,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
             string login = "dev";
 
             //Act
-            LoginVO loginVO = new LoginVO(login);
+            LoginVO loginVO = new(login);
 
             //Assert
             Assert.IsTrue(loginVO.IsValid);

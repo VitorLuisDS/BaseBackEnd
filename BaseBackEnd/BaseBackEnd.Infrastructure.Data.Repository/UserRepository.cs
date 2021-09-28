@@ -25,7 +25,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories
         public async Task<User> GetUserByLoginAndPasswordAsync(string login, string password)
         {
             string cryptPassword = GenerateMD5.Get(password);
-            var user = await QueryBase()
+            User user = await QueryBase()
                 .Include(u => u.UserProfiles)
                     .ThenInclude(up => up.Profile)
                 .SingleOrDefaultAsync(u => u.Login == login &&

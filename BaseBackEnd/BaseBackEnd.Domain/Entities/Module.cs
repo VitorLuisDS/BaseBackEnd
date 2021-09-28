@@ -27,7 +27,7 @@ namespace BaseBackEnd.Security.Domain.Entities
 
         public void AddPage(Page page)
         {
-            var pageAlreadyExists = _pages
+            bool pageAlreadyExists = _pages
                 .Any(up => up.Id == page.Id);
 
             AddNotifications(new Contract<Page>()

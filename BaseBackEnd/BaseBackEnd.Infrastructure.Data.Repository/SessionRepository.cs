@@ -34,7 +34,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories
 
         public async Task<Session> GetSessionAndUserWithProfilesAsync(Guid sessionId)
         {
-            var session = await QueryBase()
+            Session session = await QueryBase()
                 .Include(s => s.User.UserProfiles)
                     .ThenInclude(up => up.Profile)
                 .SingleOrDefaultAsync(s => s.Id == sessionId);
@@ -49,14 +49,14 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories
 
         public async Task<User> GetUserFromSessionIdAsync(Guid sessionId)
         {
-            var session = await QueryBase()
+            Session session = await QueryBase()
                 .Include(s => s.User)
                 .SingleOrDefaultAsync(s => s.Id == sessionId);
 
             if (session == default)
                 return default;
 
-            var user = session.User;
+            User user = session.User;
             user.Password = default;
             user.Sessions = default;
 

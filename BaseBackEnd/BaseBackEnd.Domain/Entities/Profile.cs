@@ -28,7 +28,7 @@ namespace BaseBackEnd.Security.Domain.Entities
 
         public void AddUser(User user)
         {
-            var userAlreadyExists = _users
+            bool userAlreadyExists = _users
                 .Any(u => u.Id == user.Id);
 
             AddNotifications(new Contract<User>()
@@ -44,7 +44,7 @@ namespace BaseBackEnd.Security.Domain.Entities
 
         public void AddFunctionality(Functionality functionality)
         {
-            var functionalityAlreadyExists = _functionalities
+            bool functionalityAlreadyExists = _functionalities
                 .Any(u => u.Id == functionality.Id);
 
             AddNotifications(new Contract<Functionality>()

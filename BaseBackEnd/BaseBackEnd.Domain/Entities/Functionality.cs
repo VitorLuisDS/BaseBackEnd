@@ -30,7 +30,7 @@ namespace BaseBackEnd.Security.Domain.Entities
 
         public void AddPage(Page page)
         {
-            var pageAlreadyExists = _pages
+            bool pageAlreadyExists = _pages
                 .Any(u => u.Id == page.Id);
 
             AddNotifications(new Contract<Page>()
@@ -46,7 +46,7 @@ namespace BaseBackEnd.Security.Domain.Entities
 
         public void AddProfile(Profile profile)
         {
-            var profileAlreadyExists = _userProfiles
+            bool profileAlreadyExists = _userProfiles
                 .Any(up => up.Id == profile.Id);
 
             AddNotifications(new Contract<User>()

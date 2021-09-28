@@ -32,7 +32,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories
 
         public async Task<IEnumerable<string>> GetFunctionalitiesCodesByIdsUserProfilesAsync(int moduleId, int pageId, int userId)
         {
-            var userProfilesIds = await _dbContext
+            int[] userProfilesIds = await _dbContext
                 .UserProfile
                 .Include(up => up.Profile)
                 .Where(up => up.IdUser == userId &&
@@ -44,7 +44,7 @@ namespace BaseBackEnd.Security.Infrastructure.Data.EFCore.Repositories
             if (userProfilesIds == default || !userProfilesIds.Any())
                 return default;
 
-            var functionalitiesCodes = await QueryBase()
+            string[] functionalitiesCodes = await QueryBase()
                 .Where(pmpf => userProfilesIds.Contains(pmpf.IdProfile) &&
                                pmpf.IdModule == moduleId &&
                                pmpf.IdPage == pageId)

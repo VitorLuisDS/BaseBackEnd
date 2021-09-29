@@ -12,8 +12,8 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void Constructor_NullName_ThrowsException()
         {
             //Arrange
-            NameVO? name = null;
-            LoginVO login = new("123");
+            NameVO? name        = null;
+            LoginVO login       = new("123");
             PasswordVO password = new("111111");
 
             //Act
@@ -27,8 +27,8 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void Constructor_NullLogin_ThrowsException()
         {
             //Arrange
-            NameVO name = new("Vitor");
-            LoginVO? login = null;
+            NameVO name         = new("Vitor");
+            LoginVO? login      = null;
             PasswordVO password = new("111111");
 
             //Act
@@ -42,8 +42,8 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void Constructor_NullPassword_ThrowsException()
         {
             //Arrange
-            NameVO name = new("Vitor");
-            LoginVO login = new("123");
+            NameVO name          = new("Vitor");
+            LoginVO login        = new("123");
             PasswordVO? password = null;
 
             //Act
@@ -57,7 +57,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void AddProfile_NullProfile_DoesNotAdd()
         {
             //Arrange
-            User? user = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            User? user       = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
             Profile? profile = null;
 
             //Act
@@ -71,7 +71,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void AddSession_NullSession_DoesNotAdd()
         {
             //Arrange
-            User? user = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            User? user       = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
             Session? session = null;
 
             //Act

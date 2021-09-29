@@ -34,8 +34,8 @@ namespace BaseBackEnd.Security.Domain.Entities
 
         public User(NameVO name, LoginVO login, PasswordVO password)
         {
-            Name = name;
-            Login = login;
+            Name     = name;
+            Login    = login;
             Password = password;
 
             AddNotifications(name, login, password);

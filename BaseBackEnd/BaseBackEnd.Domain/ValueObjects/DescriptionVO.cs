@@ -1,11 +1,12 @@
-﻿using BaseBackEnd.Security.Domain.Flunt;
+﻿using BaseBackEnd.Security.Domain.Flunt.Base;
+using BaseBackEnd.Security.Domain.Flunt.Contracts.ValueObjects;
 using BaseBackEnd.Security.Domain.Rules;
 using BaseBackEnd.Security.Domain.ValueObjects.Base;
 using Flunt.Validations;
 
 namespace BaseBackEnd.Security.Domain.ValueObjects
 {
-    public class DescriptionVO : ValueObjectBase
+    public class DescriptionVO : BaseValueObject
     {
         public string Description { get; private set; }
 
@@ -13,9 +14,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
         {
             Description = description;
 
-            AddNotifications(new Contract<DescriptionVO>()
-                .Requires()
-                    .IsLowerOrEqualThanWithDefaultMessage(nameof(Description), Description, DescriptionVORules.MAX_LENGTH));
+            AddNotifications(DescriptionVOContracts.GetContracts(Description));
         }
     }
 }

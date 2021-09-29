@@ -25,8 +25,8 @@ namespace BaseBackEnd.Security.Domain.Factory.Entities.Tests
             Mock<ILoginVOFactory>    mockLoginVoFactory        = new();
             Mock<IPasswordVOFactory> mockPasswordVoFactory     = new();
 
-            mockNameVoFactory.Setup(f     => f.CreateNameVO(name)).Returns(nameVOExpected);
-            mockLoginVoFactory.Setup(f    => f.CreateLoginVO(login)).Returns(loginVOExpected);
+            mockNameVoFactory.Setup(f => f.CreateNameVO(name)).Returns(nameVOExpected);
+            mockLoginVoFactory.Setup(f => f.CreateLoginVO(login)).Returns(loginVOExpected);
             mockPasswordVoFactory.Setup(f => f.CreatePasswordVO(password)).Returns(passwordVOExpected);
 
             IUserFactory userFactory = new UserFactory(mockNameVoFactory.Object, mockLoginVoFactory.Object, mockPasswordVoFactory.Object);
@@ -53,8 +53,8 @@ namespace BaseBackEnd.Security.Domain.Factory.Entities.Tests
             Mock<ILoginVOFactory>    mockLoginVoFactory        = new();
             Mock<IPasswordVOFactory> mockPasswordVoFactory     = new();
 
-            mockNameVoFactory.Setup(f     => f.CreateNameVO(name)).Returns(nameVOExpected);
-            mockLoginVoFactory.Setup(f    => f.CreateLoginVO(login)).Returns(loginVOExpected);
+            mockNameVoFactory.Setup(f => f.CreateNameVO(name)).Returns(nameVOExpected);
+            mockLoginVoFactory.Setup(f => f.CreateLoginVO(login)).Returns(loginVOExpected);
             mockPasswordVoFactory.Setup(f => f.CreatePasswordVO(password)).Returns(passwordVOExpected);
 
             IUserFactory userFactory = new UserFactory(mockNameVoFactory.Object, mockLoginVoFactory.Object, mockPasswordVoFactory.Object);
@@ -81,8 +81,8 @@ namespace BaseBackEnd.Security.Domain.Factory.Entities.Tests
             Mock<ILoginVOFactory>    mockLoginVoFactory        = new();
             Mock<IPasswordVOFactory> mockPasswordVoFactory     = new();
 
-            mockNameVoFactory.Setup(f     => f.CreateNameVO(name)).Returns(nameVOExpected);
-            mockLoginVoFactory.Setup(f    => f.CreateLoginVO(login)).Returns(loginVOExpected);
+            mockNameVoFactory.Setup(f => f.CreateNameVO(name)).Returns(nameVOExpected);
+            mockLoginVoFactory.Setup(f => f.CreateLoginVO(login)).Returns(loginVOExpected);
             mockPasswordVoFactory.Setup(f => f.CreatePasswordVO(password)).Returns(passwordVOExpected);
 
             IUserFactory userFactory = new UserFactory(mockNameVoFactory.Object, mockLoginVoFactory.Object, mockPasswordVoFactory.Object);
@@ -109,8 +109,8 @@ namespace BaseBackEnd.Security.Domain.Factory.Entities.Tests
             Mock<ILoginVOFactory>    mockLoginVoFactory        = new();
             Mock<IPasswordVOFactory> mockPasswordVoFactory     = new();
 
-            mockNameVoFactory.Setup(f     => f.CreateNameVO(name)).Returns(nameVOExpected);
-            mockLoginVoFactory.Setup(f    => f.CreateLoginVO(login)).Returns(loginVOExpected);
+            mockNameVoFactory.Setup(f => f.CreateNameVO(name)).Returns(nameVOExpected);
+            mockLoginVoFactory.Setup(f => f.CreateLoginVO(login)).Returns(loginVOExpected);
             mockPasswordVoFactory.Setup(f => f.CreatePasswordVO(password)).Returns(passwordVOExpected);
 
             IUserFactory userFactory = new UserFactory(mockNameVoFactory.Object, mockLoginVoFactory.Object, mockPasswordVoFactory.Object);

@@ -1,11 +1,12 @@
-﻿using BaseBackEnd.Security.Domain.Flunt;
+﻿using BaseBackEnd.Security.Domain.Flunt.Base;
+using BaseBackEnd.Security.Domain.Flunt.Contracts.ValueObjects;
 using BaseBackEnd.Security.Domain.RegexPatterns;
 using BaseBackEnd.Security.Domain.ValueObjects.Base;
 using Flunt.Validations;
 
 namespace BaseBackEnd.Security.Domain.ValueObjects
 {
-    public class LoginVO : ValueObjectBase
+    public class LoginVO : BaseValueObject
     {
         public string Login { get; private set; }
 
@@ -13,12 +14,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
         {
             Login = login;
 
-            AddNotifications(new Contract<LoginVO>()
-                .Requires()
-                    .IsNotNullOrWhiteSpaceWithDefaultMessage(nameof(Login), Login)
-                    .IsGreaterOrEqualThanWithDefaultMessage(nameof(Login), Login, LoginVORules.MIN_LENGTH)
-                    .IsLowerOrEqualThanWithDefaultMessage(nameof(Login), Login, LoginVORules.MAX_LENGTH)
-                    .MatchesWithDefaultMessage(nameof(Login), Login, LoginVORules.ValidChars));
+            AddNotifications(LoginVOContracts.GetContracts(Login));
         }
     }
 }

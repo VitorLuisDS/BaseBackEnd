@@ -2,7 +2,7 @@
 
 namespace BaseBackEnd.Security.Domain.ValueObjects.Base
 {
-    public abstract class ValueObjectBase : Notifiable<Notification>
+    public abstract class BaseValueObject : Notifiable<Notification>
     {
     }
 }

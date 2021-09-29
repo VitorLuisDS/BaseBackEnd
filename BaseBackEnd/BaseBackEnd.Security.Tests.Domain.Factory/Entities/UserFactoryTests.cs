@@ -14,16 +14,16 @@ namespace BaseBackEnd.Security.Domain.Factory.Entities.Tests
         public void CreateUser_NullPassword_UserIsNotValid()
         {
             //Arrange
-            string login                  = "dev";
-            string name                   = "Jack Dev Junior";
-            string? password              = null;
-            NameVO nameVOExpected         = new(name);
-            LoginVO loginVOExpected       = new(login);
-            PasswordVO passwordVOExpected = new(password);
+            string     login                  = "dev";
+            string     name                   = "Jack Dev Junior";
+            string?    password               = null;
+            NameVO     nameVOExpected         = new(name);
+            LoginVO    loginVOExpected        = new(login);
+            PasswordVO passwordVOExpected     = new(password);
 
-            Mock<INameVOFactory> mockNameVoFactory         = new();
-            Mock<ILoginVOFactory> mockLoginVoFactory       = new();
-            Mock<IPasswordVOFactory> mockPasswordVoFactory = new();
+            Mock<INameVOFactory>     mockNameVoFactory         = new();
+            Mock<ILoginVOFactory>    mockLoginVoFactory        = new();
+            Mock<IPasswordVOFactory> mockPasswordVoFactory     = new();
 
             mockNameVoFactory.Setup(f     => f.CreateNameVO(name)).Returns(nameVOExpected);
             mockLoginVoFactory.Setup(f    => f.CreateLoginVO(login)).Returns(loginVOExpected);
@@ -42,16 +42,16 @@ namespace BaseBackEnd.Security.Domain.Factory.Entities.Tests
         public void CreateUser_NullName_UserIsNotValid()
         {
             //Arrange
-            string login                  = "dev";
-            string? name                  = null;
-            string password               = "dev-password";
-            NameVO nameVOExpected         = new(name);
-            LoginVO loginVOExpected       = new(login);
-            PasswordVO passwordVOExpected = new(password);
+            string     login                  = "dev";
+            string?    name                   = null;
+            string     password               = "dev-password";
+            NameVO     nameVOExpected         = new(name);
+            LoginVO    loginVOExpected        = new(login);
+            PasswordVO passwordVOExpected     = new(password);
 
-            Mock<INameVOFactory> mockNameVoFactory         = new();
-            Mock<ILoginVOFactory> mockLoginVoFactory       = new();
-            Mock<IPasswordVOFactory> mockPasswordVoFactory = new();
+            Mock<INameVOFactory>     mockNameVoFactory         = new();
+            Mock<ILoginVOFactory>    mockLoginVoFactory        = new();
+            Mock<IPasswordVOFactory> mockPasswordVoFactory     = new();
 
             mockNameVoFactory.Setup(f     => f.CreateNameVO(name)).Returns(nameVOExpected);
             mockLoginVoFactory.Setup(f    => f.CreateLoginVO(login)).Returns(loginVOExpected);
@@ -70,16 +70,16 @@ namespace BaseBackEnd.Security.Domain.Factory.Entities.Tests
         public void CreateUser_NullLogin_UserIsNotValid()
         {
             //Arrange
-            string? login                 = null;
-            string name                   = "Jack Dev Junior";
-            string password               = "dev-password";
-            NameVO nameVOExpected         = new(name);
-            LoginVO loginVOExpected       = new(login);
-            PasswordVO passwordVOExpected = new(password);
+            string?    login                  = null;
+            string     name                   = "Jack Dev Junior";
+            string     password               = "dev-password";
+            NameVO     nameVOExpected         = new(name);
+            LoginVO    loginVOExpected        = new(login);
+            PasswordVO passwordVOExpected     = new(password);
 
-            Mock<INameVOFactory> mockNameVoFactory         = new();
-            Mock<ILoginVOFactory> mockLoginVoFactory       = new();
-            Mock<IPasswordVOFactory> mockPasswordVoFactory = new();
+            Mock<INameVOFactory>     mockNameVoFactory         = new();
+            Mock<ILoginVOFactory>    mockLoginVoFactory        = new();
+            Mock<IPasswordVOFactory> mockPasswordVoFactory     = new();
 
             mockNameVoFactory.Setup(f     => f.CreateNameVO(name)).Returns(nameVOExpected);
             mockLoginVoFactory.Setup(f    => f.CreateLoginVO(login)).Returns(loginVOExpected);
@@ -98,16 +98,16 @@ namespace BaseBackEnd.Security.Domain.Factory.Entities.Tests
         public void CreateUser_ValidInformation_UserIsValid()
         {
             //Arrange
-            string login                  = "dev";
-            string name                   = "Jack Dev Junior";
-            string password               = "dev-password";
-            NameVO nameVOExpected         = new(name);
-            LoginVO loginVOExpected       = new(login);
-            PasswordVO passwordVOExpected = new(password);
+            string     login                  = "dev";
+            string     name                   = "Jack Dev Junior";
+            string     password               = "dev-password";
+            NameVO     nameVOExpected         = new(name);
+            LoginVO    loginVOExpected        = new(login);
+            PasswordVO passwordVOExpected     = new(password);
 
-            Mock<INameVOFactory> mockNameVoFactory         = new();
-            Mock<ILoginVOFactory> mockLoginVoFactory       = new();
-            Mock<IPasswordVOFactory> mockPasswordVoFactory = new();
+            Mock<INameVOFactory>     mockNameVoFactory         = new();
+            Mock<ILoginVOFactory>    mockLoginVoFactory        = new();
+            Mock<IPasswordVOFactory> mockPasswordVoFactory     = new();
 
             mockNameVoFactory.Setup(f     => f.CreateNameVO(name)).Returns(nameVOExpected);
             mockLoginVoFactory.Setup(f    => f.CreateLoginVO(login)).Returns(loginVOExpected);

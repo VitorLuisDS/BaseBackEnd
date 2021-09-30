@@ -34,8 +34,8 @@ namespace BaseBackEnd.Security.Domain.Entities
 
         public User(NameVO name, LoginVO login, PasswordVO password)
         {
-            Name     = name;
-            Login    = login;
+            Name = name;
+            Login = login;
             Password = password;
 
             AddNotifications(name, login, password);
@@ -46,7 +46,7 @@ namespace BaseBackEnd.Security.Domain.Entities
         {
             if (profile is not null)
             {
-                bool profileAlreadyExists = _userProfiles
+                bool profileAlreadyExists = UserProfiles
                     .Any(up => up.Id == profile.Id);
 
                 AddNotifications(new Contract<User>()
@@ -62,11 +62,31 @@ namespace BaseBackEnd.Security.Domain.Entities
             }
         }
 
+        public void RemoveProfile(Profile profile)
+        {
+            if (profile.Id != default && profile.Id > uint.MinValue)
+            {
+                bool profileExists = UserProfiles
+                    .Any(up => up.Id == profile.Id);
+
+                AddNotifications(new Contract<User>()
+                    .IsTrue(profileExists, $"{nameof(User)}.{nameof(UserProfiles)}", $"{nameof(User)} does not have this {nameof(Profile)}"));
+
+                if (IsValid)
+                {
+                    _userProfiles.Remove(profile);
+
+                    if (profile.Users.Contains(this))
+                        profile.RemoveUser(this);
+                }
+            }
+        }
+
         public void AddSession(Session session)
         {
             if (session is not null)
             {
-                bool sessionAlreadyExists = _sessions
+                bool sessionAlreadyExists = Sessions
                     .Any(up => up.Id == session.Id);
 
                 AddNotifications(new Contract<Session>()

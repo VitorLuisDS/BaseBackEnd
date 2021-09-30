@@ -1,6 +1,7 @@
 ﻿using BaseBackEnd.Security.Domain.Entities.Base;
 using BaseBackEnd.Security.Domain.ValueObjects;
 using Flunt.Validations;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -68,6 +69,22 @@ namespace BaseBackEnd.Security.Domain.Entities
                 _functionalities.Add(functionality);
                 if (!functionality.UserProfiles.Contains(this))
                     functionality.AddProfile(this);
+            }
+        }
+
+        public void RemoveUser(User user)
+        {
+            bool userExists = _users
+                .Any(u => u.Id == user.Id);
+
+            AddNotifications(new Contract<User>()
+                .IsTrue(userExists, $"{nameof(Profile)}.{nameof(Users)}", $"{nameof(Profile)} does not have this {nameof(User)}"));
+
+            if (IsValid)
+            {
+                _users.Remove(user);
+                if (user.UserProfiles.Contains(this))
+                    user.RemoveProfile(this);
             }
         }
     }

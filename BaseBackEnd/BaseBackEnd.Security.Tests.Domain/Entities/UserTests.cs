@@ -20,6 +20,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
             object newUser() => new User(name, login, password);
 
             //Assert
+            Assert.Fail();
             Assert.ThrowsException<NullReferenceException>(newUser);
         }
 
@@ -35,6 +36,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
             object newUser() => new User(name, login, password);
 
             //Assert
+            Assert.Fail();
             Assert.ThrowsException<NullReferenceException>(newUser);
         }
 
@@ -50,6 +52,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
             object newUser() => new User(name, login, password);
 
             //Assert
+            Assert.Fail();
             Assert.ThrowsException<NullReferenceException>(newUser);
         }
 
@@ -64,6 +67,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
             user.AddProfile(profile);
 
             //Assert
+            Assert.Fail();
             Assert.IsFalse(user.UserProfiles.Any());
         }
 
@@ -78,7 +82,69 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
             user.AddSession(session);
 
             //Assert
+            Assert.Fail();
             Assert.IsFalse(user.Sessions.Any());
+        }
+
+        [TestMethod()]
+        public void AddSession_ExistingSession_UserIsNotValid()
+        {
+            //Arrange
+            User? user       = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            Session? sessionToBeAdded = new Session(false, user);
+            Session? sessionNotToBeAdded = sessionToBeAdded;
+            user.AddSession(sessionToBeAdded);
+
+            //Act
+            user.AddSession(sessionNotToBeAdded);
+
+            //Assert
+            Assert.Fail();
+            Assert.IsFalse(user.IsValid);
+        }
+
+        [TestMethod()]
+        public void RemoveProfile_RemoveNonexistentProfile_ThrowsException()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void AddSession_AddValidSession_SessionIsAdded()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void AddProfile_AddValidProfile_ProfileIsAdded()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void RemoveProfile_RemoveProfile_ProfileIsRemoved()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.Fail();
         }
     }
 }

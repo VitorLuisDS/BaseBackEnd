@@ -38,7 +38,9 @@ namespace BaseBackEnd.Security.Domain.Entities
             Login = login;
             Password = password;
 
-            AddNotifications(name, login, password);
+            AddNotifications(name ?? new(default),
+                             login ?? new (default),
+                             password ?? new(default));
         }
 
 
@@ -49,10 +51,7 @@ namespace BaseBackEnd.Security.Domain.Entities
                 bool profileAlreadyExists = UserProfiles
                     .Any(up => up.Id == profile.Id);
 
-                AddNotifications(new Contract<User>()
-                    .IsFalse(profileAlreadyExists, $"{nameof(User)}.{nameof(UserProfiles)}", $"{nameof(User)} already has this {nameof(Profile)}"));
-
-                if (IsValid)
+                if (!profileAlreadyExists)
                 {
                     _userProfiles.Add(profile);
 
@@ -69,10 +68,7 @@ namespace BaseBackEnd.Security.Domain.Entities
                 bool profileExists = UserProfiles
                     .Any(up => up.Id == profile.Id);
 
-                AddNotifications(new Contract<User>()
-                    .IsTrue(profileExists, $"{nameof(User)}.{nameof(UserProfiles)}", $"{nameof(User)} does not have this {nameof(Profile)}"));
-
-                if (IsValid)
+                if (profileExists)
                 {
                     _userProfiles.Remove(profile);
 
@@ -89,10 +85,7 @@ namespace BaseBackEnd.Security.Domain.Entities
                 bool sessionAlreadyExists = Sessions
                     .Any(up => up.Id == session.Id);
 
-                AddNotifications(new Contract<Session>()
-                    .IsFalse(sessionAlreadyExists, $"{nameof(User)}.{nameof(Sessions)}", $"{nameof(User)} already has this {nameof(Session)}"));
-
-                if (IsValid)
+                if (!sessionAlreadyExists)
                 {
                     _sessions.Add(session);
 

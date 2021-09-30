@@ -1,4 +1,5 @@
 ﻿using BaseBackEnd.Security.Domain.ValueObjects;
+using BaseBackEnd.Security.Tests.Domain.Fakes.ValueObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
@@ -9,23 +10,22 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
     public class UserTests
     {
         [TestMethod()]
-        public void Constructor_NullName_ThrowsException()
+        public void Constructor_NullName_UserIsNotValid()
         {
             //Arrange
-            NameVO? name        = null;
-            LoginVO login       = new("123");
-            PasswordVO password = new("111111");
+            NameVO nameVO         = null;
+            LoginVO loginVO       = FakeLoginVOData.GetLoginVO();
+            PasswordVO passwordVO = FakePasswordVOData.GetPasswordVO();
 
             //Act
-            object newUser() => new User(name, login, password);
+            User user = new User(nameVO, loginVO, passwordVO);
 
             //Assert
-            Assert.Fail();
-            Assert.ThrowsException<NullReferenceException>(newUser);
+            Assert.IsFalse(user.IsValid);
         }
 
         [TestMethod()]
-        public void Constructor_NullLogin_ThrowsException()
+        public void Constructor_NullLogin_UserIsNotValid()
         {
             //Arrange
             NameVO name         = new("Vitor");

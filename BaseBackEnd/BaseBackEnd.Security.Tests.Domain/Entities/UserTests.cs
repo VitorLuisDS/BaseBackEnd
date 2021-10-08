@@ -13,9 +13,9 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void Constructor_NullName_UserIsNotValid()
         {
             //Arrange
-            NameVO nameVO         = null;
-            LoginVO loginVO       = FakeLoginVOData.GetLoginVO();
-            PasswordVO passwordVO = FakePasswordVOData.GetPasswordVO();
+            NameVO? nameVO         = null;
+            LoginVO loginVO        = FakeLoginVOData.GetLoginVO();
+            PasswordVO passwordVO  = FakePasswordVOData.GetPasswordVO();
 
             //Act
             User user = new User(nameVO, loginVO, passwordVO);

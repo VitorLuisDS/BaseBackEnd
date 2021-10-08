@@ -1,6 +1,5 @@
 ﻿using BaseBackEnd.Security.Domain.Entities.Base;
 using BaseBackEnd.Security.Domain.ValueObjects;
-using Flunt.Validations;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -39,7 +38,7 @@ namespace BaseBackEnd.Security.Domain.Entities
             Password = password;
 
             AddNotifications(name ?? new(default),
-                             login ?? new (default),
+                             login ?? new(default),
                              password ?? new(default));
         }
 

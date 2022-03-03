@@ -13,9 +13,9 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void Constructor_NullName_UserIsNotValid()
         {
             //Arrange
-            NameVO? nameVO         = null;
-            LoginVO loginVO        = FakeLoginVOData.GetLoginVO();
-            PasswordVO passwordVO  = FakePasswordVOData.GetPasswordVO();
+            NameVO? nameVO = null;
+            LoginVO loginVO = FakeLoginVOData.GetLoginVO();
+            PasswordVO passwordVO = FakePasswordVOData.GetPasswordVO();
 
             //Act
             User user = new User(nameVO, loginVO, passwordVO);
@@ -28,79 +28,73 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         public void Constructor_NullLogin_UserIsNotValid()
         {
             //Arrange
-            NameVO name         = new("Vitor");
-            LoginVO? login      = null;
+            NameVO name = new("Vitor");
+            LoginVO? login = null;
             PasswordVO password = new("111111");
 
             //Act
-            object newUser() => new User(name, login, password);
+            User newUser = new User(name, login, password);
 
             //Assert
-            Assert.Fail();
-            Assert.ThrowsException<NullReferenceException>(newUser);
+            Assert.IsFalse(newUser.IsValid);
         }
 
         [TestMethod()]
-        public void Constructor_NullPassword_ThrowsException()
+        public void Constructor_NullPassword_UserIsNotValid()
         {
             //Arrange
-            NameVO name          = new("Vitor");
-            LoginVO login        = new("123");
+            NameVO name = new("Vitor");
+            LoginVO login = new("123");
             PasswordVO? password = null;
 
             //Act
-            object newUser() => new User(name, login, password);
+            User newUser = new User(name, login, password);
 
             //Assert
-            Assert.Fail();
-            Assert.ThrowsException<NullReferenceException>(newUser);
+            Assert.IsFalse(newUser.IsValid);
         }
 
         [TestMethod()]
-        public void AddProfile_NullProfile_DoesNotAdd()
+        public void AddProfile_NullProfile_ThrowsException()
         {
             //Arrange
-            User? user       = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            User user = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
             Profile? profile = null;
 
             //Act
-            user.AddProfile(profile);
+            Action addsProfile = () => user.AddProfile(profile);
 
             //Assert
-            Assert.Fail();
-            Assert.IsFalse(user.UserProfiles.Any());
+            Assert.ThrowsException<ArgumentNullException>(addsProfile);
         }
 
         [TestMethod()]
-        public void AddSession_NullSession_DoesNotAdd()
+        public void AddSession_NullSession_ThrowsException()
         {
             //Arrange
-            User? user       = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            User user = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
             Session? session = null;
 
             //Act
-            user.AddSession(session);
+            Action addsSession = () => user.AddSession(session);
 
             //Assert
-            Assert.Fail();
-            Assert.IsFalse(user.Sessions.Any());
+            Assert.ThrowsException<ArgumentNullException>(addsSession);
         }
 
         [TestMethod()]
-        public void AddSession_ExistingSession_UserIsNotValid()
+        public void AddSession_ExistingSession_SessionIsNotAdded()
         {
             //Arrange
-            User? user       = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
-            Session? sessionToBeAdded = new Session(false, user);
-            Session? sessionNotToBeAdded = sessionToBeAdded;
+            User user = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            Session sessionToBeAdded = new (false, user);
             user.AddSession(sessionToBeAdded);
 
             //Act
-            user.AddSession(sessionNotToBeAdded);
+            user.AddSession(sessionToBeAdded);
 
             //Assert
-            Assert.Fail();
-            Assert.IsFalse(user.IsValid);
+            Assert.IsFalse(user.Sessions.Count == 2);
         }
 
         [TestMethod()]

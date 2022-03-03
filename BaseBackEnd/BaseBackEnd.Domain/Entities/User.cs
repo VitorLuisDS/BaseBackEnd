@@ -43,54 +43,45 @@ namespace BaseBackEnd.Security.Domain.Entities
         }
 
 
-        public void AddProfile(Profile profile)
+        public void AddProfile(Profile profile!!)
         {
-            if (profile is not null)
+            bool profileAlreadyExists = UserProfiles
+                .Any(up => up.Id == profile.Id);
+
+            if (!profileAlreadyExists)
             {
-                bool profileAlreadyExists = UserProfiles
-                    .Any(up => up.Id == profile.Id);
+                _userProfiles.Add(profile);
 
-                if (!profileAlreadyExists)
-                {
-                    _userProfiles.Add(profile);
-
-                    if (!profile.Users.Contains(this))
-                        profile.AddUser(this);
-                }
+                if (!profile.Users.Contains(this))
+                    profile.AddUser(this);
             }
         }
 
-        public void RemoveProfile(Profile profile)
+        public void RemoveProfile(Profile profile!!)
         {
-            if (profile.Id != default && profile.Id > uint.MinValue)
+            bool profileExists = UserProfiles
+                .Any(up => up.Id == profile.Id);
+
+            if (profileExists)
             {
-                bool profileExists = UserProfiles
-                    .Any(up => up.Id == profile.Id);
+                _userProfiles.Remove(profile);
 
-                if (profileExists)
-                {
-                    _userProfiles.Remove(profile);
-
-                    if (profile.Users.Contains(this))
-                        profile.RemoveUser(this);
-                }
+                if (profile.Users.Contains(this))
+                    profile.RemoveUser(this);
             }
         }
 
-        public void AddSession(Session session)
+        public void AddSession(Session session!!)
         {
-            if (session is not null)
+            bool sessionAlreadyExists = Sessions
+                .Any(up => up.Id == session.Id);
+
+            if (!sessionAlreadyExists)
             {
-                bool sessionAlreadyExists = Sessions
-                    .Any(up => up.Id == session.Id);
+                _sessions.Add(session);
 
-                if (!sessionAlreadyExists)
-                {
-                    _sessions.Add(session);
-
-                    if (session.User != this)
-                        session.SetUser(this);
-                }
+                if (session.User != this)
+                    session.SetUser(this);
             }
         }
     }

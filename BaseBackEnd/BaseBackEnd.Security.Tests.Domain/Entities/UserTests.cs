@@ -98,47 +98,60 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
         }
 
         [TestMethod()]
-        public void RemoveProfile_RemoveNonexistentProfile_ThrowsException()
+        public void RemoveProfile_RemoveNullProfile_ThrowsException()
         {
             //Arrange
+            User user = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            Profile? profile = null;
 
             //Act
+            Action removesProfile = () => user.RemoveProfile(profile);
 
             //Assert
-            Assert.Fail();
+            Assert.ThrowsException<ArgumentNullException>(removesProfile);
         }
 
         [TestMethod()]
         public void AddSession_AddValidSession_SessionIsAdded()
         {
             //Arrange
+            User user = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            Session session = new(false, user);
 
             //Act
+            user.AddSession(session);
 
             //Assert
-            Assert.Fail();
+            Assert.IsTrue(user.Sessions.Contains(session));
         }
 
         [TestMethod()]
         public void AddProfile_AddValidProfile_ProfileIsAdded()
         {
             //Arrange
+            User user = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            Profile profile = new(new NameVO("profile"), new DescriptionVO("desc"));
 
             //Act
+            user.AddProfile(profile);
 
             //Assert
-            Assert.Fail();
+            Assert.IsTrue(user.UserProfiles.Contains(profile));
         }
 
         [TestMethod()]
         public void RemoveProfile_RemoveProfile_ProfileIsRemoved()
         {
             //Arrange
+            User user = new(new NameVO("Vitor"), new LoginVO("123"), new PasswordVO("111111"));
+            Profile profile = new(new NameVO("profile"), new DescriptionVO("desc"));
+            user.AddProfile(profile);
 
             //Act
+            user.RemoveProfile(profile);
 
             //Assert
-            Assert.Fail();
+            Assert.IsTrue(!user.UserProfiles.Contains(profile));
         }
     }
 }

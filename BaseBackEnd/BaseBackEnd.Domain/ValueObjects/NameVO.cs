@@ -7,7 +7,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects
     {
         public string Name { get; private set; }
 
-        public NameVO(string name)
+        internal NameVO(string name)
         {
             Name = name;
 

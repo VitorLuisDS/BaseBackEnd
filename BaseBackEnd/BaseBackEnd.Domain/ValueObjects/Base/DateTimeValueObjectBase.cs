@@ -9,7 +9,7 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Base
         public DateTime DateTime { get; private set; }
 
         private static readonly DateTime MIN_SQL_DATE = new(1753, 1, 1);
-        public DateTimeValueObjectBase(DateTime dateTime)
+        internal DateTimeValueObjectBase(DateTime dateTime)
         {
             DateTime = dateTime;
 

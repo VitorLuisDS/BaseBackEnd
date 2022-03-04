@@ -11,7 +11,7 @@ namespace BaseBackEnd.Security.Domain.Entities
         public User User { get; private set; }
         public SessionBlackList SessionBlackList { get; private set; }
 
-        public Session(bool? stayConnected, User user)
+        internal Session(bool? stayConnected, User user)
         {
             StayConnected = stayConnected;
             User = user;

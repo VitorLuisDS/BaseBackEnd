@@ -32,7 +32,7 @@ namespace BaseBackEnd.Security.Domain.Entities
             }
         }
 
-        public Profile(NameVO name, DescriptionVO description)
+        internal Profile(NameVO name, DescriptionVO description)
         {
             Name = name;
             Description = description;

@@ -8,7 +8,7 @@ namespace BaseBackEnd.Security.Domain.Entities
         public Guid Id { get; }
         public Session Session { get; private set; }
 
-        public SessionBlackList(Session session)
+        internal SessionBlackList(Session session)
         {
             Session = session;
         }

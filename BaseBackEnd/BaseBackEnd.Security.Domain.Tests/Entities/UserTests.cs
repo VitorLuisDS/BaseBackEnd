@@ -18,7 +18,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
             PasswordVO passwordVO = FakePasswordVOData.GetPasswordVO();
 
             //Act
-            User user = new User(nameVO, loginVO, passwordVO);
+            User user = new (nameVO, loginVO, passwordVO);
 
             //Assert
             Assert.IsFalse(user.IsValid);
@@ -33,7 +33,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
             PasswordVO password = new("111111");
 
             //Act
-            User newUser = new User(name, login, password);
+            User newUser = new (name, login, password);
 
             //Assert
             Assert.IsFalse(newUser.IsValid);
@@ -48,7 +48,7 @@ namespace BaseBackEnd.Security.Domain.Entities.Tests
             PasswordVO? password = null;
 
             //Act
-            User newUser = new User(name, login, password);
+            User newUser = new (name, login, password);
 
             //Assert
             Assert.IsFalse(newUser.IsValid);

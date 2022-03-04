@@ -24,7 +24,7 @@ namespace BaseBackEnd.Security.Domain.Entities
             }
         }
 
-        public Page(CodeVO code, NameVO name, DescriptionVO description, Module module)
+        internal Page(CodeVO code, NameVO name, DescriptionVO description, Module module)
         {
             Code = code;
             Name = name;

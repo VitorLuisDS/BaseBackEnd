@@ -32,7 +32,7 @@ namespace BaseBackEnd.Security.Domain.Entities
             }
         }
 
-        public Functionality(CodeVO code, NameVO name, DescriptionVO description)
+        internal Functionality(CodeVO code, NameVO name, DescriptionVO description)
         {
             Code = code;
             Name = name;

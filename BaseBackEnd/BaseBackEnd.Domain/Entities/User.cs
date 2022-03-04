@@ -31,7 +31,7 @@ namespace BaseBackEnd.Security.Domain.Entities
             }
         }
 
-        public User(NameVO name, LoginVO login, PasswordVO password)
+        internal User(NameVO name, LoginVO login, PasswordVO password)
         {
             Name = name;
             Login = login;
@@ -41,7 +41,6 @@ namespace BaseBackEnd.Security.Domain.Entities
                              login ?? new(default),
                              password ?? new(default));
         }
-
 
         public void AddProfile(Profile profile!!)
         {

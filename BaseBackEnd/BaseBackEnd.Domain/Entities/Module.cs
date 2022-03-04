@@ -23,7 +23,7 @@ namespace BaseBackEnd.Security.Domain.Entities
             }
         }
 
-        public Module(CodeVO code, NameVO name, DescriptionVO description)
+        internal Module(CodeVO code, NameVO name, DescriptionVO description)
         {
             Code = code;
             Name = name;

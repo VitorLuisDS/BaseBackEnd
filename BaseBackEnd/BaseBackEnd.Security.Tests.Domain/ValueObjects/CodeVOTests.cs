@@ -8,39 +8,44 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
     public class CodeVOTests
     {
         [TestMethod()]
-        public void Constructor_NullCode_VOIsNotValid()
+        [DataRow(null)]
+        public void Constructor_NullCode_VOIsNotValid(string code)
         {
             //Arrange
-            string? code = null;
+            string nullCode = code;
 
             //Act
-            CodeVO codeVO = new(code);
+            CodeVO codeVO = new(nullCode);
 
             //Assert
             Assert.IsFalse(codeVO.IsValid);
         }
 
         [TestMethod()]
-        public void Constructor_ShortCode_VOIsNotValid()
+        [DataRow("d")]
+        [DataRow("")]
+        public void Constructor_ShortCode_VOIsNotValid(string code)
         {
             //Arrange
-            string code = "d";
+            string invalidCode = code;
 
             //Act
-            CodeVO codeVO = new(code);
+            CodeVO codeVO = new(invalidCode);
 
             //Assert
             Assert.IsFalse(codeVO.IsValid);
         }
 
         [TestMethod()]
-        public void Constructor_InvalidCharsInCode_VOIsNotValid()
+        [DataRow("dev dev")]
+        [DataRow("dev!!dev")]
+        public void Constructor_InvalidCharsInCode_VOIsNotValid(string code)
         {
             //Arrange
-            string code = "dev dev";
+            string invalidCode = code;
 
             //Act
-            CodeVO codeVO = new(code);
+            CodeVO codeVO = new(invalidCode);
 
             //Assert
             Assert.IsFalse(codeVO.IsValid);
@@ -60,13 +65,15 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
         }
 
         [TestMethod()]
-        public void Constructor_CorrectCodeLengthWithValidChars_VOIsValid()
+        [DataRow("dev")]
+        [DataRow("dev-dev")]
+        public void Constructor_CorrectCodeLengthWithValidChars_VOIsValid(string code)
         {
             //Arrange
-            string code = "dev";
+            string validCode = code;
 
             //Act
-            CodeVO codeVO = new(code);
+            CodeVO codeVO = new(validCode);
 
             //Assert
             Assert.IsTrue(codeVO.IsValid);

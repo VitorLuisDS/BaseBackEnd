@@ -8,26 +8,30 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
     public class NameVOTests
     {
         [TestMethod()]
-        public void Constructor_NullName_VOIsNotValid()
+        [DataRow(null)]
+        public void Constructor_NullName_VOIsNotValid(string name)
         {
             //Arrange
-            string? name = null;
+            string? nullName = name;
 
             //Act
-            NameVO nameVO = new(name);
+            NameVO nameVO = new(nullName);
 
             //Assert
             Assert.IsFalse(nameVO.IsValid);
         }
 
         [TestMethod()]
-        public void Constructor_ShortName_VOIsNotValid()
+        [DataRow("d")]
+        [DataRow("1")]
+        [DataRow("")]
+        public void Constructor_ShortName_VOIsNotValid(string name)
         {
             //Arrange
-            string name = "d";
+            string shortName = name;
 
             //Act
-            NameVO nameVO = new(name);
+            NameVO nameVO = new(shortName);
 
             //Assert
             Assert.IsFalse(nameVO.IsValid);
@@ -47,39 +51,44 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
         }
 
         [TestMethod()]
-        public void Constructor_SpaceInEndOfName_VOIsNotValid()
+        [DataRow("dev dev ")]
+        public void Constructor_SpaceInEndOfName_VOIsNotValid(string name)
         {
             //Arrange
-            string name = "dev dev ";
+            string invalidName = name;
 
             //Act
-            NameVO nameVO = new(name);
+            NameVO nameVO = new(invalidName);
 
             //Assert
             Assert.IsFalse(nameVO.IsValid);
         }
 
         [TestMethod()]
-        public void Constructor_InvalidCharsInName_VOIsNotValid()
+        [DataRow("dev-dev")]
+        [DataRow("dev dev!\"")]
+        public void Constructor_InvalidCharsInName_VOIsNotValid(string name)
         {
             //Arrange
-            string name = "dev-dev";
+            string invalidName = name;
 
             //Act
-            NameVO nameVO = new(name);
+            NameVO nameVO = new(invalidName);
 
             //Assert
             Assert.IsFalse(nameVO.IsValid);
         }
 
         [TestMethod()]
-        public void Constructor_CorrectNameLengthWithValidChars_VOIsValid()
+        [DataRow("Jack Junior Dev")]
+        [DataRow("Phil Senior Dev")]
+        public void Constructor_CorrectNameLengthWithValidChars_VOIsValid(string name)
         {
             //Arrange
-            string name = "Jack Dev Junior";
+            string correctName = name;
 
             //Act
-            NameVO nameVO = new(name);
+            NameVO nameVO = new(correctName);
 
             //Assert
             Assert.IsTrue(nameVO.IsValid);

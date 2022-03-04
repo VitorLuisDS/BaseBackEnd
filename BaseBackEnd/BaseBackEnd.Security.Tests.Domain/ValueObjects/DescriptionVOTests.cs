@@ -21,26 +21,30 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
         }
 
         [TestMethod()]
-        public void Constructor_NullDescription_VOIsValid()
+        [DataRow(null)]
+        public void Constructor_NullDescription_VOIsValid(string description)
         {
             //Arrange
-            string? description = null;
+            string nullDescription = description;
 
             //Act
-            DescriptionVO descriptionVO = new(description);
+            DescriptionVO descriptionVO = new(nullDescription);
 
             //Assert
             Assert.IsTrue(descriptionVO.IsValid);
         }
 
         [TestMethod()]
-        public void Constructor_CorrectDescriptionLength_VOIsValid()
+        [DataRow("d")]
+        [DataRow("d d")]
+        [DataRow("")]
+        public void Constructor_CorrectDescriptionLength_VOIsValid(string description)
         {
             //Arrange
-            string description = "d";
+            string correctDescription = description;
 
             //Act
-            DescriptionVO descriptionVO = new(description);
+            DescriptionVO descriptionVO = new(correctDescription);
 
             //Assert
             Assert.IsTrue(descriptionVO.IsValid);

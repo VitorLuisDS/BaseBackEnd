@@ -8,26 +8,30 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
     public class LoginVOTests
     {
         [TestMethod()]
-        public void Constructor_NullLogin_VOIsNotValid()
+        [DataRow(null)]
+        public void Constructor_NullLogin_VOIsNotValid(string login)
         {
             //Arrange
-            string? login = null;
+            string? nullLogin = login;
 
             //Act
-            LoginVO loginVO = new(login);
+            LoginVO loginVO = new(nullLogin);
 
             //Assert
             Assert.IsFalse(loginVO.IsValid);
         }
 
         [TestMethod()]
-        public void Constructor_ShortLogin_VOIsNotValid()
+        [DataRow("d")]
+        [DataRow("1")]
+        [DataRow("")]
+        public void Constructor_ShortLogin_VOIsNotValid(string login)
         {
             //Arrange
-            string login = "d";
+            string shortLogin = login;
 
             //Act
-            LoginVO loginVO = new(login);
+            LoginVO loginVO = new(shortLogin);
 
             //Assert
             Assert.IsFalse(loginVO.IsValid);
@@ -47,39 +51,45 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
         }
 
         [TestMethod()]
-        public void Constructor_SpaceInLogin_VOIsNotValid()
+        [DataRow("dev dev")]
+        [DataRow(" devdev")]
+        [DataRow("devdev ")]
+        public void Constructor_SpaceInLogin_VOIsNotValid(string login)
         {
             //Arrange
-            string login = "dev dev";
+            string invalidLogin = login;
 
             //Act
-            LoginVO loginVO = new(login);
+            LoginVO loginVO = new(invalidLogin);
 
             //Assert
             Assert.IsFalse(loginVO.IsValid);
         }
 
         [TestMethod()]
-        public void Constructor_InvalidCharsInLogin_VOIsNotValid()
+        [DataRow("dev-dev")]
+        [DataRow("dev dev!\"")]
+        public void Constructor_InvalidCharsInLogin_VOIsNotValid(string login)
         {
             //Arrange
-            string login = "dev-dev";
+            string invalidLogin = login;
 
             //Act
-            LoginVO loginVO = new(login);
+            LoginVO loginVO = new(invalidLogin);
 
             //Assert
             Assert.IsFalse(loginVO.IsValid);
         }
 
         [TestMethod()]
-        public void Constructor_CorrectLoginLengthWithValidChars_VOIsValid()
+        [DataRow("dev")]
+        public void Constructor_CorrectLoginLengthWithValidChars_VOIsValid(string login)
         {
             //Arrange
-            string login = "dev";
+            string correctLogin = login;
 
             //Act
-            LoginVO loginVO = new(login);
+            LoginVO loginVO = new(correctLogin);
 
             //Assert
             Assert.IsTrue(loginVO.IsValid);

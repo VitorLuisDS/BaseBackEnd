@@ -8,26 +8,30 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
     public class PasswordVOTests
     {
         [TestMethod()]
-        public void Constructor_NullPassword_VOIsNotValid()
+        [DataRow(null)]
+        public void Constructor_NullPassword_VOIsNotValid(string password)
         {
             //Arrange
-            string? password = null;
+            string? nullPassword = password;
 
             //Act
-            PasswordVO passwordVO = new(password);
+            PasswordVO passwordVO = new(nullPassword);
 
             //Assert
             Assert.IsFalse(passwordVO.IsValid);
         }
 
         [TestMethod()]
-        public void Constructor_ShortPassword_VOIsNotValid()
+        [DataRow("d")]
+        [DataRow("1")]
+        [DataRow("")]
+        public void Constructor_ShortPassword_VOIsNotValid(string password)
         {
             //Arrange
-            string password = "d";
+            string shortPassword = password;
 
             //Act
-            PasswordVO passwordVO = new(password);
+            PasswordVO passwordVO = new(shortPassword);
 
             //Assert
             Assert.IsFalse(passwordVO.IsValid);
@@ -47,13 +51,15 @@ namespace BaseBackEnd.Security.Domain.ValueObjects.Tests
         }
 
         [TestMethod()]
-        public void Constructor_CorrectPasswordLengthWithValidChars_VOIsValid()
+        [DataRow("dev-password")]
+        [DataRow("dev-12345678786")]
+        public void Constructor_CorrectPasswordLengthWithValidChars_VOIsValid(string password)
         {
             //Arrange
-            string password = "dev-password";
+            string correctPassword = password;
 
             //Act
-            PasswordVO passwordVO = new(password);
+            PasswordVO passwordVO = new(correctPassword);
 
             //Assert
             Assert.IsTrue(passwordVO.IsValid);
